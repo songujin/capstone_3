@@ -1,0 +1,25 @@
+@media renault9p and (max-width: 194px) and (max-height: 191px) {
+  #gadget {
+    width: 194px;
+    height: 191px;
+  }
+}
+@media dacia7p and (max-width: 192px) and (max-height: 178px) {
+  #gadget {
+    background: #170003;
+    width: 192px;
+    height: 178px;
+    > .header {
+      height: 40px;
+    }
+  }
+}
+@media renault7p and (max-width: 192px) and (max-height: 178px) {
+  #gadget {
+    width: 192px;
+    height: 178px;
+    > .header {
+      height: 40px;
+    }
+  }
+}

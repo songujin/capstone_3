@@ -1,0 +1,96 @@
+{
+  "gadgets": [{
+    "size": "S",
+    "name": "Small",
+    "items": [{
+      "model": "7pd",
+      "name": "7pd",
+      "id": "7pd_s",
+      "width": "192",
+      "height": "178",
+      "preview": "preview.png", 
+      "shortcut": "shortcut.png"
+    }, {
+      "model": "7pr",
+      "name": "7pr",
+      "id": "7pr_s",
+      "width": "192",
+      "height": "178",
+      "preview": "preview.png", 
+      "shortcut": "shortcut.png"
+    }, {
+      "model": "9pr",
+      "name": "9pr",
+      "id": "9pr_s",
+      "width": "194",
+      "height": "191",
+      "preview": "preview.png",
+      "shortcut": "shortcut.png"
+    }]
+  },
+  {
+    "size": "M",
+    "name": "Medium",
+    "items": [{
+      "model": "7pd",
+      "name": "7pd",
+      "id": "7pd_m",
+      "width": "390",
+      "height": "178",
+      "preview": "preview.png"
+    }, {
+      "model": "7pr",
+      "name": "7pr",
+      "id": "7pr_m",
+      "width": "390",
+      "height": "178",
+      "preview": "preview.png"
+    }, {
+      "model": "9pr",
+      "name": "9pr",
+      "id": "9pr_m",
+      "width": "396",
+      "height": "191",
+      "preview": "preview.png"
+    }]
+  },
+  {    
+    "size": "L",
+    "name": "Large",
+    "items": [{
+      "model": "7pd",
+      "name": "7pd",
+      "id": "7pd_l",
+      "width": "390",
+      "height": "362",
+      "preview": "preview.png"
+    }, {
+      "model": "7pr",
+      "name": "7pr",
+      "id": "7pr_l",
+      "width": "390",
+      "height": "362",
+      "preview": "preview.png"
+    }, {
+      "model": "9pr",
+      "name": "9pr",
+      "id": "9pr_l",
+      "width": "396",
+      "height": "390",
+      "preview": "preview.png"
+    }]
+  },
+  {    
+    "size": "LR",
+    "name": "Large Rectangle",
+    "items": [{
+      "model": "9pr",
+      "name": "9pr",
+      "id": "9pr_lr",
+      "width": "800",
+      "height": "191",
+      "preview": "preview.png"
+    }]
+  }]
+}
+

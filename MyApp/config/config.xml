@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><widget xmlns="http://www.w3.org/ns/widgets" id="http://www.obigo.com/widget_id/a34a3c8d171abc178d87f997cb567c01" version="1.0.0" viewmodes="fullscreen">
+    <name>New-App</name>
+    <description/>
+    <icon src="icon.png"/>
+    <content src="index.html" type="text/html"/>
+    <author>Obigo</author>
+    <license>Obigo</license>
+    <thumbnail src="thumbnail.png"/>
+    <access origin="*"/>
+    <meta-data>
+      <manifest-version>1.2.1.1</manifest-version>
+      <store-id>COM.OBIGO.NEW.f5247f8bae717022287249fc356729f5</store-id>
+    </meta-data>
+
+    <gadgets>
+      <!-- gadget information : Obigo Extension Field (Optional) -->
+      <!--
+      <gadget size="m" description="M">
+        <content src="gadgets/index.html" type="text/html" />
+        <preview src="gadgets/icons/{@resource}/m/preview.png" />
+      </gadget>
+      <gadget size="l" description="L">
+        <content src="gadgets/index.html" type="text/html" />
+        <preview src="gadgets/icons/{@resource}/l/preview.png" />
+      </gadget>
+      <gadget size="lr" description="LR">
+        <content src="gadgets/index.html" type="text/html" />
+        <preview src="gadgets/icons/{@resource}/lr/preview.png" />
+      </gadget>
+      -->
+      <gadget size="s" description="S">
+        <content src="gadgets/index.html" type="text/html"/>
+        <preview src="gadgets/icons/{@resource}/s/preview.png"/>
+      </gadget>
+    </gadgets>
+
+    <feature name="http://www.obigo.com/api/applicationmanager.getownerapplication" required="true"><param name="version" value="3.1.5.7"/></feature>
+  <feature name="http://www.obigo.com/api/vehicle" required="true">
+    <param name="version" value="2.1.1.6"/>
+  </feature>
+</widget>

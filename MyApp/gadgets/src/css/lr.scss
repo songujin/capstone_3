@@ -1,0 +1,18 @@
+@media renault9p and (min-width:397px) and (max-width: 800px) and (max-height: 191px) {
+  #gadget {
+    width: 800px;
+    height: 191px;
+    > .header {
+      height: 40px;
+    }
+    > .body {
+      height: 134px;
+    }
+  }
+}
+
+
+
+
+
+
