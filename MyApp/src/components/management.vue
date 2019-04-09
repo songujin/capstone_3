@@ -2,7 +2,9 @@
   <div>
     <div class='contents'>
         <div class='parts'>
-            <div class='select'></div>
+            <div class='select' v-for="item in items" :key="item.name">
+                <p ref="string" @click=gomanage()>{{ item.name }}</p>
+            </div>
         </div>     
         <div class='manage'>
             <div class='top'>
@@ -39,6 +41,21 @@ export default {
   name: 'management',
   components: {
     'manage-popup': managepopup
+  },
+  data: function () {
+    return {
+      items: [
+          { name: '엔진 오일' },
+          { name: '배터리' },
+          { name: '냉각수' },
+          { name: '타이어' }
+      ]
+    }
+  },
+  methods: {
+    gomanage () {
+      this.$router.push('/battery')
+    }
   }
 }
 </script>
@@ -54,9 +71,14 @@ div.parts {
     border: 1px solid white;
 }
 div.select {
-    height: 100%;
+    height: 15%;
     width: 100%;
     border: 1px solid white;
+    p {
+        text-align: center;
+        margin: 15px;
+        font-size: 20px;
+    }
 }
 div.manage {
     float: left;

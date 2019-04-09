@@ -13,7 +13,9 @@
                 <div class='text'>
                     <p>주행 거리</p>
                 </div>
-                <div class='odometer'></div>
+                <div class='odometer'>
+                    <p>{{ distanceTotal }}km</p>
+                </div>
             </div>
             <button>
                 <router-link v-bind:to="{ name: 'management' }">확인</router-link>
@@ -24,7 +26,12 @@
 </template>
 <script>
 export default {
-  name: 'managepopup'
+  name: 'managepopup',
+  data: function () {
+    return {
+      distanceTotal: '0'
+    }
+  }
 }
 </script>
 <style lang='scss' scoped>
