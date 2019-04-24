@@ -1,0 +1,68 @@
+let storage = {
+  saveRFTireKm: function (km) {
+    localStorage.setItem('RFtireKm', km)
+  },
+  loadRFTireKm: function () {
+    let RFtireKm = localStorage.getItem('RFtireKm')
+    RFtireKm = RFtireKm || ''
+    return RFtireKm
+  },
+  saveRRTireKm: function (km) {
+    localStorage.setItem('RRtireKm', km)
+  },
+  loadRRTireKm: function () {
+    let RRtireKm = localStorage.getItem('RRtireKm')
+    RRtireKm = RRtireKm || ''
+    return RRtireKm
+  },
+  saveLFTireKm: function (km) {
+    localStorage.setItem('LFtireKm', km)
+  },
+  loadLFTireKm: function () {
+    let LFtireKm = localStorage.getItem('LFtireKm')
+    LFtireKm = LFtireKm || ''
+    return LFtireKm
+  },
+  saveLRTireKm: function (km) {
+    localStorage.setItem('LRtireKm', km)
+  },
+  loadLRTireKm: function () {
+    let LRtireKm = localStorage.getItem('LRtireKm')
+    LRtireKm = LRtireKm || ''
+    return LRtireKm
+  },
+  saveRFTireM: function (m) {
+    localStorage.setItem('RFtireM', m)
+  },
+  loadRFTireM: function () {
+    let RFtireM = localStorage.getItem('RFtireM')
+    RFtireM = RFtireM || ''
+    return RFtireM
+  },
+  saveRRTireM: function (m) {
+    localStorage.setItem('RRtireM', m)
+  },
+  loadRRTireM: function () {
+    let RRtireM = localStorage.getItem('RRtireM')
+    RRtireM = RRtireM || ''
+    return RRtireM
+  },
+  saveLFTireM: function (m) {
+    localStorage.setItem('LFtireM', m)
+  },
+  loadLFTireM: function () {
+    let LFtireM = localStorage.getItem('LFtireM')
+    LFtireM = LFtireM || ''
+    return LFtireM
+  },
+  saveLRTireM: function (m) {
+    localStorage.setItem('LRtireM', m)
+  },
+  loadLRTireM: function () {
+    let LRtireM = localStorage.getItem('LRtireM')
+    LRtireM = LRtireM || ''
+    return LRtireM
+  }
+}
+
+export { storage }

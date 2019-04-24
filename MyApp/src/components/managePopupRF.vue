@@ -31,14 +31,14 @@ import { storage } from '../js/manageLibs'
 import Datepicker from 'vuejs-datepicker'
 
 export default {
-  name: 'managepopup',
+  name: 'managepopupRF',
   props: ['value'],
   components: {
     'vuejs-datepicker': Datepicker
   },
   data: function () {
     return {
-      distance: '10000',
+      distance: '20000',
       selectedDate: ''
     }
   },
@@ -76,15 +76,9 @@ export default {
       settingDate.year = (this.selectedDate).toString().substr(11, 4)
 
       storage.saveRFTireKm(this.distance)
-      storage.saveRRTireKm(this.distance)
-      storage.saveLFTireKm(this.distance)
-      storage.saveLRTireKm(this.distance)
       storage.saveRFTireM(settingDate)
-      storage.saveRRTireM(settingDate)
-      storage.saveLFTireM(settingDate)
-      storage.saveLRTireM(settingDate)
 
-      this.$router.push('/management')
+      this.$router.push('/rightFrontTire')
     }
   }
 }

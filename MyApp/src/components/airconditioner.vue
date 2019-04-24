@@ -25,7 +25,7 @@
             </div>
             <div class='screentrans'>
                 <button>
-                    <router-link v-if=!isFirst() v-bind:to="{ name: 'management' }">Go</router-link>
+                    <router-link v-if=!isFirst() v-bind:to="{ name: 'alarmRF' }">Go</router-link>
                     <router-link v-if=isFirst() v-bind:to="{ name: 'managepopup' }">Go</router-link>
                 </button>
             </div>
@@ -38,7 +38,7 @@
             <div class = 'carImg'>
             </div>
         </div>  
-    </div> 
+    </div>
   </div>
 </template>
 <script>

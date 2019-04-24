@@ -9,35 +9,57 @@
         <div class='manage'>
             <div class='top'>
                 <div class='btn1'>
-                    <button>
-                        <router-link v-bind:to="{ name: 'managepopup' }">날짜수정</router-link>
-                    </button>
+                    <div class='btn'>
+                        <p @click='update()'>날짜<br>수정</p>
+                    </div>
                 </div>
                 <div class='desc'>
-                    <p>엔진 오일의 현재 상태</p>
+                    <p>왼쪽 뒤 타이어의 현재 상태</p>
                 </div>
                 <div class='btn2'>
-                    <button>
-                        <router-link v-bind:to="{ name: 'airconditioner' }">Go</router-link>
-                    </button>
+                    <div class='btn'>
+                        <p @click='go()'>Go</p>
+                    </div>
                 </div>     
             </div>
             <div class='detail'>
-                <div class='km'></div>
-                <div class='cycle'></div>
-                <div class='img'></div>
+                <div class='km'>
+                    <div class='txt1'>
+                        <p>{{ 60000 - km }}km 남음</p>
+                    </div>
+                    <div class='txt2'>
+                        <p>60000km 마다 교체</p>
+                    </div>
+                    <div class='progressBar'>
+                        <progress-bar size="large" :val=(km)*(100/60000)></progress-bar>
+                    </div>
+                </div>
+                <div class='cycle'>
+                    <div class='txt1'>
+                        <p>{{ 36 - month }}개월 남음</p>
+                    </div>
+                    <div class='txt2'>
+                        <p>36개월 마다 교체</p>
+                    </div>
+                    <div class='progressBar'>
+                        <progress-bar size="large" :val=(month)*(100/36)></progress-bar>
+                    </div>
+                </div>
+                <div class='img'>
+                </div>
             </div>       
         </div>  
     </div> 
   </div>
 </template>
 <script>
-import managepopup from './managepopup.vue'
+import ProgressBar from 'vue-simple-progress'
+import { storage } from '../js/manageLibs'
 
 export default {
-  name: 'management',
+  name: 'leftRearTire',
   components: {
-    'manage-popup': managepopup
+    'progress-bar': ProgressBar
   },
   data: function () {
     return {
@@ -47,10 +69,18 @@ export default {
           { name: '냉각수' },
           { name: '타이어' },
           { name: '필터' }
-      ]
+      ],
+      km: 0,
+      month: 0
     }
   },
   methods: {
+    update () {
+      this.$router.push('/managePopupLR')
+    },
+    go () {
+      this.$router.push('/')
+    },
     gomanage (page) {
       let str = '/'
 
@@ -66,6 +96,10 @@ export default {
       }
       this.$router.push(str)
     }
+  },
+  mounted () {
+    this.km = storage.loadLRTireKm()
+    this.month = storage.loadLRTireM()
   }
 }
 </script>
@@ -127,14 +161,19 @@ div.desc {
         font-size: 20px;
     }
 }
-button {
+div.btn {
     float: right;
     margin-top: 5px;
     margin-right: 9.79px;
     width: 65px;
     height: 65px;
-    color: black;
-    background-color: white 
+    border: 1px solid white;
+    text-align: center;
+    p {
+        text-align: center;
+        font-size: 20px;
+        margin-top: 10px;
+    }
 }
 div.km, div.cycle {
     position: relative;
@@ -144,6 +183,22 @@ div.km, div.cycle {
     width: 70%;
     border: 1px solid white;
     margin-bottom: 5px;
+    div.txt1, div.txt2 {
+        float: left;
+        width: 50%;
+        height: 60%;
+        border: 1px solid white;
+        p {
+            margin-top: 10px;
+            font-size: 20px;
+        }
+    }
+}
+div.progressBar {
+    position: relative;
+    top: 70%;
+    width: 100%;
+    height: 20%;
 }
 div.img {
     position: absolute;
