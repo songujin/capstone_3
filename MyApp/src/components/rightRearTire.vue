@@ -68,7 +68,7 @@ export default {
           { name: '배터리' },
           { name: '냉각수' },
           { name: '타이어' },
-          { name: '필터' }
+          { name: '캐빈필터' }
       ],
       km: 0,
       month: 0
@@ -92,7 +92,8 @@ export default {
         str += 'water'
       } else if (page === '타이어') {
         str += 'tire'
-      } else if (page === '필터') {
+      } else if (page === '캐빈필터') {
+        str += 'cabinAirFilter'
       }
       this.$router.push(str)
     }

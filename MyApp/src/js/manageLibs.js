@@ -31,6 +31,14 @@ let storage = {
     LRtireKm = LRtireKm || ''
     return LRtireKm
   },
+  saveCFilterKm: function (km) {
+    localStorage.setItem('CFilterKm', km)
+  },
+  loadCFilterKm: function () {
+    let CFilterKm = localStorage.getItem('CFilterKm')
+    CFilterKm = CFilterKm || ''
+    return CFilterKm
+  },
   saveRFTireM: function (m) {
     localStorage.setItem('RFtireM', m)
   },
@@ -62,6 +70,38 @@ let storage = {
     let LRtireM = localStorage.getItem('LRtireM')
     LRtireM = LRtireM || ''
     return LRtireM
+  },
+  saveCFilterM: function (m) {
+    localStorage.setItem('CFilterM', m)
+  },
+  loadCFilterM: function () {
+    let CFilterM = localStorage.getItem('CFilterM')
+    CFilterM = CFilterM || ''
+    return CFilterM
+  },
+  saveFirst: function (cnt) {
+    localStorage.setItem('First', cnt)
+  },
+  loadFirst: function () {
+    let First = localStorage.getItem('First')
+    First = First || '0'
+    return First
+  },
+  saveProbelm: function (pText) {
+    localStorage.setItem('Problem', pText)
+  },
+  loadProbelm: function () {
+    let Probelm = localStorage.getItem('Problem')
+    Probelm = Probelm || ''
+    return Probelm
+  },
+  saveAlarm: function (name) {
+    localStorage.setItem('Alarm', name)
+  },
+  loadAlarm: function () {
+    let Alarm = localStorage.getItem('Alarm')
+    Alarm = Alarm || ''
+    return Alarm
   }
 }
 

@@ -24,10 +24,7 @@
                 </div>
             </div>
             <div class='screentrans'>
-                <button>
-                    <router-link v-if=!isFirst() v-bind:to="{ name: 'alarmRF' }">Go</router-link>
-                    <router-link v-if=isFirst() v-bind:to="{ name: 'managepopup' }">Go</router-link>
-                </button>
+              <p @click='go()'>GO</p>
             </div>
         </div>     
         <div class='ventilation'>
@@ -43,13 +40,33 @@
 </template>
 <script>
 import page from 'obigo-js-ui/mixins/page'
+import { storage } from '../js/manageLibs'
 
 export default {
   name: 'home',
   mixins: [page],
+  data: function () {
+    return {
+      count: 0
+    }
+  },
+  created () {
+    this.count = storage.loadFirst()
+  },
   methods: {
+    go () {
+      if (this.isFirst()) {
+        this.$router.push('/managepopup')
+      }
+      // if (storage.loadAlarm() === 'cabinFilter') {
+      //   this.$router.push('/alarmCFilter')
+      // }
+      this.$router.push('/alarmRF')
+    },
     isFirst () {
-      return true
+      if (this.count === '0') {
+        return true
+      }
     }
   }
 }

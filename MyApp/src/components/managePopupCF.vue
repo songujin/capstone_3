@@ -123,21 +123,10 @@ export default {
       var betweenDay = (date.getTime() - setDate.getTime()) / 1000 / 60 / 60 / 24
       this.setMonth = Math.floor(betweenDay / 30.4)
 
-      storage.saveRFTireKm(this.distance)
-      storage.saveRRTireKm(this.distance)
-      storage.saveLFTireKm(this.distance)
-      storage.saveLRTireKm(this.distance)
       storage.saveCFilterKm(this.distance)
-      storage.saveRFTireM(settingDate)
-      storage.saveRRTireM(settingDate)
-      storage.saveLFTireM(settingDate)
-      storage.saveLRTireM(settingDate)
       storage.saveCFilterM(settingDate)
 
-      var count = 0
-      count++
-      storage.saveFirst(count)
-      this.$router.push('/management')
+      this.$router.push('/cabinAirFilter')
     }
   }
 }
