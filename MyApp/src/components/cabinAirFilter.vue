@@ -85,7 +85,7 @@ export default {
       let str = '/'
 
       if (page === '엔진 오일') {
-        str += 'engineoil'
+        str += 'management'
       } else if (page === '배터리') {
         str += 'battery'
       } else if (page === '냉각수') {
@@ -99,20 +99,21 @@ export default {
     },
     alarmPopUp () {
       if (15000 - this.km <= 0) {
-        storage.saveProblem('problem_Distance')
+        storage.saveCFilterProblem('problem_Distance')
         this.$router.push('/alarmCFilter')    // 해당 페이지를 확인하기 위해서, 실제로는 go에서 넘어올 때 떠야한다.
         // storage.saveAlarm('cabinFilter')   // aircondition에서 넘어올 때 뜨게 하기 위해서..
       }
       if (6 - this.month <= 0) {
-        storage.saveProblem('problem_Date')
+        storage.saveCFilterProblem('problem_Date')
       }
     }
   },
-  created () {
-    this.km = storage.loadCFilterKm()
-    this.month = storage.loadCFilterM()
-  },
   mounted () {
+    let date = new Date()
+    var betweenDay = (date.getTime() - storage.loadCFilterM()) / 1000 / 60 / 60 / 24
+    this.km = storage.loadCFilterKm()
+    this.month = Math.floor(betweenDay / 30.4)
+
     this.alarmPopUp()
   }
 }

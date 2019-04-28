@@ -21,7 +21,7 @@
             </div>
             <div class='btn'>
                 <p @click='go()'>확인</p>
-            </div>      
+            </div>    
         </div>
     </div> 
   </div>
@@ -31,21 +31,25 @@ import { storage } from '../js/manageLibs'
 import Datepicker from 'vuejs-datepicker'
 
 export default {
-  name: 'managepopupRR',
+  name: 'managepopupBattery',
   props: ['value'],
   components: {
     'vuejs-datepicker': Datepicker
   },
   data: function () {
     return {
-      distance: '0',
-      selectedDate: ''
+      distance: '10000',
+      selectedDate: '',
+      setMonth: ''
     }
   },
   mounted () {
     this.startVehicle()
   },
   methods: {
+    // persist () {
+    //   this.$store.commit('changeBatteryMonth', this.batteryMonth)
+    // }
     startVehicle () {
       let vehicle = window.navigator.vehicle
       if (vehicle) {
@@ -100,12 +104,11 @@ export default {
       } else if (settingDate.month === 'Dec') {
         this.setMonth = 12
       }
-
       var setDate = new Date(settingDate.year, this.setMonth - 1, settingDate.date)
-      storage.saveRRTireKm(this.distance)
-      storage.saveRRTireM(setDate.getTime())
+      storage.saveBatterykm(this.distance)
+      storage.saveBatteryM(setDate.getTime())
 
-      this.$router.push('/rightRearTire')
+      this.$router.push('/battery')
     }
   }
 }

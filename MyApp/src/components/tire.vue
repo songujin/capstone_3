@@ -63,7 +63,7 @@ export default {
       let str = '/'
 
       if (page === '엔진 오일') {
-        str += 'engineoil'
+        str += 'management'
       } else if (page === '배터리') {
         str += 'battery'
       } else if (page === '냉각수') {

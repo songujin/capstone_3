@@ -10,7 +10,7 @@
             <div class='top'>
                 <div class='btn1'>
                     <button>
-                        <router-link v-bind:to="{ name: 'managepopup' }">날짜수정</router-link>
+                        <router-link v-bind:to="{ name: 'managepopupOil' }">날짜수정</router-link>
                     </button>
                 </div>
                 <div class='desc'>
@@ -23,8 +23,27 @@
                 </div>     
             </div>
             <div class='detail'>
-                <div class='km'></div>
-                <div class='cycle'></div>
+                <div class='api'>
+                  <span>Engine Oil</span><span> : </span><span>{{engineOil}}</span>
+                </div>
+                <div class='km'>
+                  <div class='km_str'>
+                    <span class='kmstr_left'>{{ 15000 - km }}km 남음</span>
+                    <span class='kmstr_right'>15,000km 마다 교체</span>
+                  </div>
+                  <div class='km_bar'>
+                    <progress-bar size="large" :val=(km)*(100/15000)></progress-bar>
+                  </div>
+                </div>
+                <div class='cycle'>
+                  <div class='mon_str'>
+                    <span class='monstr_left'>{{ 12 - month }}개월 남음</span>
+                    <span class='monstr_right'>12개월 마다 교체</span>
+                  </div>
+                  <div class='mon_bar'>
+                    <progress-bar size="large" :val=(month)*100/12></progress-bar>
+                  </div>
+                </div>
                 <div class='img'></div>
             </div>       
         </div>  
@@ -33,11 +52,29 @@
 </template>
 <script>
 import managepopup from './managepopup.vue'
+import managepopupOil from './managepopupOil.vue'
+// import 'obigo-js-webapi/vehicle/vehicle'
+import ProgressBar from 'vue-simple-progress'
+import { storage } from '../js/manageLibs'
+// window.navigator.vehicle.start(function () {
+//   window.navigator.vehicle.engineOil.get().then(function (data) {
+//     alert(data.level)
+//     console.log(data.level)
+//     console.log(data.pressureWarning)
+//   }, function (err) {
+//     console.log(err)
+//   })
+//   // call vehicle API after initialization is completed
+// }, function () {
+//   throw Error('constructor fails')
+// })
 
 export default {
   name: 'management',
   components: {
-    'manage-popup': managepopup
+    'manage-popup': managepopup,
+    'manage-popupOil': managepopupOil,
+    'progress-bar': ProgressBar
   },
   data: function () {
     return {
@@ -47,15 +84,58 @@ export default {
           { name: '냉각수' },
           { name: '타이어' },
           { name: '캐빈필터' }
-      ]
+      ],
+      engineOil: '0',
+      month: 0,
+      km: 0
     }
   },
+  // computed: {
+  //   tmp: function () {
+  //     // alert('get 실행')
+  //     this.$store.commit('changeOilMonth', localStorage.getItem('engineOil_month'))
+  //     return this.$store.state.engineOil_month
+  //   }
+  // },
+  mounted () {
+    // this.startVehicle()
+    this.km = storage.loadEngineOilkm()
+    // this.month = storage.loadEngineOilM()
+    let date = new Date()
+    var betweenDay = (date.getTime() - storage.loadEngineOilM()) / 1000 / 60 / 60 / 24
+    this.month = Math.floor(betweenDay / 30.4)
+    console.log(date.getTime())
+  },
   methods: {
+    startVehicle () {
+      let vehicle = window.navigator.vehicle
+      if (vehicle) {
+        vehicle.start(function () {
+          window.navigator.vehicle.engineOil.get().then(function (data) {
+            alert(data.level)
+            console.log(data.level)
+            console.log(data.pressureWarning)
+            let vEnginOil
+            if (typeof vehicle.engineOil.value.length === 'undefined') {
+              vEnginOil = vehicle.engineOil.value.level
+            } else {
+              vEnginOil = vehicle.engineOil.value[0].level
+            }
+            this.$data.engineOil = vEnginOil
+            // this.engineOil = data.level.value[0].level
+            // this.engineOil = data.pressureWarning
+          }, function (err) {
+            console.log(err)
+          })
+        }, function () {
+          throw Error('constuctor fails')
+        })
+      }
+    },
     gomanage (page) {
       let str = '/'
-
       if (page === '엔진 오일') {
-        str += 'engineoil'
+        str += 'management'
       } else if (page === '배터리') {
         str += 'battery'
       } else if (page === '냉각수') {
@@ -67,10 +147,33 @@ export default {
       }
       this.$router.push(str)
     }
+    // persist () {
+    //   localStorage.engineOil_month = this.$store.state.engineOil_month
+    // },
+    // startVehicle () {
+    //   let vehicle = window.navigator.vehicle
+    //   if (vehicle) {
+    //     if (vehicle.engineOil === undefined) {
+    //       vehicle.start(() => {
+    //         vehicle.engineOil.get().then(function (data) {
+    //           this.$data.engineOil = data
+    //         })
+    //         alert('vehicle start')
+    //         console.log('vehicle start')
+    //       })
+    //     }
+    //   }
+    // }
   }
 }
 </script>
 <style lang='scss' scoped>
+div.api {
+  button {
+      height: 35px;
+      width: 80px;
+  }
+}
 .contents {
   padding:20px;
   color: white;
@@ -137,14 +240,46 @@ button {
     color: black;
     background-color: white 
 }
+div.api {
+    position: absolute;
+    top: 30%;
+    left: 82%;
+}
 div.km, div.cycle {
     position: relative;
     left: 5%;
     top: 10%;
     height: 25%;
     width: 70%;
-    border: 1px solid white;
+    // border: 1px solid white;
     margin-bottom: 5px;
+}
+div.km_str, div.mon_str {
+    position: relative;
+    height: 46%;
+    width: 100%;
+    border: 1px solid white;
+}
+div.km_bar, div.mon_bar {
+    position: relative;
+    height: 46%;
+    width: 100%;
+    border: 1px solid white;
+    margin-top: 6px;
+}
+span.kmstr_left, span.monstr_left {
+  top:7px;
+  left:5%;
+  position: absolute;
+  text-align: left;
+  width: 100%;
+}
+span.kmstr_right, span.monstr_right {
+  top:7px;
+  right:5%;
+  position: absolute;
+  text-align: right;
+  width: 100%;
 }
 div.img {
     position: absolute;

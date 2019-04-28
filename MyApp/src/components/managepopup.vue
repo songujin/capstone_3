@@ -92,47 +92,49 @@ export default {
         return false
       }
 
-      switch (settingDate.month) {
-        case 'Jan' : this.setMonth = 1
-          break
-        case 'Feb' : this.setMonth = 2
-          break
-        case 'Mar' : this.setMonth = 3
-          break
-        case 'Apr' : this.setMonth = 4
-          break
-        case 'May' : this.setMonth = 5
-          break
-        case 'Jun' : this.setMonth = 6
-          break
-        case 'Jul' : this.setMonth = 7
-          break
-        case 'Aug' : this.setMonth = 8
-          break
-        case 'Sep' : this.setMonth = 9
-          break
-        case 'Oct' : this.setMonth = 10
-          break
-        case 'Nov' : this.setMonth = 11
-          break
-        case 'Dec' : this.setMonth = 12
-          break
+      if (settingDate.month === 'Jan') {
+        this.setMonth = 1
+      } else if (settingDate.month === 'Feb') {
+        this.setMonth = 2
+      } else if (settingDate.month === 'Mar') {
+        this.setMonth = 3
+      } else if (settingDate.month === 'Apr') {
+        this.setMonth = 4
+      } else if (settingDate.month === 'May') {
+        this.setMonth = 5
+      } else if (settingDate.month === 'Jun') {
+        this.setMonth = 6
+      } else if (settingDate.month === 'Jul') {
+        this.setMonth = 7
+      } else if (settingDate.month === 'Aug') {
+        this.setMonth = 8
+      } else if (settingDate.month === 'Sep') {
+        this.setMonth = 9
+      } else if (settingDate.month === 'Oct') {
+        this.setMonth = 10
+      } else if (settingDate.month === 'Nov') {
+        this.setMonth = 11
+      } else if (settingDate.month === 'Dec') {
+        this.setMonth = 12
       }
 
       var setDate = new Date(settingDate.year, this.setMonth - 1, settingDate.date)
-      var betweenDay = (date.getTime() - setDate.getTime()) / 1000 / 60 / 60 / 24
-      this.setMonth = Math.floor(betweenDay / 30.4)
+      storage.saveEngineOilkm(this.distance)
+      storage.saveEngineOilM(setDate.getTime())
+
+      storage.saveBatterykm(this.distance)
+      storage.saveBatteryM(setDate.getTime())
 
       storage.saveRFTireKm(this.distance)
+      storage.saveRFTireM(setDate.getTime())
       storage.saveRRTireKm(this.distance)
+      storage.saveRRTireM(setDate.getTime())
       storage.saveLFTireKm(this.distance)
+      storage.saveLFTireM(setDate.getTime())
       storage.saveLRTireKm(this.distance)
+
       storage.saveCFilterKm(this.distance)
-      storage.saveRFTireM(settingDate)
-      storage.saveRRTireM(settingDate)
-      storage.saveLFTireM(settingDate)
-      storage.saveLRTireM(settingDate)
-      storage.saveCFilterM(settingDate)
+      storage.saveCFilterM(setDate.getTime())
 
       var count = 0
       count++

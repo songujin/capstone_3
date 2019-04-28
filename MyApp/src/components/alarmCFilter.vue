@@ -65,7 +65,7 @@ export default {
     }
   },
   created () {
-    this.P_sentence = storage.loadProblem()
+    this.P_sentence = storage.loadCFilterProblem()
     this.problem()
   }
 }

@@ -87,10 +87,42 @@ let storage = {
     First = First || '0'
     return First
   },
-  saveProbelm: function (pText) {
+  saveCFilterProblem: function (pText) {
     localStorage.setItem('Problem', pText)
   },
-  loadProbelm: function () {
+  loadCFilterProblem: function () {
+    let Probelm = localStorage.getItem('Problem')
+    Probelm = Probelm || ''
+    return Probelm
+  },
+  saveRFProblem: function (pText) {
+    localStorage.setItem('Problem', pText)
+  },
+  loadRFProblem: function () {
+    let Probelm = localStorage.getItem('Problem')
+    Probelm = Probelm || ''
+    return Probelm
+  },
+  saveRRProblem: function (pText) {
+    localStorage.setItem('Problem', pText)
+  },
+  loadRRProblem: function () {
+    let Probelm = localStorage.getItem('Problem')
+    Probelm = Probelm || ''
+    return Probelm
+  },
+  saveLFProblem: function (pText) {
+    localStorage.setItem('Problem', pText)
+  },
+  loadLFProblem: function () {
+    let Probelm = localStorage.getItem('Problem')
+    Probelm = Probelm || ''
+    return Probelm
+  },
+  saveLRProblem: function (pText) {
+    localStorage.setItem('Problem', pText)
+  },
+  loadLRProblem: function () {
     let Probelm = localStorage.getItem('Problem')
     Probelm = Probelm || ''
     return Probelm
@@ -102,6 +134,38 @@ let storage = {
     let Alarm = localStorage.getItem('Alarm')
     Alarm = Alarm || ''
     return Alarm
+  },
+  saveEngineOilkm: function (km) {
+    localStorage.setItem('engineOilkm', km)
+  },
+  loadEngineOilkm: function () {
+    let engineOilkm = localStorage.getItem('engineOilkm')
+    engineOilkm = engineOilkm || ''
+    return engineOilkm
+  },
+  saveEngineOilM: function (m) {
+    localStorage.setItem('engineOilM', m)
+  },
+  loadEngineOilM: function () {
+    let engineOilM = localStorage.getItem('engineOilM')
+    engineOilM = engineOilM || ''
+    return engineOilM
+  },
+  saveBatterykm: function (km) {
+    localStorage.setItem('batterykm', km)
+  },
+  loadBatterykm: function () {
+    let batterykm = localStorage.getItem('batterykm')
+    batterykm = batterykm || ''
+    return batterykm
+  },
+  saveBatteryM: function (m) {
+    localStorage.setItem('batteryM', m)
+  },
+  loadBatteryM: function () {
+    let batteryM = localStorage.getItem('batteryM')
+    batteryM = batteryM || ''
+    return batteryM
   }
 }
 

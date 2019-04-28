@@ -57,11 +57,12 @@ export default {
     go () {
       if (this.isFirst()) {
         this.$router.push('/managepopup')
+      } else {
+        this.$router.push('/managepopup')
       }
       // if (storage.loadAlarm() === 'cabinFilter') {
       //   this.$router.push('/alarmCFilter')
       // }
-      this.$router.push('/alarmRF')
     },
     isFirst () {
       if (this.count === '0') {

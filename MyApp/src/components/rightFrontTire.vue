@@ -28,7 +28,7 @@
                         <p>{{ 60000 - km }}km 남음</p>
                     </div>
                     <div class='txt2'>
-                        <p>60000km 마다 교체</p>
+                        <p>60,000km 마다 교체</p>
                     </div>
                     <div class='progressBar'>
                         <progress-bar size="large" :val=(km)*(100/60000)></progress-bar>
@@ -85,7 +85,7 @@ export default {
       let str = '/'
 
       if (page === '엔진 오일') {
-        str += 'engineoil'
+        str += 'management'
       } else if (page === '배터리') {
         str += 'battery'
       } else if (page === '냉각수') {
@@ -99,8 +99,10 @@ export default {
     }
   },
   mounted () {
+    let date = new Date()
+    var betweenDay = (date.getTime() - storage.loadRFTireM()) / 1000 / 60 / 60 / 24
     this.km = storage.loadRFTireKm()
-    this.month = storage.loadRFTireM()
+    this.month = Math.floor(betweenDay / 30.4)
   }
 }
 </script>

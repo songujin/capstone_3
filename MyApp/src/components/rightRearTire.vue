@@ -85,7 +85,7 @@ export default {
       let str = '/'
 
       if (page === '엔진 오일') {
-        str += 'engineoil'
+        str += 'management'
       } else if (page === '배터리') {
         str += 'battery'
       } else if (page === '냉각수') {
@@ -99,8 +99,10 @@ export default {
     }
   },
   mounted () {
+    let date = new Date()
+    var betweenDay = (date.getTime() - storage.loadRRTireM()) / 1000 / 60 / 60 / 24
     this.km = storage.loadRRTireKm()
-    this.month = storage.loadRRTireM()
+    this.month = Math.floor(betweenDay / 30.4)
   }
 }
 </script>

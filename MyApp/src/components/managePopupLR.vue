@@ -75,8 +75,35 @@ export default {
       settingDate.date = (this.selectedDate).toString().substr(8, 2)
       settingDate.year = (this.selectedDate).toString().substr(11, 4)
 
+      if (settingDate.month === 'Jan') {
+        this.setMonth = 1
+      } else if (settingDate.month === 'Feb') {
+        this.setMonth = 2
+      } else if (settingDate.month === 'Mar') {
+        this.setMonth = 3
+      } else if (settingDate.month === 'Apr') {
+        this.setMonth = 4
+      } else if (settingDate.month === 'May') {
+        this.setMonth = 5
+      } else if (settingDate.month === 'Jun') {
+        this.setMonth = 6
+      } else if (settingDate.month === 'Jul') {
+        this.setMonth = 7
+      } else if (settingDate.month === 'Aug') {
+        this.setMonth = 8
+      } else if (settingDate.month === 'Sep') {
+        this.setMonth = 9
+      } else if (settingDate.month === 'Oct') {
+        this.setMonth = 10
+      } else if (settingDate.month === 'Nov') {
+        this.setMonth = 11
+      } else if (settingDate.month === 'Dec') {
+        this.setMonth = 12
+      }
+
+      var setDate = new Date(settingDate.year, this.setMonth - 1, settingDate.date)
       storage.saveLRTireKm(this.distance)
-      storage.saveLRTireM(settingDate)
+      storage.saveLRTireM(setDate.getTime())
 
       this.$router.push('/leftRearTire')
     }

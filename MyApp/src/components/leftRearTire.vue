@@ -68,7 +68,7 @@ export default {
           { name: '배터리' },
           { name: '냉각수' },
           { name: '타이어' },
-          { name: '필터' }
+          { name: '캐빈 필터' }
       ],
       km: 0,
       month: 0
@@ -85,21 +85,23 @@ export default {
       let str = '/'
 
       if (page === '엔진 오일') {
-        str += 'engineoil'
+        str += 'management'
       } else if (page === '배터리') {
         str += 'battery'
       } else if (page === '냉각수') {
         str += 'water'
       } else if (page === '타이어') {
         str += 'tire'
-      } else if (page === '필터') {
+      } else if (page === '캐빈 필터') {
       }
       this.$router.push(str)
     }
   },
   mounted () {
+    let date = new Date()
+    var betweenDay = (date.getTime() - storage.loadLRTireM()) / 1000 / 60 / 60 / 24
     this.km = storage.loadLRTireKm()
-    this.month = storage.loadLRTireM()
+    this.month = Math.floor(betweenDay / 30.4)
   }
 }
 </script>

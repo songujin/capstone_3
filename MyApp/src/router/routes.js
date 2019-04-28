@@ -15,6 +15,11 @@ const routes = [{
 }, { path: '/cabinAirFilter', component: () => import('@/components/cabinAirFilter'), name: 'cabinAirFilter'
 }, { path: '/managePopupCF', component: () => import('@/components/managePopupCF'), name: 'managePopupCF'
 }, { path: '/alarmRF', component: () => import('@/components/alarmRF'), name: 'alarmRF'
-}, { path: '/alarmCFilter', component: () => import('@/components/alarmCFilter'), name: 'alarmCFilter' } ]
+}, { path: '/alarmCFilter', component: () => import('@/components/alarmCFilter'), name: 'alarmCFilter'
+}, { path: '/alarmRF', component: () => import('@/components/alarmRF'), name: 'alarmRF'
+}, { path: '/managepopupBattery', component: () => import('@/components/managepopupBattery'), name: 'managepopupBattery'
+}, { path: '/managepopupOil', component: () => import('@/components/managepopupOil'), name: 'managepopupOil'
+}, { path: '/alarmEngineOil', component: () => import('@/components/alarmEngineOil'), name: 'alarmEngineOil'
+}, { path: '/alarmBattery', component: () => import('@/components/alarmBattery'), name: 'alarmBattery' } ]
 
 export default routes

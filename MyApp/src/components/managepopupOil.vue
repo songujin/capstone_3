@@ -21,7 +21,7 @@
             </div>
             <div class='btn'>
                 <p @click='go()'>확인</p>
-            </div>      
+            </div>
         </div>
     </div> 
   </div>
@@ -31,21 +31,25 @@ import { storage } from '../js/manageLibs'
 import Datepicker from 'vuejs-datepicker'
 
 export default {
-  name: 'managepopupRR',
+  name: 'managepopupOil',
   props: ['value'],
   components: {
     'vuejs-datepicker': Datepicker
   },
   data: function () {
     return {
-      distance: '0',
-      selectedDate: ''
+      distance: '10000',
+      selectedDate: '',
+      setMonth: ''
     }
   },
   mounted () {
     this.startVehicle()
   },
   methods: {
+    // persist () {
+    //   this.$store.commit('changeOilMonth', this.oilMonth)
+    // },
     startVehicle () {
       let vehicle = window.navigator.vehicle
       if (vehicle) {
@@ -100,12 +104,21 @@ export default {
       } else if (settingDate.month === 'Dec') {
         this.setMonth = 12
       }
-
       var setDate = new Date(settingDate.year, this.setMonth - 1, settingDate.date)
-      storage.saveRRTireKm(this.distance)
-      storage.saveRRTireM(setDate.getTime())
+      // var betweenDay = (date.getTime() - setDate.getTime()) / 1000 / 60 / 60 / 24
+      // this.setMonth = Math.floor(betweenDay / 30.4)
+      // console.log(this.setMonth)
+      console.log(settingDate.year)
+      // console.log(this.setMonth)
+      console.log(settingDate.date)
+      console.log(date.getTime())
+      console.log(setDate.getTime())
+      // console.log(betweenDay)
 
-      this.$router.push('/rightRearTire')
+      storage.saveEngineOilM(setDate.getTime())
+      storage.saveEngineOilkm(this.distance)
+
+      this.$router.push('/management')
     }
   }
 }

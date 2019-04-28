@@ -9,11 +9,11 @@ const debug = process.env.NODE_ENV !== 'production'
 
 const store = new Vuex.Store({
   state: {
-    title: ''
+    alarmRFValue: 0
   },
   mutations: {
-    changeTitle (state, title) {
-      state.title = title
+    changeAlarmRFValue (state, value) {
+      state.value = value
     }
   },
   strict: debug,
