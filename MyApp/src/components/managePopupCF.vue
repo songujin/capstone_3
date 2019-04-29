@@ -20,8 +20,13 @@
                 </div>
             </div>
             <div class='btn'>
+              <div class='btnBack'>
+                <p @click='goback()'>취소</p>
+              </div>
+              <div class='btnGo'>
                 <p @click='go()'>확인</p>
-            </div>      
+              </div>
+            </div>    
         </div>
     </div> 
   </div>
@@ -57,21 +62,22 @@ export default {
     startVehicle () {
       let vehicle = window.navigator.vehicle
       if (vehicle) {
-        if (vehicle.odometer === undefined) {
-          vehicle.start(() => {
-            console.log('vehicle start')
-            vehicle.odometer.get().then((odometer) => {
-              this.distance = odometer.distanceTotal
-              // this.$data.distance = odometer.distanceTotal
-            }, function (err) {
-              console.log(err.error)
-              console.log(err.message)
-            })
-          }, function () {
-            throw Error('constuctor fails')
+        vehicle.start(() => {
+          console.log('vehicle start')
+          vehicle.odometer.get().then((odometer) => {
+            this.distance = odometer.distanceTotal
+            // this.$data.distance = odometer.distanceTotal
+          }, function (err) {
+            console.log(err.error)
+            console.log(err.message)
           })
-        }
+        }, function () {
+          throw Error('constuctor fails')
+        })
       }
+    },
+    goback () {
+      this.$router.push('/cabinAirFilter')
     },
     go () {
       let date = new Date()
@@ -92,39 +98,34 @@ export default {
         return false
       }
 
-      switch (settingDate.month) {
-        case 'Jan' : this.setMonth = 1
-          break
-        case 'Feb' : this.setMonth = 2
-          break
-        case 'Mar' : this.setMonth = 3
-          break
-        case 'Apr' : this.setMonth = 4
-          break
-        case 'May' : this.setMonth = 5
-          break
-        case 'Jun' : this.setMonth = 6
-          break
-        case 'Jul' : this.setMonth = 7
-          break
-        case 'Aug' : this.setMonth = 8
-          break
-        case 'Sep' : this.setMonth = 9
-          break
-        case 'Oct' : this.setMonth = 10
-          break
-        case 'Nov' : this.setMonth = 11
-          break
-        case 'Dec' : this.setMonth = 12
-          break
+      if (settingDate.month === 'Jan') {
+        this.setMonth = 1
+      } else if (settingDate.month === 'Feb') {
+        this.setMonth = 2
+      } else if (settingDate.month === 'Mar') {
+        this.setMonth = 3
+      } else if (settingDate.month === 'Apr') {
+        this.setMonth = 4
+      } else if (settingDate.month === 'May') {
+        this.setMonth = 5
+      } else if (settingDate.month === 'Jun') {
+        this.setMonth = 6
+      } else if (settingDate.month === 'Jul') {
+        this.setMonth = 7
+      } else if (settingDate.month === 'Aug') {
+        this.setMonth = 8
+      } else if (settingDate.month === 'Sep') {
+        this.setMonth = 9
+      } else if (settingDate.month === 'Oct') {
+        this.setMonth = 10
+      } else if (settingDate.month === 'Nov') {
+        this.setMonth = 11
+      } else if (settingDate.month === 'Dec') {
+        this.setMonth = 12
       }
-
       var setDate = new Date(settingDate.year, this.setMonth - 1, settingDate.date)
-      var betweenDay = (date.getTime() - setDate.getTime()) / 1000 / 60 / 60 / 24
-      this.setMonth = Math.floor(betweenDay / 30.4)
-
       storage.saveCFilterKm(this.distance)
-      storage.saveCFilterM(settingDate)
+      storage.saveCFilterM(setDate.getTime())
 
       this.$router.push('/cabinAirFilter')
     }
@@ -172,13 +173,22 @@ div.buy, div.distance {
 }
 div.btn {
     margin: 0 auto;
-    width: 65px;
-    height: 40px;
-    border: 1px solid white;
-    p {
+    padding: 3px;
+    height: 33%;
+    width: 100%;
+    text-align: center;
+    div.btnGo, div.btnBack {
+        position: relative;
+        left: 4%;
+        float: left;
         text-align: center;
-        margin: 14px;
-        font-size: 15px;
+        margin: 0 60px;
+        border: 1px solid white;
+        p {
+            text-align: center;
+            font-size: 20px;
+            padding: 5px;
+        }
     }
 }
 @mixin mx-carmodel-7pr {

@@ -24,7 +24,7 @@
             </div>
             <div class='detail'>
                 <div class='api'>
-                <span>Battery</span><span> : </span><span>{{battery}}</span>
+                <span>Battery</span><span> : </span><span>{{batterychargeLevel}}</span><span> , </span><span>{{batterylowVoltage}}</span>
                 </div>
                 <div class='km'>
                   <div class='km_str'>
@@ -53,7 +53,7 @@
 <script>
 import managepopup from './managepopup.vue'
 import managepopupBattery from './managepopupBattery.vue'
-// import 'obigo-js-webapi/vehicle/vehicle'
+import 'obigo-js-webapi/vehicle/vehicle'
 import ProgressBar from 'vue-simple-progress'
 import { storage } from '../js/manageLibs'
 // window.navigator.vehicle.start(function () {
@@ -71,6 +71,7 @@ import { storage } from '../js/manageLibs'
 
 export default {
   name: 'battery',
+  props: ['value'],
   components: {
     'manage-popup': managepopup,
     'manage-popupBattery': managepopupBattery,
@@ -89,30 +90,32 @@ export default {
           { name: '타이어' },
           { name: '캐빈필터' }
       ],
-      battery: '0',
+      batterychargeLevel: '',
+      batterylowVoltage: '',
       km: 0,
       month: 0
     }
   },
-  // mounted () {
-  //   this.startVehicle()
-  // },
-  // computed: {
-  //   //  this.startVehicle()
-  //   tmp: function () {
-  //     // alert('get 실행')
-  //     this.$store.commit('changeBatteryMonth', localStorage.getItem('battery_month'))
-  //     return this.$store.state.battery_month
-  //   }
-  // },
   mounted () {
-    // this.startVehicle()
+    this.startVehicle()
     this.km = storage.loadBatterykm()
     let date = new Date()
     var betweenDay = (date.getTime() - storage.loadBatteryM()) / 1000 / 60 / 60 / 24
     this.month = Math.floor(betweenDay / 30.4)
+
+    this.alarmPopUp()
   },
   methods: {
+    alarmPopUp () {
+      if (60000 - this.km <= 0) {
+        storage.saveBatteryProblem('problem_Distance')
+        // this.$router.push('/alarmCFilter')    // 해당 페이지를 확인하기 위해서, 실제로는 go에서 넘어올 때 떠야한다.
+        // storage.saveAlarm('cabinFilter')   // aircondition에서 넘어올 때 뜨게 하기 위해서..
+      }
+      if (36 - this.month <= 0) {
+        storage.saveBatteryProblem('problem_Date')
+      }
+    },
     gomanage (page) {
       let str = '/'
 
@@ -125,8 +128,28 @@ export default {
       } else if (page === '타이어') {
         str += 'tire'
       } else if (page === '캐빈필터') {
+        str += 'cabinAirFilter'
       }
       this.$router.push(str)
+    },
+    startVehicle () {
+      let vehicle = window.navigator.vehicle
+      if (vehicle) {
+        vehicle.start(() => {
+          console.log('vehicle start')
+          vehicle.batteryStatus.get().then((batteryStatus) => {
+            this.batterychargeLevel = batteryStatus.chargeLevel
+            this.batterylowVoltage = batteryStatus.lowVoltageDisplay
+            console.log(batteryStatus.chargeLevel)
+            console.log(batteryStatus.lowVoltageDisplay)
+          }, function (err) {
+            console.log(err.error)
+            console.log(err.message)
+          })
+        }, function () {
+          throw Error('constuctor fails')
+        })
+      }
     }
     // startVehicle () {
     //   let vehicle = window.navigator.vehicle
