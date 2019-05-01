@@ -4,6 +4,7 @@ const routes = [{
 }, { path: '/managepopup', component: () => import('@/components/managepopup'), name: 'managepopup'
 }, { path: '/battery', component: () => import('@/components/battery'), name: 'battery'
 }, { path: '/tire', component: () => import('@/components/tire'), name: 'tire'
+}, {path: '/water', component: () => import('@/components/water'), name: 'water'
 }, { path: '/rightFrontTire', component: () => import('@/components/rightFrontTire'), name: 'rightFrontTire'
 }, { path: '/rightRearTire', component: () => import('@/components/rightRearTire'), name: 'rightRearTire'
 }, { path: '/leftFrontTire', component: () => import('@/components/leftFrontTire'), name: 'leftFrontTire'
@@ -19,6 +20,7 @@ const routes = [{
 }, { path: '/alarmRF', component: () => import('@/components/alarmRF'), name: 'alarmRF'
 }, { path: '/managepopupBattery', component: () => import('@/components/managepopupBattery'), name: 'managepopupBattery'
 }, { path: '/managepopupOil', component: () => import('@/components/managepopupOil'), name: 'managepopupOil'
+}, { path: '/managePopupWater', component: () => import('@/components/managePopupWater'), name: 'managePopupWater'
 }, { path: '/alarmEngineOil', component: () => import('@/components/alarmEngineOil'), name: 'alarmEngineOil'
 }, { path: '/alarmBattery', component: () => import('@/components/alarmBattery'), name: 'alarmBattery' } ]
 
