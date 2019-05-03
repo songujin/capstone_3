@@ -57,7 +57,7 @@ import ProgressBar from 'vue-simple-progress'
 import { storage } from '../js/manageLibs'
 
 export default {
-  name: 'leftFrontTire',
+  name: 'cabinAirFilter',
   components: {
     'progress-bar': ProgressBar
   },
@@ -100,7 +100,7 @@ export default {
     alarmPopUp () {
       if (15000 - this.km <= 0) {
         storage.saveCFilterProblem('problem_Distance')
-        this.$router.push('/alarmCFilter')    // 해당 페이지를 확인하기 위해서, 실제로는 go에서 넘어올 때 떠야한다.
+        // this.$router.push('/alarmCFilter')    // 해당 페이지를 확인하기 위해서, 실제로는 go에서 넘어올 때 떠야한다.
         // storage.saveAlarm('cabinFilter')   // aircondition에서 넘어올 때 뜨게 하기 위해서..
       }
       if (6 - this.month <= 0) {

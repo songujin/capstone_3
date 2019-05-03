@@ -85,7 +85,7 @@ export default {
       if (this.isFirst()) {
         this.$router.push('/managepopup')
       } else {
-        this.$router.push('/managepopup')
+        this.$router.push('/management')
       }
       // if (storage.loadAlarm() === 'cabinFilter') {
       //   this.$router.push('/alarmCFilter')

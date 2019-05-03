@@ -166,6 +166,22 @@ let storage = {
     let batteryM = localStorage.getItem('batteryM')
     batteryM = batteryM || ''
     return batteryM
+  },
+  saveOilProblem: function (pText) {
+    localStorage.setItem('Problem', pText)
+  },
+  loadOilProblem: function () {
+    let Probelm = localStorage.getItem('Problem')
+    Probelm = Probelm || ''
+    return Probelm
+  },
+  saveBatteryProblem: function (pText) {
+    localStorage.setItem('Problem', pText)
+  },
+  loadBatteryProblem: function () {
+    let Probelm = localStorage.getItem('Problem')
+    Probelm = Probelm || ''
+    return Probelm
   }
 }
 

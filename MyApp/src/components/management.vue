@@ -24,7 +24,7 @@
             </div>
             <div class='detail'>
                 <div class='api'>
-                  <span>Engine Oil</span><span> : </span><span>{{engineOil}}</span>
+                  <span>Engine Oil</span><span> : </span><span>{{engineOillevel}}</span><span> , </span><span>{{engineOilpressur}}</span>
                 </div>
                 <div class='km'>
                   <div class='km_str'>
@@ -53,21 +53,9 @@
 <script>
 import managepopup from './managepopup.vue'
 import managepopupOil from './managepopupOil.vue'
-// import 'obigo-js-webapi/vehicle/vehicle'
+import 'obigo-js-webapi/vehicle/vehicle'
 import ProgressBar from 'vue-simple-progress'
 import { storage } from '../js/manageLibs'
-// window.navigator.vehicle.start(function () {
-//   window.navigator.vehicle.engineOil.get().then(function (data) {
-//     alert(data.level)
-//     console.log(data.level)
-//     console.log(data.pressureWarning)
-//   }, function (err) {
-//     console.log(err)
-//   })
-//   // call vehicle API after initialization is completed
-// }, function () {
-//   throw Error('constructor fails')
-// })
 
 export default {
   name: 'management',
@@ -85,51 +73,75 @@ export default {
           { name: '타이어' },
           { name: '캐빈필터' }
       ],
-      engineOil: '0',
+      engineOillevel: '0',
+      engineOilpressur: '0',
       month: 0,
       km: 0
     }
   },
-  // computed: {
-  //   tmp: function () {
-  //     // alert('get 실행')
-  //     this.$store.commit('changeOilMonth', localStorage.getItem('engineOil_month'))
-  //     return this.$store.state.engineOil_month
-  //   }
-  // },
   mounted () {
-    // this.startVehicle()
+    this.startVehicle()
     this.km = storage.loadEngineOilkm()
-    // this.month = storage.loadEngineOilM()
     let date = new Date()
     var betweenDay = (date.getTime() - storage.loadEngineOilM()) / 1000 / 60 / 60 / 24
     this.month = Math.floor(betweenDay / 30.4)
     console.log(date.getTime())
+
+    this.alarmPopUp()
   },
   methods: {
+    // startVehicle () {
+    //   let vehicle = window.navigator.vehicle
+    //   if (vehicle) {
+    //     vehicle.start(function () {
+    //       window.navigator.vehicle.engineOil.get().then(function (data) {
+    //         alert(data.level)
+    //         console.log(data.level)
+    //         console.log(data.pressureWarning)
+    //         let vEnginOil
+    //         if (typeof vehicle.engineOil.value.length === 'undefined') {
+    //           vEnginOil = vehicle.engineOil.value.level
+    //         } else {
+    //           vEnginOil = vehicle.engineOil.value[0].level
+    //         }
+    //         this.$data.engineOil = vEnginOil
+    //         // this.engineOil = data.level.value[0].level
+    //         // this.engineOil = data.pressureWarning
+    //       }, function (err) {
+    //         console.log(err)
+    //       })
+    //     }, function () {
+    //       throw Error('constuctor fails')
+    //     })
+    //   }
+    // },
     startVehicle () {
       let vehicle = window.navigator.vehicle
       if (vehicle) {
-        vehicle.start(function () {
-          window.navigator.vehicle.engineOil.get().then(function (data) {
-            alert(data.level)
-            console.log(data.level)
-            console.log(data.pressureWarning)
-            let vEnginOil
-            if (typeof vehicle.engineOil.value.length === 'undefined') {
-              vEnginOil = vehicle.engineOil.value.level
-            } else {
-              vEnginOil = vehicle.engineOil.value[0].level
-            }
-            this.$data.engineOil = vEnginOil
-            // this.engineOil = data.level.value[0].level
-            // this.engineOil = data.pressureWarning
+        vehicle.start(() => {
+          console.log('vehicle start')
+          vehicle.engineOil.get().then((engineOil) => {
+            this.engineOillevel = engineOil.level
+            this.engineOilpressur = engineOil.pressureWarning
+            console.log(engineOil.level)
+            console.log(engineOil.pressureWarning)
           }, function (err) {
-            console.log(err)
+            console.log(err.error)
+            console.log(err.message)
           })
         }, function () {
           throw Error('constuctor fails')
         })
+      }
+    },
+    alarmPopUp () {
+      if (15000 - this.km <= 0) {
+        storage.saveOilProblem('problem_Distance')
+        // this.$router.push('/alarmEngineOil')    // 해당 페이지를 확인하기 위해서, 실제로는 go에서 넘어올 때 떠야한다.
+        // storage.saveAlarm('cabinFilter')   // aircondition에서 넘어올 때 뜨게 하기 위해서..
+      }
+      if (12 - this.month <= 0) {
+        storage.saveOilProblem('problem_Date')
       }
     },
     gomanage (page) {

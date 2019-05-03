@@ -20,8 +20,13 @@
                 </div>
             </div>
             <div class='btn'>
+              <div class='btnBack'>
+                <p @click='goback()'>취소</p>
+              </div>
+              <div class='btnGo'>
                 <p @click='go()'>확인</p>
-            </div>      
+              </div>
+            </div>
         </div>
     </div> 
   </div>
@@ -49,17 +54,22 @@ export default {
     startVehicle () {
       let vehicle = window.navigator.vehicle
       if (vehicle) {
-        vehicle.start(function () {
-          window.navigator.vehicle.odometer.get().then(function (data) {
-            console.log(data.distanceTotal)
-            this.distance = data.distanceTotal
+        vehicle.start(() => {
+          console.log('vehicle start')
+          vehicle.odometer.get().then((odometer) => {
+            this.distance = odometer.distanceTotal
+            // this.$data.distance = odometer.distanceTotal
           }, function (err) {
-            console.log(err)
+            console.log(err.error)
+            console.log(err.message)
           })
         }, function () {
           throw Error('constuctor fails')
         })
       }
+    },
+    goback () {
+      this.$router.push('/rightRearTire')
     },
     go () {
       let date = new Date()
@@ -151,13 +161,22 @@ div.buy, div.distance {
 }
 div.btn {
     margin: 0 auto;
-    width: 65px;
-    height: 40px;
-    border: 1px solid white;
-    p {
+    padding: 3px;
+    height: 33%;
+    width: 100%;
+    text-align: center;
+    div.btnGo, div.btnBack {
+        position: relative;
+        left: 4%;
+        float: left;
         text-align: center;
-        margin: 14px;
-        font-size: 15px;
+        margin: 0 60px;
+        border: 1px solid white;
+        p {
+            text-align: center;
+            font-size: 20px;
+            padding: 5px;
+        }
     }
 }
 @mixin mx-carmodel-7pr {
