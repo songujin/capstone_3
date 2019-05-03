@@ -3,7 +3,7 @@
     <div class='contents'>
         <div class='popup'>
             <div class='title'>
-                <p>엔진오일에 문제가 발생했어요</p>
+                <p>냉각수에 문제가 발생했어요</p>
             </div>
             <div class='img'></div>
             <div class='problem_API'>
@@ -28,7 +28,7 @@
 <script>
 import { storage } from '../js/manageLibs'
 export default {
-  name: 'alarmEngineOil',
+  name: 'alarmWater',
   data: function () {
     return {
       SP_API: '',
@@ -42,30 +42,30 @@ export default {
   },
   methods: {
     go () {
-      this.$router.push('/management')
+      this.$router.push('/water')
     },
     problem () {
       if (this.P_sentence === 'problem_API') {
-        this.DP_API = '엔진오일에 문제 상황이 발생했어요'
+        this.DP_API = '냉각수에 문제 상황이 발생했어요'
       } else {
-        this.SP_API = '엔진오일의 상태는 괜찮아요'
+        this.SP_API = '냉각수의 상태는 괜찮아요'
       }
 
       if (this.P_sentence === 'problem_Distance') {
-        this.DP_Distance = '엔진오일의 사용시간이 지나서 교체시기가 되었어요'
+        this.DP_Distance = '냉각수의 사용시간이 지나서 교체시기가 되었어요'
       } else {
-        this.SP_Distance = '엔진오일의 사용시간에 따른 수명은 아직 남았어요'
+        this.SP_Distance = '냉각수의 사용시간에 따른 수명은 아직 남았어요'
       }
 
       if (this.P_sentence === 'problem_Date') {
-        this.DP_Date = '엔진오일의 주행거리가 지나서 교체시기가 되었어요'
+        this.DP_Date = '냉각수의 주행거리가 지나서 교체시기가 되었어요'
       } else {
-        this.SP_Date = '엔진오일의 주행거리에 따른 수명은 아직 남았어요'
+        this.SP_Date = '냉각수의 주행거리에 따른 수명은 아직 남았어요'
       }
     }
   },
   created () {
-    this.P_sentence = storage.loadOilProblem()
+    this.P_sentence = storage.loadWaterProblem()
     this.problem()
   }
 }

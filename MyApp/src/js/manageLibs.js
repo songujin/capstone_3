@@ -88,42 +88,42 @@ let storage = {
     return First
   },
   saveCFilterProblem: function (pText) {
-    localStorage.setItem('Problem', pText)
+    localStorage.setItem('CFilterProblem', pText)
   },
   loadCFilterProblem: function () {
-    let Probelm = localStorage.getItem('Problem')
+    let Probelm = localStorage.getItem('CFilterProblem')
     Probelm = Probelm || ''
     return Probelm
   },
   saveRFProblem: function (pText) {
-    localStorage.setItem('Problem', pText)
+    localStorage.setItem('RFProblem', pText)
   },
   loadRFProblem: function () {
-    let Probelm = localStorage.getItem('Problem')
+    let Probelm = localStorage.getItem('RFProblem')
     Probelm = Probelm || ''
     return Probelm
   },
   saveRRProblem: function (pText) {
-    localStorage.setItem('Problem', pText)
+    localStorage.setItem('RRProblem', pText)
   },
   loadRRProblem: function () {
-    let Probelm = localStorage.getItem('Problem')
+    let Probelm = localStorage.getItem('RRProblem')
     Probelm = Probelm || ''
     return Probelm
   },
   saveLFProblem: function (pText) {
-    localStorage.setItem('Problem', pText)
+    localStorage.setItem('LFProblem', pText)
   },
   loadLFProblem: function () {
-    let Probelm = localStorage.getItem('Problem')
+    let Probelm = localStorage.getItem('LFProblem')
     Probelm = Probelm || ''
     return Probelm
   },
   saveLRProblem: function (pText) {
-    localStorage.setItem('Problem', pText)
+    localStorage.setItem('LRProblem', pText)
   },
   loadLRProblem: function () {
-    let Probelm = localStorage.getItem('Problem')
+    let Probelm = localStorage.getItem('LRProblem')
     Probelm = Probelm || ''
     return Probelm
   },
@@ -166,6 +166,30 @@ let storage = {
     let batteryM = localStorage.getItem('batteryM')
     batteryM = batteryM || ''
     return batteryM
+  },
+  saveOilProblem: function (pText) {
+    localStorage.setItem('oilProblem', pText)
+  },
+  loadOilProblem: function () {
+    let Probelm = localStorage.getItem('oilProblem')
+    Probelm = Probelm || ''
+    return Probelm
+  },
+  saveBatteryProblem: function (pText) {
+    localStorage.setItem('batteryProblem', pText)
+  },
+  loadBatteryProblem: function () {
+    let Probelm = localStorage.getItem('batteryProblem')
+    Probelm = Probelm || ''
+    return Probelm
+  },
+  saveWaterProblem: function (pText) {
+    localStorage.setItem('waterProblem', pText)
+  },
+  loadWaterProblem: function () {
+    let Probelm = localStorage.getItem('waterProblem')
+    Probelm = Probelm || ''
+    return Probelm
   }
 }
 

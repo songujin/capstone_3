@@ -20,13 +20,8 @@
                 </div>
             </div>
             <div class='btn'>
-              <div class='btnBack'>
-                <p @click='goback()'>취소</p>
-              </div>
-              <div class='btnGo'>
                 <p @click='go()'>확인</p>
-              </div>
-            </div>  
+            </div>    
         </div>
     </div> 
   </div>
@@ -34,10 +29,9 @@
 <script>
 import { storage } from '../js/manageLibs'
 import Datepicker from 'vuejs-datepicker'
-import 'obigo-js-webapi/vehicle/vehicle'
 
 export default {
-  name: 'managepopupBattery',
+  name: 'managePopupWater',
   props: ['value'],
   components: {
     'vuejs-datepicker': Datepicker
@@ -64,22 +58,17 @@ export default {
     startVehicle () {
       let vehicle = window.navigator.vehicle
       if (vehicle) {
-        vehicle.start(() => {
-          console.log('vehicle start')
-          vehicle.odometer.get().then((odometer) => {
-            this.distance = odometer.distanceTotal
-            // this.$data.distance = odometer.distanceTotal
+        vehicle.start(function () {
+          window.navigator.vehicle.odometer.get().then(function (data) {
+            console.log(data.distanceTotal)
+            this.distance = data.distanceTotal
           }, function (err) {
-            console.log(err.error)
-            console.log(err.message)
+            console.log(err)
           })
         }, function () {
           throw Error('constuctor fails')
         })
       }
-    },
-    goback () {
-      this.$router.push('/battery')
     },
     go () {
       let date = new Date()
@@ -94,11 +83,6 @@ export default {
       settingDate.month = (this.selectedDate).toString().substr(4, 3)
       settingDate.date = (this.selectedDate).toString().substr(8, 2)
       settingDate.year = (this.selectedDate).toString().substr(11, 4)
-
-      if ((settingDate.year === '') && (settingDate.month === '') && (settingDate.date === '')) {
-        this.title = '날짜를 선택하십시오'
-        return false
-      }
 
       if (settingDate.month === 'Jan') {
         this.setMonth = 1
@@ -129,7 +113,7 @@ export default {
       storage.saveBatterykm(this.distance)
       storage.saveBatteryM(setDate.getTime())
 
-      this.$router.push('/battery')
+      this.$router.push('/Water')
     }
   }
 }
@@ -175,22 +159,13 @@ div.buy, div.distance {
 }
 div.btn {
     margin: 0 auto;
-    padding: 3px;
-    height: 33%;
-    width: 100%;
-    text-align: center;
-    div.btnGo, div.btnBack {
-        position: relative;
-        left: 4%;
-        float: left;
+    width: 65px;
+    height: 40px;
+    border: 1px solid white;
+    p {
         text-align: center;
-        margin: 0 60px;
-        border: 1px solid white;
-        p {
-            text-align: center;
-            font-size: 20px;
-            padding: 5px;
-        }
+        margin: 14px;
+        font-size: 15px;
     }
 }
 @mixin mx-carmodel-7pr {

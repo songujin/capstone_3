@@ -132,6 +132,7 @@ export default {
       storage.saveLFTireKm(this.distance)
       storage.saveLFTireM(setDate.getTime())
       storage.saveLRTireKm(this.distance)
+      storage.saveLRTireM(setDate.getTime())
 
       storage.saveCFilterKm(this.distance)
       storage.saveCFilterM(setDate.getTime())

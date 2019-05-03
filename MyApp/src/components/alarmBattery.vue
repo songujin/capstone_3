@@ -6,9 +6,18 @@
                 <p>배터리에 문제가 발생했어요</p>
             </div>
             <div class='img'></div>
-            <div class='problem_API'></div>
-            <div class='problem_Distance'></div>
-            <div class='problem_Date'></div>
+            <div class='problem_API'>
+                <p class='safe'>{{ SP_API }}</p>
+                <p class='danger'>{{ DP_API }}</p>
+            </div>
+            <div class='problem_Distance'>
+                <p class='safe'>{{ SP_Distance }}</p>
+                <p class='danger'>{{ DP_Distance }}</p>
+            </div>
+            <div class='problem_Date'>
+                <p class='safe'>{{ SP_Date }}</p>
+                <p class='danger'>{{ DP_Date }}</p>
+            </div>
             <div class='btn'>
                 <p @click='go()'>다시 어플을 킬 때 까지 보지 않기</p>
             </div>      
@@ -17,12 +26,47 @@
   </div>
 </template>
 <script>
+import { storage } from '../js/manageLibs'
 export default {
-  name: 'alarmRF',
+  name: 'alarmBattery',
+  data: function () {
+    return {
+      SP_API: '',
+      DP_API: '',
+      SP_Distance: '',
+      DP_Distance: '',
+      SP_Date: '',
+      DP_Date: '',
+      P_sentence: ''
+    }
+  },
   methods: {
     go () {
-      this.$router.push('/management')
+      this.$router.push('/battery')
+    },
+    problem () {
+      if (this.P_sentence === 'problem_API') {
+        this.DP_API = '배터리에 문제 상황이 발생했어요'
+      } else {
+        this.SP_API = '배터리의 상태는 괜찮아요'
+      }
+
+      if (this.P_sentence === 'problem_Distance') {
+        this.DP_Distance = '배터리의 사용시간이 지나서 교체시기가 되었어요'
+      } else {
+        this.SP_Distance = '배터리의 사용시간에 따른 수명은 아직 남았어요'
+      }
+
+      if (this.P_sentence === 'problem_Date') {
+        this.DP_Date = '배터리의 주행거리가 지나서 교체시기가 되었어요'
+      } else {
+        this.SP_Date = '배터리의 주행거리에 따른 수명은 아직 남았어요'
+      }
     }
+  },
+  created () {
+    this.P_sentence = storage.loadBatteryProblem()
+    this.problem()
   }
 }
 </script>
@@ -69,6 +113,18 @@ div.btn {
         margin-top: 7px;
         font-size: 15px;
     }
+}
+.safe {
+    color: green;
+    text-align: center;
+    margin-top: 16px;
+    font-size: 17px;
+}
+.danger {
+    color: red;
+    text-align: center;
+    margin-top: 16px;
+    font-size: 17px;
 }
 @mixin mx-carmodel-7pr {
   .contents {

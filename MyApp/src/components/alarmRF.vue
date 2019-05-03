@@ -7,13 +7,16 @@
             </div>
             <div class='img'></div>
             <div class='problem_API'>
-              <p></p>
+                <p class='safe'>{{ SP_API }}</p>
+                <p class='danger'>{{ DP_API }}</p>
             </div>
             <div class='problem_Distance'>
-              <p></p>
+                <p class='safe'>{{ SP_Distance }}</p>
+                <p class='danger'>{{ DP_Distance }}</p>
             </div>
             <div class='problem_Date'>
-              <p></p>
+                <p class='safe'>{{ SP_Date }}</p>
+                <p class='danger'>{{ DP_Date }}</p>
             </div>
             <div class='btn'>
                 <p @click='go()'>다시 어플을 킬 때 까지 보지 않기</p>
@@ -23,13 +26,47 @@
   </div>
 </template>
 <script>
+import { storage } from '../js/manageLibs'
 export default {
   name: 'alarmRF',
+  data: function () {
+    return {
+      SP_API: '',
+      DP_API: '',
+      SP_Distance: '',
+      DP_Distance: '',
+      SP_Date: '',
+      DP_Date: '',
+      P_sentence: ''
+    }
+  },
   methods: {
     go () {
-      this.$store.changeAlarmRFValue('alarmRFValue', 1)
       this.$router.push('/rightFrontTire')
+    },
+    problem () {
+      if (this.P_sentence === 'problem_API') {
+        this.DP_API = '오른쪽 앞 타이어에 문제 상황이 발생했어요'
+      } else {
+        this.SP_API = '오른쪽 앞 타이어의 상태는 괜찮아요'
+      }
+
+      if (this.P_sentence === 'problem_Distance') {
+        this.DP_Distance = '오른쪽 앞 타이어의 사용시간이 지나서 교체시기가 되었어요'
+      } else {
+        this.SP_Distance = '오른쪽 앞 타이어의 사용시간에 따른 수명은 아직 남았어요'
+      }
+
+      if (this.P_sentence === 'problem_Date') {
+        this.DP_Date = '오른쪽 앞 타이어의 주행거리가 지나서 교체시기가 되었어요'
+      } else {
+        this.SP_Date = '오른쪽 앞 타이어의 주행거리에 따른 수명은 아직 남았어요'
+      }
     }
+  },
+  created () {
+    this.P_sentence = storage.loadRFProblem()
+    this.problem()
   }
 }
 </script>
@@ -65,11 +102,6 @@ div.problem_API, div.problem_Distance, div.problem_Date {
     height: 20%;
     width: 70%;
     margin: 0 auto 10px auto;
-    p {
-      text-align: center;
-      margin: 10px;
-      font-size: 20px;
-    }
 }
 div.btn {
     margin: 0 auto;
@@ -81,6 +113,18 @@ div.btn {
         margin-top: 7px;
         font-size: 15px;
     }
+}
+.safe {
+    color: green;
+    text-align: center;
+    margin-top: 16px;
+    font-size: 17px;
+}
+.danger {
+    color: red;
+    text-align: center;
+    margin-top: 16px;
+    font-size: 17px;
 }
 @mixin mx-carmodel-7pr {
   .contents {

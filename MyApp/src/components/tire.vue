@@ -77,19 +77,6 @@ export default {
     },
     goTire (pos) {
       let str = '/' + pos + 'Tire'
-      let title = -1
-
-      if (pos === 'rightFront') {
-        title = '오른쪽 앞'
-      } else if (pos === 'rightRear') {
-        title = '오른쪽 뒤'
-      } else if (pos === 'leftFront') {
-        title = '왼쪽 앞'
-      } else if (pos === 'leftRear') {
-        title = '왼쪽 뒤'
-      }
-
-      this.$store.commit('changeTitle', title)
       this.$router.push(str)
     }
   }
