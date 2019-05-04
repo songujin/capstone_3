@@ -20,7 +20,9 @@ export default {
       alarmRFFlag: true,
       alarmRRFlag: true,
       alarmLRFlag: true,
-      alarmLFFlag: true
+      alarmLFFlag: true,
+      alarmOillag: true,
+      alarmBatterylag: true
     }
   },
   methods: {
@@ -84,6 +86,36 @@ export default {
         this.alarmLRFlag = false
         this.$router.push('/alarmLR')
       }
+      if (this.alarmOillag === true && 15000 - storage.loadEngineOilkm() <= 0) {
+        storage.saveOilProblem('problem_Distance')
+        this.alarmOillag = false
+        this.$router.push('/alarmEngineOil')
+      }
+      if (this.alarmOillag === true && 12 - this.calculateM(storage.loadEngineOilM()) <= 0) {
+        storage.saveOilProblem('problem_Date')
+        this.alarmOillag = false
+        this.$router.push('/alarmEngineOil')
+      }
+      if (this.alarmBatterylag === true && 60000 - storage.loadBatterykm() <= 0) {
+        storage.saveBatteryProblem('problem_Distance')
+        this.alarmBatterylag = false
+        this.$router.push('/alarmBattery')
+      }
+      if (this.alarmBatterylag === true && 36 - this.calculateM(storage.loadBatteryM()) <= 0) {
+        storage.saveBatteryProblem('problem_Date')
+        this.alarmBatterylag = false
+        this.$router.push('/alarmBattery')
+      }
+      // if (this.alarmOillag === true && (storage.loadOillevelApi() === 'BargraphElement1' || storage.loadOillevelApi() === 'BargraphElement2')) {
+      //   storage.saveBatteryProblem('problem_LevelAPI')
+      //   this.alarmOillag = false
+      //   this.$router.push('/management')
+      // }
+      // if (this.alarmOillag === true && storage.loadOilPresApi() === true) {
+      //   storage.saveBatteryProblem('problem_PressAPI')
+      //   this.alarmOillag = false
+      //   this.$router.push('/management')
+      // }
     }
   },
   mounted () {

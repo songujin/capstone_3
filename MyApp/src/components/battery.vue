@@ -51,30 +51,13 @@
   </div>
 </template>
 <script>
-import managepopup from './managepopup.vue'
-import managepopupBattery from './managepopupBattery.vue'
 import 'obigo-js-webapi/vehicle/vehicle'
 import ProgressBar from 'vue-simple-progress'
 import { storage } from '../js/manageLibs'
-// window.navigator.vehicle.start(function () {
-//   window.navigator.vehicle.engineOil.get().then(function (data) {
-//     alert(data.level)
-//     console.log(data.level)
-//     console.log(data.pressureWarning)
-//   }, function (err) {
-//     console.log(err)
-//   })
-//   // call vehicle API after initialization is completed
-// }, function () {
-//   throw Error('constructor fails')
-// })
-
 export default {
   name: 'battery',
   props: ['value'],
   components: {
-    'manage-popup': managepopup,
-    'manage-popupBattery': managepopupBattery,
     'progress-bar': ProgressBar
   },
   data: function () {
@@ -102,20 +85,14 @@ export default {
     let date = new Date()
     var betweenDay = (date.getTime() - storage.loadBatteryM()) / 1000 / 60 / 60 / 24
     this.month = Math.floor(betweenDay / 30.4)
-
-    this.alarmPopUp()
+    if (this.month >= 36) {
+      this.month = 36
+    }
+    if (this.km >= 60000) {
+      this.km = 60000
+    }
   },
   methods: {
-    alarmPopUp () {
-      if (60000 - this.km <= 0) {
-        storage.saveBatteryProblem('problem_Distance')
-        // this.$router.push('/alarmCFilter')    // 해당 페이지를 확인하기 위해서, 실제로는 go에서 넘어올 때 떠야한다.
-        // storage.saveAlarm('cabinFilter')   // aircondition에서 넘어올 때 뜨게 하기 위해서..
-      }
-      if (36 - this.month <= 0) {
-        storage.saveBatteryProblem('problem_Date')
-      }
-    },
     gomanage (page) {
       let str = '/'
 
@@ -151,20 +128,6 @@ export default {
         })
       }
     }
-    // startVehicle () {
-    //   let vehicle = window.navigator.vehicle
-    //   if (vehicle) {
-    //     if (vehicle.engineOil === undefined) {
-    //       vehicle.start(() => {
-    //         vehicle.engineOil.get().then(function (data) {
-    //           this.$data.engineOil = data
-    //         })
-    //         alert('vehicle start')
-    //         console.log('vehicle start')
-    //       })
-    //     }
-    //   }
-    // }
   }
 }
 </script>

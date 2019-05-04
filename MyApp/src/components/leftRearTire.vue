@@ -92,7 +92,8 @@ export default {
         str += 'water'
       } else if (page === '타이어') {
         str += 'tire'
-      } else if (page === '캐빈 필터') {
+      } else if (page === '캐빈필터') {
+        str += 'cabinAirFilter'
       }
       this.$router.push(str)
     }
@@ -102,6 +103,12 @@ export default {
     var betweenDay = (date.getTime() - storage.loadLRTireM()) / 1000 / 60 / 60 / 24
     this.km = storage.loadLRTireKm()
     this.month = Math.floor(betweenDay / 30.4)
+    if (this.month >= 36) {
+      this.month = 36
+    }
+    if (this.km >= 60000) {
+      this.km = 60000
+    }
   }
 }
 </script>

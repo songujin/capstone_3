@@ -97,6 +97,12 @@ export default {
     let date = new Date()
     var betweenDay = (date.getTime() - storage.loadBatteryM()) / 1000 / 60 / 60 / 24
     this.month = Math.floor(betweenDay / 30.4)
+    if (this.month >= 24) {
+      this.month = 24
+    }
+    if (this.km >= 40000) {
+      this.km = 40000
+    }
   },
   methods: {
     gomanage (page) {
@@ -111,6 +117,7 @@ export default {
       } else if (page === '타이어') {
         str += 'tire'
       } else if (page === '캐빈필터') {
+        str += 'cabinAirFilter'
       }
       this.$router.push(str)
     }

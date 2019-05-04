@@ -113,7 +113,12 @@ export default {
     var betweenDay = (date.getTime() - storage.loadCFilterM()) / 1000 / 60 / 60 / 24
     this.km = storage.loadCFilterKm()
     this.month = Math.floor(betweenDay / 30.4)
-
+    if (this.month >= 6) {
+      this.month = 6
+    }
+    if (this.km >= 15000) {
+      this.km = 15000
+    }
     this.alarmPopUp()
   }
 }
