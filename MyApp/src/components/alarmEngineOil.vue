@@ -46,9 +46,9 @@ export default {
     },
     problem () {
       if (this.P_sentence === 'problem_LevelAPI') {
-        this.DP_API = '엔진오일에 ' + storage.loadOillevelApi() + ' 문제 상황이 발생했어요'
+        this.DP_API = '엔진오일에 레벨이 낮아 문제 상황이 발생했어요'
       } else if (this.P_sentence === 'problem_PressAPI') {
-        this.DP_API = '엔진오일에 ' + storage.loadOilPresApi() + ' 문제 상황이 발생했어요'
+        this.DP_API = '엔진오일에 압력이 높아 문제 상황이 발생했어요'
       } else {
         this.SP_API = '엔진오일의 상태는 괜찮아요'
       }

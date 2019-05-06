@@ -98,8 +98,8 @@ export default {
           vehicle.engineOil.get().then((engineOil) => {
             this.engineOillevel = engineOil.level
             this.engineOilpressur = engineOil.pressureWarning
-            storage.saveOillevelApi(engineOil.level)
-            storage.saveOilPresApi(engineOil.pressureWarning)
+            // storage.saveOillevelApi(engineOil.level)
+            // storage.saveOilPresApi(engineOil.pressureWarning)
             console.log(engineOil.level)
             console.log(engineOil.pressureWarning)
           }, function (err) {

@@ -8,6 +8,7 @@
 <script>
 import footer from 'obigo-js-ui-rnbs/components/footer'
 import { storage } from './js/manageLibs'
+import 'obigo-js-webapi/vehicle/vehicle'
 
 export default {
   name: 'home',
@@ -22,10 +23,61 @@ export default {
       alarmLRFlag: true,
       alarmLFFlag: true,
       alarmOillag: true,
-      alarmBatterylag: true
+      alarmBatterylag: true,
+      engineOillevel: '',
+      engineOilpressur: '',
+      batterychargeLevel: '',
+      batterylowVoltage: ''
     }
   },
   methods: {
+    startVehicle () {
+      let vehicle = window.navigator.vehicle
+      if (vehicle) {
+        vehicle.start(() => {
+          // vehicle.batteryStatus.get().then((batteryStatus) => {
+          //   this.batterychargeLevel = batteryStatus.chargeLevel
+          //   this.batterylowVoltage = batteryStatus.lowVoltageDisplay
+          //   console.log(batteryStatus.chargeLevel)
+          //   console.log(batteryStatus.lowVoltageDisplay)
+          // }, function (err) {
+          //   console.log(err.error)
+          //   console.log(err.message)
+          // })
+          console.log('vehicle start')
+          vehicle.engineOil.get().then((engineOil) => {
+            this.engineOillevel = engineOil.level
+            this.engineOilpressur = engineOil.pressureWarning
+            console.log(engineOil.level)
+            console.log(engineOil.pressureWarning)
+          }, function (err) {
+            console.log(err.error)
+            console.log(err.message)
+          })
+        }, function () {
+          throw Error('constuctor fails')
+        })
+      }
+    },
+    startVehicleBattery () {
+      let vehicle = window.navigator.vehicle
+      if (vehicle) {
+        vehicle.start(() => {
+          console.log('vehicle start')
+          vehicle.batteryStatus.get().then((batteryStatus) => {
+            this.batterychargeLevel = batteryStatus.chargeLevel
+            this.batterylowVoltage = batteryStatus.lowVoltageDisplay
+            console.log(batteryStatus.chargeLevel)
+            console.log(batteryStatus.lowVoltageDisplay)
+          }, function (err) {
+            console.log(err.error)
+            console.log(err.message)
+          })
+        }, function () {
+          throw Error('constuctor fails')
+        })
+      }
+    },
     onBack (evt) {
       console.log(evt)
       if (window.applicationFramework) {
@@ -106,24 +158,36 @@ export default {
         this.alarmBatterylag = false
         this.$router.push('/alarmBattery')
       }
-      // if (this.alarmOillag === true && (storage.loadOillevelApi() === 'BargraphElement1' || storage.loadOillevelApi() === 'BargraphElement2')) {
-      //   storage.saveBatteryProblem('problem_LevelAPI')
-      //   this.alarmOillag = false
-      //   this.$router.push('/management')
-      // }
-      // if (this.alarmOillag === true && storage.loadOilPresApi() === true) {
-      //   storage.saveBatteryProblem('problem_PressAPI')
-      //   this.alarmOillag = false
-      //   this.$router.push('/management')
-      // }
+      if (this.alarmOillag === true && (this.engineOillevel === 'BargraphElement1' || this.engineOillevel === 'BargraphElement2')) {
+        storage.saveOilProblem('problem_LevelAPI')
+        this.alarmOillag = false
+        this.$router.push('/alarmEngineOil')
+      }
+      if (this.alarmOillag === true && this.engineOilpressur === true) {
+        storage.saveOilProblem('problem_PressAPI')
+        this.alarmOillag = false
+        this.$router.push('/alarmEngineOil')
+      }
+      if (this.alarmBatterylag === true && (this.batterychargeLevel <= 20)) {
+        storage.saveBatteryProblem('problem_LevelAPI')
+        this.alarmBatterylag = false
+        this.$router.push('/alarmBattery')
+      }
+      if (this.alarmBatterylag === true && (this.batterylowVoltage === 'BatteryWeak' || this.batterylowVoltage === 'BatteryWeakStartEngine')) {
+        storage.saveBatteryProblem('problem_VoltageAPI')
+        this.alarmBatterylag = false
+        this.$router.push('/alarmBattery')
+      }
     }
   },
   mounted () {
+    this.startVehicle()
+    this.startVehicleBattery()
     let AP = this
     this.initHardKeyAction()
     setInterval(function () {
       AP.alarmPopup()
-    }, 1800000) // 30분
+    }, 15000) // 30분 1800000
   }
 }
 </script>

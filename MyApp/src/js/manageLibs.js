@@ -190,23 +190,23 @@ let storage = {
     let Probelm = localStorage.getItem('waterProblem')
     Probelm = Probelm || ''
     return Probelm
-  },
-  saveOillevelApi: function (pText) {
-    localStorage.setItem('oillevelApi', pText)
-  },
-  loadOillevelApi: function () {
-    let oillevelApi = localStorage.getItem('oillevelApi')
-    oillevelApi = oillevelApi || ''
-    return oillevelApi
-  },
-  saveOilPresApi: function (pText) {
-    localStorage.setItem('oilPresApi', pText)
-  },
-  loadOilPresApi: function () {
-    let oilPresApi = localStorage.getItem('oilPresApi')
-    oilPresApi = oilPresApi || ''
-    return oilPresApi
   }
+  // saveOillevelApi: function (pText) {
+  //   localStorage.setItem('oillevelApi', pText)
+  // },
+  // loadOillevelApi: function () {
+  //   let oillevelApi = localStorage.getItem('oillevelApi')
+  //   oillevelApi = oillevelApi || ''
+  //   return oillevelApi
+  // },
+  // saveOilPresApi: function (pText) {
+  //   localStorage.setItem('oilPresApi', pText)
+  // },
+  // loadOilPresApi: function () {
+  //   let oilPresApi = localStorage.getItem('oilPresApi')
+  //   oilPresApi = oilPresApi || ''
+  //   return oilPresApi
+  // }
 }
 
 export { storage }

@@ -45,8 +45,10 @@ export default {
       this.$router.push('/battery')
     },
     problem () {
-      if (this.P_sentence === 'problem_API') {
-        this.DP_API = '배터리에 문제 상황이 발생했어요'
+      if (this.P_sentence === 'problem_LevelAPI') {
+        this.DP_API = '배터리의 레벨이 낮아 문제 상황이 발생했어요'
+      } else if (this.P_sentence === 'problem_VoltageAPI') {
+        this.DP_API = '배터리의 전압이 낮아 문제 상황이 발생했어요'
       } else {
         this.SP_API = '배터리의 상태는 괜찮아요'
       }
