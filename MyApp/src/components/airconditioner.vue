@@ -67,7 +67,7 @@ export default {
   },
   data: function () {
     return {
-      count: 0, // 이건 왜 있는건지 모르겠음...
+      count: 0, // managementpopup을 한번만 뜨게 하기 위해서 정윤이가 만듦
       dustValue: 100, // 실시간으로 미세먼지 받아와야함
       dustLevel: '', // 미세먼지 등급은 mounted() 에서 계산
       fineDustValue: 15, // 실시간으로 초미세먼지 받아와야함

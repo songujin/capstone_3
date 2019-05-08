@@ -22,6 +22,7 @@ const routes = [{
 }, { path: '/managepopupOil', component: () => import('@/components/managepopupOil'), name: 'managepopupOil'
 }, { path: '/managePopupWater', component: () => import('@/components/managePopupWater'), name: 'managePopupWater'
 }, { path: '/alarmEngineOil', component: () => import('@/components/alarmEngineOil'), name: 'alarmEngineOil'
-}, { path: '/alarmBattery', component: () => import('@/components/alarmBattery'), name: 'alarmBattery' } ]
+}, { path: '/alarmBattery', component: () => import('@/components/alarmBattery'), name: 'alarmBattery'
+}, { path: '/alarmWater', component: () => import('@/components/alarmWater'), name: 'alarmWater' } ]
 
 export default routes
