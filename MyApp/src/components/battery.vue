@@ -2,63 +2,60 @@
   <div>
     <div class='contents'>
         <div class='parts'>
-            <div class='select' v-for="item in items" :key="item.name">
-                <p ref="string" @click='gomanage(item.name)'>{{ item.name }}</p>
-            </div>
+            <b-button-group class='select' v-for="item in items" :key="item.name">
+                <b-button ref="string" @click='gomanage(item.name)'>{{ item.name }}</b-button>
+            </b-button-group>
         </div>
         <div class='manage'>
             <div class='top'>
                 <div class='btn1'>
-                    <button>
-                        <router-link v-bind:to="{ name: 'managepopupBattery' }">날짜수정</router-link>
-                    </button>
+                    <div class='btn'>
+                        <b-button @click='update()'>Update</b-button>
+                    </div>
                 </div>
                 <div class='desc'>
-                    <p>배터리의 현재 상태</p>
+                    <p>Current status of Battery</p>
                 </div>
                 <div class='btn2'>
-                    <button>
-                        <router-link v-bind:to="{ name: 'airconditioner' }">Go</router-link>
-                    </button>
+                    <div class='btn'>
+                        <b-button @click='go()'>Go</b-button>
+                    </div>
                 </div>     
             </div>
             <div class='detail'>
-                <div class='api'>
-                <span>Battery</span><span> : </span><span>{{batterychargeLevel}}</span><span> , </span><span>{{batterylowVoltage}}</span>
-                </div>
-                <div class='km'>
-                  <div class='km_str'>
-                    <span class='kmstr_left'>{{ 60000 - km }}km 남음</span>
-                    <span class='kmstr_right'>60,000km 마다 교체</span>
-                  </div>
-                  <div class='km_bar'>
-                    <progress-bar size="large" :val=(km)*(100/60000)></progress-bar>
-                  </div>
-                </div>
-                <div class='cycle'>
-                  <div class='mon_str'>
-                    <span class='monstr_left'>{{ 36 - month }}개월 남음</span>
-                    <span class='monstr_right'>36개월 마다 교체</span>
-                  </div>
-                  <div class='mon_bar'>
-                    <progress-bar size="large" :val=(month)*100/36></progress-bar>
-                  </div>
-                </div>
-                <div class='img'></div>
+              <div class='km'>
+                <radial-progress-bar :diameter="250"
+                    :completed-steps=km
+                    :total-steps=60000>
+                  <p><br></p>
+                  <p>Replacement Period<br>: {{ 60000 }} km</p>
+                  <p>Remaining<br>: {{ 60000 - km }} km</p>
+                </radial-progress-bar>
+              </div>
+              <div class='cycle'>
+                <radial-progress-bar :diameter="250"
+                    :completed-steps=month
+                    :total-steps=36>
+                  <p><br></p>
+                  <p>Replacement Period<br>: {{ 36 }} months</p>
+                  <p>Remaining<br>: {{ 36 - month }} months</p>
+                </radial-progress-bar>
+              </div>
             </div>       
         </div>  
     </div> 
   </div>
 </template>
 <script>
-import 'obigo-js-webapi/vehicle/vehicle'
-import ProgressBar from 'vue-simple-progress'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+import RadialProgressBar from 'vue-radial-progress'
 import { storage } from '../js/manageLibs'
 export default {
   name: 'battery',
   props: ['value'],
   components: {
-    'progress-bar': ProgressBar
+    RadialProgressBar
   },
   data: function () {
     return {
@@ -67,11 +64,11 @@ export default {
       mon_max: 36,
       mon_value: 3,
       items: [
-          { name: '엔진 오일' },
-          { name: '배터리' },
-          { name: '냉각수' },
-          { name: '타이어' },
-          { name: '캐빈필터' }
+          { name: 'Engine oil' },
+          { name: 'Battery' },
+          { name: 'Coolant' },
+          { name: 'Tire' },
+          { name: 'Cabin filter' }
       ],
       batterychargeLevel: '',
       batterylowVoltage: '',
@@ -80,7 +77,6 @@ export default {
     }
   },
   mounted () {
-    this.startVehicle()
     this.km = storage.loadBatterykm()
     let date = new Date()
     var betweenDay = (date.getTime() - storage.loadBatteryM()) / 1000 / 60 / 60 / 24
@@ -93,40 +89,26 @@ export default {
     }
   },
   methods: {
+    update () {
+      this.$router.push('/managepopupBattery')
+    },
+    go () {
+      this.$router.push('/')
+    },
     gomanage (page) {
       let str = '/'
-
-      if (page === '엔진 오일') {
+      if (page === 'Engine oil') {
         str += 'management'
-      } else if (page === '배터리') {
+      } else if (page === 'Battery') {
         str += 'battery'
-      } else if (page === '냉각수') {
+      } else if (page === 'Coolant') {
         str += 'water'
-      } else if (page === '타이어') {
+      } else if (page === 'Tire') {
         str += 'tire'
-      } else if (page === '캐빈필터') {
+      } else if (page === 'Cabin filter') {
         str += 'cabinAirFilter'
       }
       this.$router.push(str)
-    },
-    startVehicle () {
-      let vehicle = window.navigator.vehicle
-      if (vehicle) {
-        vehicle.start(() => {
-          console.log('vehicle start')
-          vehicle.batteryStatus.get().then((batteryStatus) => {
-            this.batterychargeLevel = batteryStatus.chargeLevel
-            this.batterylowVoltage = batteryStatus.lowVoltageDisplay
-            console.log(batteryStatus.chargeLevel)
-            console.log(batteryStatus.lowVoltageDisplay)
-          }, function (err) {
-            console.log(err.error)
-            console.log(err.message)
-          })
-        }, function () {
-          throw Error('constuctor fails')
-        })
-      }
     }
   }
 }
@@ -140,12 +122,10 @@ div.parts {
     float: left;
     height: 85%;
     width: 25%;
-    border: 1px solid white;
 }
 div.select {
     height: 20%;
     width: 100%;
-    border: 1px solid white;
     p {
         text-align: center;
         margin: 15px;
@@ -156,26 +136,25 @@ div.manage {
     float: left;
     height: 85%;
     width: 75%;
-    border: 1px solid white;
+    border: 1px solid rgb(128, 128, 128);
 }
 div.top {
-    height: 76.6px;
+    height: 60.6px;
     width: 100%;
-    border: 1px solid white;
+    background: rgba(14, 13, 13, 0.493);
 }
 div.detail {
     margin: 0 auto;
     height: 100%;
     width: 100%;
     text-align: center;
-    border: 1px solid white;
+    border: 1px solid rgb(128, 128, 128);
 }
 div.btn2 {
     float: right;
 }
 div.btn1 {
     float: left;
-    margin-left: 20px;
 }
 div.desc {
     float: left;
@@ -183,69 +162,42 @@ div.desc {
     padding: 8px;
     height: 50%;
     width: 60%;
-    border: 1px solid white;
-    margin: 20px 33px 5px 23px;
+    margin: 6px 0px 5px 7px;
     p {
-        font-size: 20px;
+        font-size: 22px;
     }
 }
-button {
-    float: right;
+.btn-secondary {
+  background: black;
+  font-size: 22px;
+}
+div.parts > :nth-child(2) > .btn-secondary{
+  border-width: 4px;
+  border-color: gray;
+}
+div.km {
+  float: left;
+  width: 50%;
+  height: 100%;
+  .radial-progress-container {
     margin-top: 5px;
-    margin-right: 9.79px;
-    width: 65px;
-    height: 65px;
-    color: black;
-    background-color: white 
+    margin-left: 25px;
+    p {
+      font-size: 18px;
+    }
+  }
 }
-div.api {
-    position: absolute;
-    top: 30%;
-    left: 82%;
-}
-div.km, div.cycle {
-    position: relative;
-    left: 5%;
-    top: 10%;
-    height: 25%;
-    width: 70%;
-    // border: 1px solid white;
-    margin-bottom: 5px;
-}
-div.km_str, div.mon_str {
-    position: relative;
-    height: 46%;
-    width: 100%;
-    border: 1px solid white;
-}
-div.km_bar, div.mon_bar {
-    position: relative;
-    height: 46%;
-    width: 100%;
-    border: 1px solid white;
-    margin-top: 6px;
-}
-span.kmstr_left, span.monstr_left {
-  top:7px;
-  left:5%;
-  position: absolute;
-  text-align: left;
-  width: 100%;
-}
-span.kmstr_right, span.monstr_right {
-  top:7px;
-  right:5%;
-  position: absolute;
-  text-align: right;
-  width: 100%;
-}
-div.img {
-    position: absolute;
-    top: 37%;
-    left: 81.5%;
-    height: 130px;
-    width: 110px;
-    border: 1px solid white;
+div.cycle {
+  float: left;
+  width: 50%;
+  height: 100%;
+  .radial-progress-container {
+    margin-top: 5px;
+    margin-left: 20px;
+    p {
+      font-size: 18px;
+    }
+  }
 }
 @mixin mx-carmodel-7pr {
   .contents {

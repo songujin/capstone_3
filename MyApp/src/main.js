@@ -5,6 +5,9 @@ import ObigoUI from 'obigo-js-ui'
 import router from './router'
 import store from './store'
 import ToggleButton from 'vue-js-toggle-button'
+import BootstrapVue from 'bootstrap-vue'
+
+import Button from 'bootstrap-vue/es/components/button'
 
 import 'obigo-js-webapi/vehicle/vehicle'
 import 'obigo-js-ui/features/commonPopup'
@@ -12,6 +15,8 @@ import 'obigo-js-ui/features/commonPopup'
 Vue.use(ObigoUI)
 Vue.use(router)
 Vue.use(ToggleButton)
+Vue.use(BootstrapVue)
+Vue.use(Button)
 
 /* eslint-disable no-new */
 new Vue({

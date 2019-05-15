@@ -5,7 +5,7 @@
             <p>{{ title }}</p>
             <div class='buy'>
                 <div class='text'>
-                    <p>구매 날짜</p>
+                    <p>Replacement Date</p>
                 </div>
                 <div class='date'>
                   <vuejs-datepicker v-model="selectedDate" placeholder="click..." style="color:black;" :disabledDates="state.disabledDates" format="yyyy-MM-dd"></vuejs-datepicker>
@@ -13,7 +13,7 @@
             </div>
             <div class='distance'>
                 <div class='text'>
-                    <p>주행 거리</p>
+                    <p>Total Distance</p>
                 </div>
                 <div class='odometer'>
                     <p>{{ distance }}km</p>
@@ -21,10 +21,10 @@
             </div>
             <div class='btn'>
               <div class='btnBack'>
-                <p @click='goback()'>취소</p>
+                <b-button @click='goback()'>Cancel</b-button>
               </div>
               <div class='btnGo'>
-                <p @click='go()'>확인</p>
+                <b-button @click='go()'>Ok</b-button>
               </div>
             </div>
         </div>
@@ -44,7 +44,7 @@ export default {
   },
   data: function () {
     return {
-      title: '관리 시작 기준 설정',
+      title: 'Setting',
       distance: '10000',
       selectedDate: '',
       setMonth: '',
@@ -148,58 +148,88 @@ export default {
   color: white;
 }
 div.popup {
-    margin: 25px auto 55px auto;
+    margin: 48px auto 55px auto;
     width: 50%;
     height: 60%;
-    border: 1px solid white;
+    border: 1px solid gray;
     > p {
+        background: black;
+        margin: 0px;
         text-align: center;
-        margin: 10px;
-        font-size: 20px;
+        font-size: 22px;
+        height: 35px;
+        border-bottom: 1px solid gray;
     }
 }
 div.buy, div.distance {
+    background: rgba(14, 13, 13, 0.185);
     margin: 0 auto;
     padding: 5px;
-    height: 33%;
+    height: 30%;
     width: 100%;
-    border: 1px solid white;
     text-align: center;
-    div.text, div.date, div.odometer {
+    div.text {
         position: relative;
-        left: 5%;
         float: left;
         text-align: center;
         margin: 0 10px;
         height: 95%;
-        width: 40%;
-        border: 1px solid white;
+        width: 30%;
         p {
             text-align: center;
-            margin-top: 20px;
+            font-size: 20px;
+        }
+    }
+    div.date {
+        padding-top: 15px;
+        padding-left: 15px;
+        position: relative;
+        float: left;
+        text-align: center;
+        margin: 0 10px;
+        height: 95%;
+        width: 58%;
+        p {
+            text-align: center;
+            font-size: 20px;
+        }
+    }
+    div.odometer {
+        position: relative;
+        float: left;
+        text-align: center;
+        margin: 0 10px;
+        height: 95%;
+        width: 58%;
+        border: 1px solid gray;
+        p {
+            text-align: center;
             font-size: 20px;
         }
     }
 }
 div.btn {
+    background: rgba(14, 13, 13, 0.185);
     margin: 0 auto;
-    padding: 3px;
-    height: 33%;
+    padding: 0 auto;
+    height: 25%;
     width: 100%;
     text-align: center;
     div.btnGo, div.btnBack {
         position: relative;
-        left: 4%;
-        float: left;
         text-align: center;
-        margin: 0 60px;
-        border: 1px solid white;
         p {
             text-align: center;
             font-size: 20px;
             padding: 5px;
         }
     }
+}
+.btn-secondary {
+  background: black;
+  font-size: 22px;
+  width: 176px;
+  float: left;
 }
 @mixin mx-carmodel-7pr {
   .contents {

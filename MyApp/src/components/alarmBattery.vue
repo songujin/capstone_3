@@ -3,24 +3,29 @@
     <div class='contents'>
         <div class='popup'>
             <div class='title'>
-                <p>배터리에 문제가 발생했어요</p>
-            </div>
-            <div class='img'></div>
-            <div class='problem_API'>
-                <p class='safe'>{{ SP_API }}</p>
-                <p class='danger'>{{ DP_API }}</p>
+                <p>Battery needs to be replaced</p>
             </div>
             <div class='problem_Distance'>
-                <p class='safe'>{{ SP_Distance }}</p>
-                <p class='danger'>{{ DP_Distance }}</p>
+                <div class='text'>
+                  <p>Problems with driving distance</p>
+                </div>
+                <div class='desc'>
+                  <p class='safe'>{{ SP_Distance }}</p>
+                  <p class='danger'>{{ DP_Distance }}</p>
+                </div>
             </div>
             <div class='problem_Date'>
-                <p class='safe'>{{ SP_Date }}</p>
-                <p class='danger'>{{ DP_Date }}</p>
+                <div class='text'>
+                  <p>Problems with driving time</p>
+                </div>
+                <div class='desc'>
+                  <p class='safe'>{{ SP_Date }}</p>
+                  <p class='danger'>{{ DP_Date }}</p>
+                </div>
             </div>
-            <div class='btn'>
-                <p @click='go()'>다시 어플을 킬 때 까지 보지 않기</p>
-            </div>      
+            <div class='btnGo'>
+                <b-button @click='go()'>Don't show notifications until you turn on app</b-button>
+            </div>
         </div>
     </div> 
   </div>
@@ -31,8 +36,6 @@ export default {
   name: 'alarmBattery',
   data: function () {
     return {
-      SP_API: '',
-      DP_API: '',
       SP_Distance: '',
       DP_Distance: '',
       SP_Date: '',
@@ -45,24 +48,16 @@ export default {
       this.$router.push('/battery')
     },
     problem () {
-      if (this.P_sentence === 'problem_LevelAPI') {
-        this.DP_API = '배터리의 레벨이 낮아 문제 상황이 발생했어요'
-      } else if (this.P_sentence === 'problem_VoltageAPI') {
-        this.DP_API = '배터리의 전압이 낮아 문제 상황이 발생했어요'
-      } else {
-        this.SP_API = '배터리의 상태는 괜찮아요'
-      }
-
       if (this.P_sentence === 'problem_Distance') {
-        this.DP_Distance = '배터리의 사용시간이 지나서 교체시기가 되었어요'
+        this.DP_Distance = 'It is time for replacement'
       } else {
-        this.SP_Distance = '배터리의 사용시간에 따른 수명은 아직 남았어요'
+        this.SP_Distance = 'It is not time for replacement'
       }
 
       if (this.P_sentence === 'problem_Date') {
-        this.DP_Date = '배터리의 주행거리가 지나서 교체시기가 되었어요'
+        this.DP_Date = 'It is time for replacement'
       } else {
-        this.SP_Date = '배터리의 주행거리에 따른 수명은 아직 남았어요'
+        this.SP_Date = 'It is not time for replacement'
       }
     }
   },
@@ -78,38 +73,35 @@ export default {
   color: white;
 }
 div.popup {
-    margin: 25px auto 55px auto;
-    width: 80%;
-    height: 70%;
-    border: 1px solid white;
+    margin: 35px auto 55px auto;
+    width: 70%;
+    height: 65%;
+    border: 1px solid gray;
+    background: rgba(14, 13, 13, 0.185);
 }
 div.title {
-    border: 1px solid white;
-    margin-bottom: 3px;
+    height: 35px;
+    border-bottom: 1px solid gray;
     p {
       text-align: center;
-      margin: 10px;
-      font-size: 20px;
+      font-size: 22px;
+      background: black
     }
 }
-div.img {
-    float: left;
-    width: 80px;
-    height: 80px;
-    margin-left: 5px;
-    border: 1px solid white;
+div.problem_Distance, div.problem_Date {
+    height: 23%;
+    width: 100%;
+    text-align: center;
+    p {
+      text-align: center;
+      font-size: 22px;
+      margin-top: 10px;
+    }
 }
-div.problem_API, div.problem_Distance, div.problem_Date {
-    border: 1px solid white;
-    height: 20%;
-    width: 70%;
-    margin: 0 auto 10px auto;
-}
-div.btn {
-    margin: 0 auto;
-    width: 60%;
+div.btnGo {
+    margin: 10px auto;
+    width: 100%;
     height: 30px;
-    border: 1px solid white;
     p {
         text-align: center;
         margin-top: 7px;
@@ -120,13 +112,34 @@ div.btn {
     color: green;
     text-align: center;
     margin-top: 16px;
-    font-size: 17px;
+    font-size: 22px;
 }
 .danger {
     color: red;
     text-align: center;
     margin-top: 16px;
-    font-size: 17px;
+    font-size: 22px;
+}
+.btn-secondary {
+  background: black;
+  font-size: 22px;
+  color: white;
+  width: 95%;
+  float: left;
+  text-align: center;
+  margin-left: 12px;
+  margin-top: 20px;
+}
+div.text {
+  float: left;
+  width: 30%;
+  height: 20%;
+  margin-left: 20px;
+}
+div.desc {
+  float: left;
+  width: 60%;
+  padding-top: 10px;
 }
 @mixin mx-carmodel-7pr {
   .contents {
