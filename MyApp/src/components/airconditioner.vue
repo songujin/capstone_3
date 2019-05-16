@@ -82,11 +82,12 @@ export default {
   },
   methods: {
     go () {
-      if (this.isFirst()) {
-        this.$router.push('/managepopup')
-      } else {
-        this.$router.push('/management')
-      }
+      this.$router.push('/managepopup')
+      // if (this.isFirst()) {
+      //   this.$router.push('/managepopup')
+      // } else {
+      //   this.$router.push('/management')
+      // }
       // if (storage.loadAlarm() === 'cabinFilter') {
       //   this.$router.push('/alarmCFilter')
       // }

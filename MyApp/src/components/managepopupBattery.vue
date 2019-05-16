@@ -16,7 +16,7 @@
                     <p>Total Distance</p>
                 </div>
                 <div class='odometer'>
-                    <p>{{ distance }}km</p>
+                    <vue-numeric-input v-model="userInputKM" separator="," :min="0" :controls="false"></vue-numeric-input>
                 </div>
             </div>
             <div class='btn'>
@@ -34,7 +34,6 @@
 <script>
 import { storage } from '../js/manageLibs'
 import Datepicker from 'vuejs-datepicker'
-import 'obigo-js-webapi/vehicle/vehicle'
 
 export default {
   name: 'managepopupBattery',
@@ -45,39 +44,29 @@ export default {
   data: function () {
     return {
       title: 'Setting',
-      distance: '10000',
+      userInputKM: '', // 사용자 입력 km
       selectedDate: '',
       setMonth: '',
       state: {
         disabledDates: {
           from: new Date()
         }
-      }
+      },
+      pastTotal: '' // 교체할 때의 누적거리
     }
   },
   mounted () {
-    this.startVehicle()
+    this.obtainTotal()
   },
   methods: {
-    // persist () {
-    //   this.$store.commit('changeBatteryMonth', this.batteryMonth)
-    // }
-    startVehicle () {
+    obtainTotal () {
       let vehicle = window.navigator.vehicle
-      if (vehicle) {
-        vehicle.start(() => {
-          console.log('vehicle start')
-          vehicle.odometer.get().then((odometer) => {
-            this.distance = odometer.distanceTotal
-            // this.$data.distance = odometer.distanceTotal
-          }, function (err) {
-            console.log(err.error)
-            console.log(err.message)
-          })
-        }, function () {
-          throw Error('constuctor fails')
-        })
-      }
+      vehicle.odometer.get().then((data) => {
+        console.log('start vehicle')
+        this.pastTotal = data.distanceTotal
+      }, (err) => {
+        console.log(err)
+      })
     },
     goback () {
       this.$router.push('/battery')
@@ -127,8 +116,18 @@ export default {
         this.setMonth = 12
       }
       var setDate = new Date(settingDate.year, this.setMonth - 1, settingDate.date)
-      storage.saveBatterykm(this.distance)
       storage.saveBatteryM(setDate.getTime())
+
+      var today = new Date(date.getFullYear(), date.getMonth(), date.getDate())
+
+      if (today.getTime() === setDate.getTime()) { // 오늘 부품을 교체할 시
+        storage.saveBatterykm(this.pastTotal)
+        console.log(this.pastTotal)
+      } else if (today.getTime() > setDate.getTime()) { // 과거에 부품을 교체했을 시
+        storage.saveBatterykm(this.userInputKM)
+      }
+
+      storage.saveBatteryUpdate(1) // update를 했다는 의미
 
       this.$router.push('/battery')
     }

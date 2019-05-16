@@ -66,28 +66,57 @@ export default {
           { name: 'Tire' },
           { name: 'Cabin filter' }
       ],
-      engineOillevel: '0',
-      engineOilpressur: '0',
+      km: 0,
       month: 0,
-      km: 0
+      nowTotal: '',
+      pastTotal: '',
+      updateCnt: 0 // update를 했는지 안했는지 구분
     }
   },
+  created () {
+    this.updateCnt = storage.loadEngineOilUpdate()
+    console.log('count : ' + this.updateCnt)
+  },
   mounted () {
-    this.km = storage.loadEngineOilkm()
     let date = new Date()
     var betweenDay = (date.getTime() - storage.loadEngineOilM()) / 1000 / 60 / 60 / 24
     this.month = Math.floor(betweenDay / 30.4)
+
+    if (this.beforeUpdate()) { // 앱 최초 실행 후 처음 입장 시
+      this.km = storage.loadEngineOilkm()
+      console.log('hello first')
+    } else { // update 시도 후
+      this.obtainTotal()
+      this.pastTotal = storage.loadEngineOilkm()
+      this.km = this.nowTotal - this.pastTotal
+    }
+
+    console.log(this.km)
+
     if (this.month >= 12) {
       this.month = 12
     }
     if (this.km >= 15000) {
       this.km = 15000
     }
-    console.log(date.getTime())
   },
   methods: {
     update () {
       this.$router.push('/managePopupOil')
+    },
+    beforeUpdate () {
+      if (this.updateCnt === 0) {
+        return true
+      }
+    },
+    obtainTotal () {
+      let vehicle = window.navigator.vehicle
+      vehicle.odometer.get().then((data) => {
+        console.log('start vehicle')
+        this.nowTotal = data.distanceTotal
+      }, (err) => {
+        console.log(err)
+      })
     },
     go () {
       this.$router.push('/')

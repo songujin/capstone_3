@@ -67,12 +67,57 @@ export default {
           { name: 'Cabin filter' }
       ],
       km: 0,
-      month: 0
+      month: 0,
+      nowTotal: '',
+      pastTotal: '',
+      updateCnt: 0 // update를 했는지 안했는지 구분
+    }
+  },
+  created () {
+    this.updateCnt = storage.loadCFilterUpdate()
+    console.log('count : ' + this.updateCnt)
+  },
+  mounted () {
+    let date = new Date()
+    var betweenDay = (date.getTime() - storage.loadCFilterM()) / 1000 / 60 / 60 / 24
+    this.month = Math.floor(betweenDay / 30.4)
+
+    if (this.beforeUpdate()) { // update 시도 전, 앱 최초 실행 시
+      console.log('hello first')
+      this.km = storage.loadCFilterKm()
+    } else { // update 시도 후
+      console.log('hello update')
+      this.obtainTotal()
+      this.pastTotal = storage.loadCFilterKm()
+      this.km = this.nowTotal - this.pastTotal
+    }
+
+    console.log(this.km)
+
+    if (this.month >= 6) {
+      this.month = 6
+    }
+    if (this.km >= 15000) {
+      this.km = 15000
     }
   },
   methods: {
     update () {
       this.$router.push('/managePopupCF')
+    },
+    beforeUpdate () {
+      if (this.updateCnt === 0) {
+        return true
+      }
+    },
+    obtainTotal () {
+      let vehicle = window.navigator.vehicle
+      vehicle.odometer.get().then((data) => {
+        console.log('start vehicle')
+        this.nowTotal = data.distanceTotal
+      }, (err) => {
+        console.log(err)
+      })
     },
     go () {
       this.$router.push('/')
@@ -92,18 +137,6 @@ export default {
         str += 'cabinAirFilter'
       }
       this.$router.push(str)
-    }
-  },
-  mounted () {
-    let date = new Date()
-    var betweenDay = (date.getTime() - storage.loadCFilterM()) / 1000 / 60 / 60 / 24
-    this.km = storage.loadCFilterKm()
-    this.month = Math.floor(betweenDay / 30.4)
-    if (this.month >= 6) {
-      this.month = 6
-    }
-    if (this.km >= 15000) {
-      this.km = 15000
     }
   }
 }

@@ -6,6 +6,7 @@ import router from './router'
 import store from './store'
 import ToggleButton from 'vue-js-toggle-button'
 import BootstrapVue from 'bootstrap-vue'
+import VueNumericInput from 'vue-numeric-input'
 
 import Button from 'bootstrap-vue/es/components/button'
 
@@ -17,6 +18,7 @@ Vue.use(router)
 Vue.use(ToggleButton)
 Vue.use(BootstrapVue)
 Vue.use(Button)
+Vue.use(VueNumericInput)
 
 /* eslint-disable no-new */
 new Vue({

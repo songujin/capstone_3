@@ -1,4 +1,5 @@
 let storage = {
+  // ================ KM ====================
   saveRFTireKm: function (km) {
     localStorage.setItem('RFtireKm', km)
   },
@@ -31,6 +32,22 @@ let storage = {
     LRtireKm = LRtireKm || ''
     return LRtireKm
   },
+  saveEngineOilkm: function (km) {
+    localStorage.setItem('engineOilkm', km)
+  },
+  loadEngineOilkm: function () {
+    let engineOilkm = localStorage.getItem('engineOilkm')
+    engineOilkm = engineOilkm || ''
+    return engineOilkm
+  },
+  saveBatterykm: function (km) {
+    localStorage.setItem('batterykm', km)
+  },
+  loadBatterykm: function () {
+    let batterykm = localStorage.getItem('batterykm')
+    batterykm = batterykm || ''
+    return batterykm
+  },
   saveCFilterKm: function (km) {
     localStorage.setItem('CFilterKm', km)
   },
@@ -39,6 +56,15 @@ let storage = {
     CFilterKm = CFilterKm || ''
     return CFilterKm
   },
+  saveWaterkm: function (km) {
+    localStorage.setItem('Waterkm', km)
+  },
+  loadWaterkm: function () {
+    let Waterkm = localStorage.getItem('Waterkm')
+    Waterkm = Waterkm || ''
+    return Waterkm
+  },
+  // ================ M ====================
   saveRFTireM: function (m) {
     localStorage.setItem('RFtireM', m)
   },
@@ -71,78 +97,6 @@ let storage = {
     LRtireM = LRtireM || ''
     return LRtireM
   },
-  saveCFilterM: function (m) {
-    localStorage.setItem('CFilterM', m)
-  },
-  loadCFilterM: function () {
-    let CFilterM = localStorage.getItem('CFilterM')
-    CFilterM = CFilterM || ''
-    return CFilterM
-  },
-  saveFirst: function (cnt) {
-    localStorage.setItem('First', cnt)
-  },
-  loadFirst: function () {
-    let First = localStorage.getItem('First')
-    First = First || '0'
-    return First
-  },
-  saveCFilterProblem: function (pText) {
-    localStorage.setItem('CFilterProblem', pText)
-  },
-  loadCFilterProblem: function () {
-    let Probelm = localStorage.getItem('CFilterProblem')
-    Probelm = Probelm || ''
-    return Probelm
-  },
-  saveRFProblem: function (pText) {
-    localStorage.setItem('RFProblem', pText)
-  },
-  loadRFProblem: function () {
-    let Probelm = localStorage.getItem('RFProblem')
-    Probelm = Probelm || ''
-    return Probelm
-  },
-  saveRRProblem: function (pText) {
-    localStorage.setItem('RRProblem', pText)
-  },
-  loadRRProblem: function () {
-    let Probelm = localStorage.getItem('RRProblem')
-    Probelm = Probelm || ''
-    return Probelm
-  },
-  saveLFProblem: function (pText) {
-    localStorage.setItem('LFProblem', pText)
-  },
-  loadLFProblem: function () {
-    let Probelm = localStorage.getItem('LFProblem')
-    Probelm = Probelm || ''
-    return Probelm
-  },
-  saveLRProblem: function (pText) {
-    localStorage.setItem('LRProblem', pText)
-  },
-  loadLRProblem: function () {
-    let Probelm = localStorage.getItem('LRProblem')
-    Probelm = Probelm || ''
-    return Probelm
-  },
-  saveAlarm: function (name) {
-    localStorage.setItem('Alarm', name)
-  },
-  loadAlarm: function () {
-    let Alarm = localStorage.getItem('Alarm')
-    Alarm = Alarm || ''
-    return Alarm
-  },
-  saveEngineOilkm: function (km) {
-    localStorage.setItem('engineOilkm', km)
-  },
-  loadEngineOilkm: function () {
-    let engineOilkm = localStorage.getItem('engineOilkm')
-    engineOilkm = engineOilkm || ''
-    return engineOilkm
-  },
   saveEngineOilM: function (m) {
     localStorage.setItem('engineOilM', m)
   },
@@ -150,14 +104,6 @@ let storage = {
     let engineOilM = localStorage.getItem('engineOilM')
     engineOilM = engineOilM || ''
     return engineOilM
-  },
-  saveBatterykm: function (km) {
-    localStorage.setItem('batterykm', km)
-  },
-  loadBatterykm: function () {
-    let batterykm = localStorage.getItem('batterykm')
-    batterykm = batterykm || ''
-    return batterykm
   },
   saveBatteryM: function (m) {
     localStorage.setItem('batteryM', m)
@@ -167,46 +113,170 @@ let storage = {
     batteryM = batteryM || ''
     return batteryM
   },
+  saveCFilterM: function (m) {
+    localStorage.setItem('CFilterM', m)
+  },
+  loadCFilterM: function () {
+    let CFilterM = localStorage.getItem('CFilterM')
+    CFilterM = CFilterM || ''
+    return CFilterM
+  },
+  saveWaterM: function (m) {
+    localStorage.setItem('WaterM', m)
+  },
+  loadWaterM: function () {
+    let WaterM = localStorage.getItem('WaterM')
+    WaterM = WaterM || ''
+    return WaterM
+  },
+  // ================ Problem ====================
+  saveRFProblem: function (pText) {
+    localStorage.setItem('Problem', pText)
+  },
+  loadRFProblem: function () {
+    let Probelm = localStorage.getItem('Problem')
+    Probelm = Probelm || ''
+    return Probelm
+  },
+  saveRRProblem: function (pText) {
+    localStorage.setItem('Problem', pText)
+  },
+  loadRRProblem: function () {
+    let Probelm = localStorage.getItem('Problem')
+    Probelm = Probelm || ''
+    return Probelm
+  },
+  saveLFProblem: function (pText) {
+    localStorage.setItem('Problem', pText)
+  },
+  loadLFProblem: function () {
+    let Probelm = localStorage.getItem('Problem')
+    Probelm = Probelm || ''
+    return Probelm
+  },
+  saveLRProblem: function (pText) {
+    localStorage.setItem('Problem', pText)
+  },
+  loadLRProblem: function () {
+    let Probelm = localStorage.getItem('Problem')
+    Probelm = Probelm || ''
+    return Probelm
+  },
   saveOilProblem: function (pText) {
-    localStorage.setItem('oilProblem', pText)
+    localStorage.setItem('Problem', pText)
   },
   loadOilProblem: function () {
-    let Probelm = localStorage.getItem('oilProblem')
+    let Probelm = localStorage.getItem('Problem')
     Probelm = Probelm || ''
     return Probelm
   },
   saveBatteryProblem: function (pText) {
-    localStorage.setItem('batteryProblem', pText)
+    localStorage.setItem('Problem', pText)
   },
   loadBatteryProblem: function () {
-    let Probelm = localStorage.getItem('batteryProblem')
+    let Probelm = localStorage.getItem('Problem')
+    Probelm = Probelm || ''
+    return Probelm
+  },
+  saveCFilterProblem: function (pText) {
+    localStorage.setItem('Problem', pText)
+  },
+  loadCFilterProblem: function () {
+    let Probelm = localStorage.getItem('Problem')
     Probelm = Probelm || ''
     return Probelm
   },
   saveWaterProblem: function (pText) {
-    localStorage.setItem('waterProblem', pText)
+    localStorage.setItem('Problem', pText)
   },
   loadWaterProblem: function () {
-    let Probelm = localStorage.getItem('waterProblem')
+    let Probelm = localStorage.getItem('Problem')
     Probelm = Probelm || ''
     return Probelm
+  },
+  // ================ Update ====================
+  saveLFTireUpdate: function (TnF) {
+    localStorage.setItem('LFTireUpdate', TnF)
+  },
+  loadLFTireUpdate: function () {
+    let count = localStorage.getItem('LFTireUpdate')
+    count = count || 0
+    return count
+  },
+  saveLRTireUpdate: function (TnF) {
+    localStorage.setItem('LRTireUpdate', TnF)
+  },
+  loadLRTireUpdate: function () {
+    let count = localStorage.getItem('LRTireUpdate')
+    count = count || 0
+    return count
+  },
+  saveRFTireUpdate: function (TnF) {
+    localStorage.setItem('RFTireUpdate', TnF)
+  },
+  loadRFTireUpdate: function () {
+    let count = localStorage.getItem('RFTireUpdate')
+    count = count || 0
+    return count
+  },
+  saveRRTireUpdate: function (TnF) {
+    localStorage.setItem('RRTireUpdate', TnF)
+  },
+  loadRRTireUpdate: function () {
+    let count = localStorage.getItem('RRTireUpdate')
+    count = count || 0
+    return count
+  },
+  saveEngineOilUpdate: function (TnF) {
+    localStorage.setItem('EngineOilUpdate', TnF)
+  },
+  loadEngineOilUpdate: function () {
+    let count = localStorage.getItem('EngineOilUpdate')
+    count = count || 0
+    return count
+  },
+  saveBatteryUpdate: function (TnF) {
+    localStorage.setItem('BatteryUpdate', TnF)
+  },
+  loadBatteryUpdate: function () {
+    let count = localStorage.getItem('BatteryUpdate')
+    count = count || 0
+    return count
+  },
+  saveCFilterUpdate: function (TnF) {
+    localStorage.setItem('CFilterUpdate', TnF)
+  },
+  loadCFilterUpdate: function () {
+    let count = localStorage.getItem('CFilterUpdate')
+    count = count || 0
+    return count
+  },
+  saveWaterUpdate: function (TnF) {
+    localStorage.setItem('WaterUpdate', TnF)
+  },
+  loadWaterUpdate: function () {
+    let count = localStorage.getItem('WaterUpdate')
+    count = count || 0
+    return count
+  },
+  // =========== First ===========
+  saveFirst: function (cnt) {
+    localStorage.setItem('First', cnt)
+  },
+  loadFirst: function () {
+    let First = localStorage.getItem('First')
+    First = First || 0
+    return First
+  },
+  // =========== Alarm ============
+  saveAlarm: function (name) {
+    localStorage.setItem('Alarm', name)
+  },
+  loadAlarm: function () {
+    let Alarm = localStorage.getItem('Alarm')
+    Alarm = Alarm || ''
+    return Alarm
   }
-  // saveOillevelApi: function (pText) {
-  //   localStorage.setItem('oillevelApi', pText)
-  // },
-  // loadOillevelApi: function () {
-  //   let oillevelApi = localStorage.getItem('oillevelApi')
-  //   oillevelApi = oillevelApi || ''
-  //   return oillevelApi
-  // },
-  // saveOilPresApi: function (pText) {
-  //   localStorage.setItem('oilPresApi', pText)
-  // },
-  // loadOilPresApi: function () {
-  //   let oilPresApi = localStorage.getItem('oilPresApi')
-  //   oilPresApi = oilPresApi || ''
-  //   return oilPresApi
-  // }
 }
 
 export { storage }

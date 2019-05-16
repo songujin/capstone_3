@@ -51,6 +51,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import RadialProgressBar from 'vue-radial-progress'
 import { storage } from '../js/manageLibs'
+
 export default {
   name: 'battery',
   props: ['value'],
@@ -59,10 +60,6 @@ export default {
   },
   data: function () {
     return {
-      km_max: 60000,
-      km_value: 10000,
-      mon_max: 36,
-      mon_value: 3,
       items: [
           { name: 'Engine oil' },
           { name: 'Battery' },
@@ -70,17 +67,34 @@ export default {
           { name: 'Tire' },
           { name: 'Cabin filter' }
       ],
-      batterychargeLevel: '',
-      batterylowVoltage: '',
       km: 0,
-      month: 0
+      month: 0,
+      nowTotal: '',
+      pastTotal: '',
+      updateCnt: 0 // update를 했는지 안했는지 구분
     }
   },
+  created () {
+    this.updateCnt = storage.loadBatteryUpdate()
+    console.log('count : ' + this.updateCnt)
+  },
   mounted () {
-    this.km = storage.loadBatterykm()
     let date = new Date()
     var betweenDay = (date.getTime() - storage.loadBatteryM()) / 1000 / 60 / 60 / 24
     this.month = Math.floor(betweenDay / 30.4)
+
+    if (this.beforeUpdate()) { // update 시도 전, 앱 최초 실행 시
+      console.log('hello first')
+      this.km = storage.loadBatterykm()
+    } else { // update 시도 후
+      console.log('hello update')
+      this.obtainTotal()
+      this.pastTotal = storage.loadBatterykm()
+      this.km = this.nowTotal - this.pastTotal
+    }
+
+    console.log(this.km)
+
     if (this.month >= 36) {
       this.month = 36
     }
@@ -91,6 +105,20 @@ export default {
   methods: {
     update () {
       this.$router.push('/managepopupBattery')
+    },
+    beforeUpdate () {
+      if (this.updateCnt === 0) {
+        return true
+      }
+    },
+    obtainTotal () {
+      let vehicle = window.navigator.vehicle
+      vehicle.odometer.get().then((data) => {
+        console.log('start vehicle')
+        this.nowTotal = data.distanceTotal
+      }, (err) => {
+        console.log(err)
+      })
     },
     go () {
       this.$router.push('/')

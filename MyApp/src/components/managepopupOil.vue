@@ -16,7 +16,7 @@
                     <p>Total Distance</p>
                 </div>
                 <div class='odometer'>
-                    <p>{{ distance }}km</p>
+                    <vue-numeric-input v-model="userInputKM" separator="," :min="0" :controls="false"></vue-numeric-input>
                 </div>
             </div>
             <div class='btn'>
@@ -45,36 +45,29 @@ export default {
   data: function () {
     return {
       title: 'Setting',
-      distance: '10000',
+      userInputKM: '', // 사용자 입력 km
       selectedDate: '',
       setMonth: '',
       state: {
         disabledDates: {
           from: new Date()
         }
-      }
+      },
+      pastTotal: '' // 교체할 때의 누적거리
     }
   },
   mounted () {
-    this.startVehicle()
+    this.obtainTotal()
   },
   methods: {
-    startVehicle () {
+    obtainTotal () {
       let vehicle = window.navigator.vehicle
-      if (vehicle) {
-        vehicle.start(() => {
-          console.log('vehicle start')
-          vehicle.odometer.get().then((odometer) => {
-            this.distance = odometer.distanceTotal
-            // this.$data.distance = odometer.distanceTotal
-          }, function (err) {
-            console.log(err.error)
-            console.log(err.message)
-          })
-        }, function () {
-          throw Error('constuctor fails')
-        })
-      }
+      vehicle.odometer.get().then((data) => {
+        console.log('start vehicle')
+        this.pastTotal = data.distanceTotal
+      }, (err) => {
+        console.log(err)
+      })
     },
     goback () {
       this.$router.push('/management')
@@ -124,18 +117,24 @@ export default {
         this.setMonth = 12
       }
       var setDate = new Date(settingDate.year, this.setMonth - 1, settingDate.date)
-      // var betweenDay = (date.getTime() - setDate.getTime()) / 1000 / 60 / 60 / 24
-      // this.setMonth = Math.floor(betweenDay / 30.4)
-      // console.log(this.setMonth)
+
       console.log(settingDate.year)
-      // console.log(this.setMonth)
       console.log(settingDate.date)
       console.log(date.getTime())
       console.log(setDate.getTime())
-      // console.log(betweenDay)
 
       storage.saveEngineOilM(setDate.getTime())
-      storage.saveEngineOilkm(this.distance)
+
+      var today = new Date(date.getFullYear(), date.getMonth(), date.getDate())
+
+      if (today.getTime() === setDate.getTime()) { // 오늘 부품을 교체할 시
+        storage.saveEngineOilkm(this.pastTotal)
+        console.log(this.pastTotal)
+      } else if (today.getTime() > setDate.getTime()) { // 과거에 부품을 교체했을 시
+        storage.saveEngineOilkm(this.userInputKM)
+      }
+
+      storage.saveEngineOilUpdate(1) // update를 했다는 의미
 
       this.$router.push('/management')
     }

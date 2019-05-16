@@ -34,7 +34,6 @@
 <script>
 import { storage } from '../js/manageLibs'
 import Datepicker from 'vuejs-datepicker'
-import 'obigo-js-webapi/vehicle/vehicle'
 
 export default {
   name: 'managepopup',
@@ -56,27 +55,17 @@ export default {
     }
   },
   mounted () {
-    this.startVehicle()
+    this.obtainTotal()
   },
   methods: {
-    startVehicle () {
+    obtainTotal () {
       let vehicle = window.navigator.vehicle
-      if (vehicle) {
-        if (vehicle.odometer === undefined) {
-          vehicle.start(() => {
-            console.log('vehicle start')
-            vehicle.odometer.get().then((odometer) => {
-              this.distance = odometer.distanceTotal
-              // this.$data.distance = odometer.distanceTotal
-            }, function (err) {
-              console.log(err.error)
-              console.log(err.message)
-            })
-          }, function () {
-            throw Error('constuctor fails')
-          })
-        }
-      }
+      vehicle.odometer.get().then((data) => {
+        console.log('start vehicle')
+        this.distance = data.distanceTotal
+      }, (err) => {
+        console.log(err)
+      })
     },
     go () {
       let date = new Date()
@@ -141,6 +130,9 @@ export default {
 
       storage.saveCFilterKm(this.distance)
       storage.saveCFilterM(setDate.getTime())
+
+      storage.saveWaterkm(this.distance)
+      storage.saveWaterM(setDate.getTime())
 
       var count = 0
       count++

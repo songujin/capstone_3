@@ -16,7 +16,7 @@
                     <p>Total Distance</p>
                 </div>
                 <div class='odometer'>
-                    <p>{{ distance }}km</p>
+                    <vue-numeric-input v-model="userInputKM" separator="," :min="0" :controls="false"></vue-numeric-input>
                 </div>
             </div>
             <div class='btn'>
@@ -34,7 +34,6 @@
 <script>
 import { storage } from '../js/manageLibs'
 import Datepicker from 'vuejs-datepicker'
-import 'obigo-js-webapi/vehicle/vehicle'
 
 export default {
   name: 'managePopupWater',
@@ -45,37 +44,29 @@ export default {
   data: function () {
     return {
       title: 'Setting',
-      distance: '10000',
+      userInputKM: '', // 사용자 입력 km
       selectedDate: '',
       setMonth: '',
       state: {
         disabledDates: {
           from: new Date()
         }
-      }
+      },
+      pastTotal: '' // 교체할 때의 누적거리
     }
   },
   mounted () {
-    this.startVehicle()
+    this.obtainTotal()
   },
   methods: {
-    // persist () {
-    //   this.$store.commit('changeBatteryMonth', this.batteryMonth)
-    // }
-    startVehicle () {
+    obtainTotal () {
       let vehicle = window.navigator.vehicle
-      if (vehicle) {
-        vehicle.start(function () {
-          window.navigator.vehicle.odometer.get().then(function (data) {
-            console.log(data.distanceTotal)
-            this.distance = data.distanceTotal
-          }, function (err) {
-            console.log(err)
-          })
-        }, function () {
-          throw Error('constuctor fails')
-        })
-      }
+      vehicle.odometer.get().then((data) => {
+        console.log('start vehicle')
+        this.pastTotal = data.distanceTotal
+      }, (err) => {
+        console.log(err)
+      })
     },
     go () {
       let date = new Date()
@@ -117,8 +108,18 @@ export default {
         this.setMonth = 12
       }
       var setDate = new Date(settingDate.year, this.setMonth - 1, settingDate.date)
-      storage.saveBatterykm(this.distance)
-      storage.saveBatteryM(setDate.getTime())
+      storage.saveWaterM(setDate.getTime())
+
+      var today = new Date(date.getFullYear(), date.getMonth(), date.getDate())
+
+      if (today.getTime() === setDate.getTime()) { // 오늘 부품을 교체할 시
+        storage.saveWaterkm(this.pastTotal)
+        console.log(this.pastTotal)
+      } else if (today.getTime() > setDate.getTime()) { // 과거에 부품을 교체했을 시
+        storage.saveWaterkm(this.userInputKM)
+      }
+
+      storage.saveWaterUpdate(1) // update를 했다는 의미
 
       this.$router.push('/Water')
     }
