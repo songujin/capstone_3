@@ -62,20 +62,23 @@ export default {
     // persist () {
     //   this.$store.commit('changeBatteryMonth', this.batteryMonth)
     // }
-    startVehicle () {
-      let vehicle = window.navigator.vehicle
-      if (vehicle) {
-        vehicle.start(function () {
-          window.navigator.vehicle.odometer.get().then(function (data) {
-            console.log(data.distanceTotal)
-            this.distance = data.distanceTotal
-          }, function (err) {
-            console.log(err)
-          })
-        }, function () {
-          throw Error('constuctor fails')
-        })
-      }
+    // startVehicle () {
+    //   let vehicle = window.navigator.vehicle
+    //   if (vehicle) {
+    //     vehicle.start(function () {
+    //       window.navigator.vehicle.odometer.get().then(function (data) {
+    //         console.log(data.distanceTotal)
+    //         this.distance = data.distanceTotal
+    //       }, function (err) {
+    //         console.log(err)
+    //       })
+    //     }, function () {
+    //       throw Error('constuctor fails')
+    //     })
+    //   }
+    // },
+    goback () {
+      this.$router.push('/water')
     },
     go () {
       let date = new Date()

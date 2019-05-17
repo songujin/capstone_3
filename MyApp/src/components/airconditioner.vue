@@ -1,62 +1,86 @@
 <template>
   <div>
     <div class='contents'>
+      <div class='viewContent'>
         <div class='sensor'>
             <div class='dust'>
-                <p>미세먼지</p>
+                <div class='dustFont'>
+                  <p>DUST</p>
+                </div>
                 <div class='measure'>
                     <div class='value'>
                       <p>{{ dustValue }}㎍/㎥</p>
                     </div>
-                    <div class='standard'>
+                    <div v-bind:style="dustBg" class='standard'>
                       <p>{{ dustLevel }}</p>
                     </div>
                 </div>
             </div>
             <div class='fineDust'>
-                <p>초미세먼지</p>
+                <div class='finedustFont'>
+                  <p>FINE DUST</p>
+                </div>
                 <div class='measure'>
                     <div class='value'>
                       <p>{{ fineDustValue }}㎍/㎥</p>
                     </div>
-                    <div class='standard'>
+                    <div v-bind:style="fineDustBg" class='standard'>
                       <p>{{ fineDustLevel }}</p>
                     </div>
                 </div>
             </div>
             <div class='co2'>
-                <p>이산화탄소</p>
+                <div class='co2Font'>
+                  <p>CO2</p>
+                </div>
                 <div class='measure'>
                     <div class='value'>
                       <p>{{ co2Value }}ppm</p>
                     </div>
-                    <div class='standard'>
-                      <p v-bind:style="co2Bg">{{ co2Level }}</p>
+                    <div v-bind:style="co2Bg" class='standard'>
+                      <p>{{ co2Level }}</p>
                     </div>
                 </div>
             </div>
             <div class='screentrans'>
-              <p @click='go()'>GO</p>
+              <button @click='go()' type="button" class="btn-secondary">GO</button>
             </div>
         </div>     
         <div class='ventilation'>
             <div class='top'>
                 <div class = 'switch'>
-                  <toggle-button id="changed-font" @change="toggled = $event.value"
+                  <toggle-button v-model="toggled" id="changed-font" @change="changeBody()"
                   :labels="{checked: 'ON', unchecked: 'OFF'}"
-                  :color="{checked: '#7DCE94',}"
+                  :color="{checked: '#7DCE94'}"
+                  :sync="true"
                   :width="148"
                   :height="37"/>
                 </div>
-                <div class = 'desc'></div>
+                <div class = 'desc'>
+                  <div v-if='toggled===true' class = 'modeMessage'>
+                    <span v-bind:style="modeColor">{{ RecirmodeMessage }}</span>
+                    <span>{{ modeMessage }}</span>
+                  </div>
+                  <div v-if='toggled===false' class = 'modeMessage'>
+                    <p>Circulation mode is off, click button</p>
+                  </div>
+                </div>
             </div>
             <div class = 'carImg'>
+              <!--<img v-if='toggled===true' src='../assets/image/tmpimg1.jpg' >-->
+              <!--<img v-if='toggled===true' src='../assets/image/tmpimg2.jpg' >-->
+              <img v-if='toggled===false' src='../assets/image/tmpcarOff.jpg' >
+              <img v-if='toggled===true && modeFlag===false' src='../assets/image/tmpcarOut.gif' >
+              <img v-if='toggled===true && modeFlag===true' src='../assets/image/cartmp.gif' >
             </div>
-        </div>  
+          </div>
+        </div>
     </div>
   </div>
 </template>
 <script>
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 import page from 'obigo-js-ui/mixins/page'
 import { storage } from '../js/manageLibs'
 export default {
@@ -72,21 +96,59 @@ export default {
       dustLevel: '', // 미세먼지 등급은 mounted() 에서 계산
       fineDustValue: 15, // 실시간으로 초미세먼지 받아와야함
       fineDustLevel: '', // 초미세먼지 등급도 mounted () 에서 계산
-      co2Value: 1234, // 실시간으로 이산화탄소 받아오기
+      co2Value: 4234, // 실시간으로 이산화탄소 받아오기
       co2Level: '', // 이산화탄소 등급도 mounted ()에서 계산
-      toggled: false
+      toggled: storage.loadMode(),
+      dustFinalLevel: 'GOOD', // 미세먼지 농도 둘중 하나라도 나쁘면 나쁨
+      modeFlag: storage.loadModeFlag(), // 외기순환모드 false, 내기순환모드 true
+      RecirmodeMessage: storage.loadRecirmodeMessage(),
+      modeMessage: ' mode is working now...'
     }
   },
   created () {
     this.count = storage.loadFirst()
+    this.toggled = storage.loadMode()
+  },
+  beforeMount () {
+    this.toggled = storage.loadMode()
   },
   methods: {
+    changeBody () {
+      storage.saveMode(this.toggled)
+      console.log('[changeBody function]', this.toggled)
+      this.modeFlag = ''
+      if (this.toggled === true) {
+        if (this.dustValue >= 81 || this.fineDustValue >= 36) {
+          this.dustFinalLevel = 'BAD'
+        }
+        if (this.dustFinalLevel === 'BAD' && this.co2Value >= 1501) {
+          this.modeFlag = false
+        } else if (this.dustFinalLevel === 'BAD' && this.co2Value < 1501) {
+          this.modeFlag = true
+        } else if (this.dustFinalLevel === 'GOOD' && this.co2Value >= 1501) {
+          this.modeFlag = false
+        } else if (this.dustFinalLevel === 'GOOD' && this.co2Value < 1501) {
+          this.modeFlag = false
+        }
+      } else {
+
+      }
+      storage.saveModeFlag(this.modeFlag)
+      if (this.modeFlag === true) {
+        this.RecirmodeMessage = 'Recirculation'
+        storage.saveRecirmodeMessageg(this.RecirmodeMessage)
+      } else if (this.modeFlag === false) {
+        this.RecirmodeMessage = 'ventilation'
+        storage.saveRecirmodeMessageg(this.RecirmodeMessage)
+      }
+    },
     go () {
       if (this.isFirst()) {
         this.$router.push('/managepopup')
       } else {
         this.$router.push('/management')
       }
+      // storage.saveMode(this.modeFlag)
       // if (storage.loadAlarm() === 'cabinFilter') {
       //   this.$router.push('/alarmCFilter')
       // }
@@ -98,6 +160,38 @@ export default {
     }
   },
   mounted () {
+    // this.toggle.$event.value = storage.loadMode()
+    // this.toggled = storage.loadMode()
+    console.log('[mounted toggled value]', storage.loadMode())
+    this.toggled = storage.loadMode()
+    this.modeFlag = ''
+    if (this.toggled === 'true') {
+      if (this.dustValue >= 81 || this.fineDustValue >= 36) {
+        this.dustFinalLevel = 'BAD'
+      }
+      if (this.dustFinalLevel === 'BAD' && this.co2Value >= 1501) {
+        this.modeFlag = false
+      } else if (this.dustFinalLevel === 'BAD' && this.co2Value < 1501) {
+        console.log('test')
+        this.modeFlag = true
+      } else if (this.dustFinalLevel === 'GOOD' && this.co2Value >= 1501) {
+        this.modeFlag = false
+      } else if (this.dustFinalLevel === 'GOOD' && this.co2Value < 1501) {
+        this.modeFlag = false
+      }
+    } else {
+
+    }
+    if (this.modeFlag === true) {
+      this.RecirmodeMessage = 'Recirculation'
+      storage.saveRecirmodeMessageg(this.RecirmodeMessage)
+    } else if (this.modeFlag === false) {
+      this.RecirmodeMessage = 'ventilation'
+      storage.saveRecirmodeMessageg(this.RecirmodeMessage)
+    }
+    storage.saveModeFlag(this.modeFlag)
+    this.modeFlag = storage.loadModeFlag()
+    console.log('[mounted flag value]', storage.loadModeFlag())
     // 미세먼지 등급 계산
     console.log(this.dustValue)
     console.log(this.dustLevel)
@@ -130,16 +224,113 @@ export default {
     } else if (this.co2Value >= 4001) {
       this.co2Level = '매우 나쁨'
     }
-    console.log(this.toggle.$event.value)
+    // 공조기 알고리즘
+    /*
+    this.modeFlag = ''
+    if (this.toggled === true) {
+      if (this.dustValue >= 81 || this.fineDustValue >= 36) {
+        this.dustFinalLevel = 'BAD'
+      }
+      if (this.dustFinalLevel === 'BAD' && this.co2Value >= 1501) {
+        this.modeFlag = false
+      } else if (this.dustFinalLevel === 'BAD' && this.co2Value < 1501) {
+        this.modeFlag = true
+      } else if (this.dustFinalLevel === 'GOOD' && this.co2Value >= 1501) {
+        this.modeFlag = false
+      } else if (this.dustFinalLevel === 'GOOD' && this.co2Value < 1501) {
+        this.modeFlag = false
+      }
+    } else {
+
+    }
+    */
+    // console.log(this.toggle.$event.value)
   },
   updated: function () {
-    console.log(this.toggled)
+    if (storage.loadMode() === 'true') {
+      this.toggled = true
+    } else {
+      this.toggled = false
+    }
+    if (storage.loadModeFlag() === 'true') {
+      this.modeFlag = true
+    } else {
+      this.modeFlag = false
+    }
+    // this.toggled = storage.loadMode()
+    console.log('[save Mode]', this.toggled)
+    console.log('[save Mode Flag]', this.modeFlag)
+    // this.changeBody()
   },
   computed: {
-    co2Bg: function (co2LevelBg) {
-      return {
+    co2Bg: function () {
+      if (this.co2Level === '좋음') {
+        return {
+          color: '#31ddff'
         // background: 'blue'
         // background: '#F33434'
+        }
+      } else if (this.co2Level === '보통') {
+        return {
+          color: '#31ffbe'
+        }
+      } else if (this.co2Level === '나쁨') {
+        return {
+          color: '#fff900'
+        }
+      } else if (this.co2Level === '매우 나쁨') {
+        return {
+          color: '#ff0000'
+        }
+      }
+    },
+    dustBg: function () {
+      if (this.dustLevel === '좋음') {
+        return {
+          color: '#31ddff'
+        }
+      } else if (this.dustLevel === '보통') {
+        return {
+          color: '#31ffbe'
+        }
+      } else if (this.dustLevel === '나쁨') {
+        return {
+          color: '#fff900'
+        }
+      } else if (this.dustLevel === '매우 나쁨') {
+        return {
+          color: '#ff0000'
+        }
+      }
+    },
+    fineDustBg: function () {
+      if (this.fineDustLevel === '좋음') {
+        return {
+          color: '#31ddff'
+        }
+      } else if (this.fineDustLevel === '보통') {
+        return {
+          color: '#31ffbe'
+        }
+      } else if (this.fineDustLevel === '나쁨') {
+        return {
+          color: '#fff900'
+        }
+      } else if (this.fineDustLevel === '매우 나쁨') {
+        return {
+          color: '#ff0000'
+        }
+      }
+    },
+    modeColor: function () {
+      if (this.RecirmodeMessage === 'Recirculation') {
+        return {
+          color: '#817aed'
+        }
+      } else if (this.RecirmodeMessage === 'ventilation') {
+        return {
+          color: '#ed7ad8'
+        }
       }
     }
   }
@@ -150,42 +341,69 @@ export default {
   padding:20px;
   color: white;
 }
+div.viewContent {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #6c757d;
+  background: rgba(14, 13, 13, 0.185);
+}
 div.sensor{
     height: 20%;
-    padding-left: 10px;
-    border: 1px solid white;
+    background: rgba(14, 13, 13, 0.185);
+    // border: 1px solid #6c757d;
     p {
         font-size: 20px;
     }
 }
 div.dust, div.fineDust, div.co2 {
-    margin-top: 5px;
+    // margin-top: 5px;
     float: left;
-    height: 65px;
+    height: 71px;
     width: 30%;
-    border: 1px solid white;
+    border: 1px solid #6c757d;
+    text-align: center;
+}
+div.dustFont, div.finedustFont, div.co2Font {
+  background: black;
+  padding: 3px;
 }
 div.measure {
+    margin-left: 12px;
     float: left;
     width: 100%;
-    height: 70%;
-    border: 1px solid white;
+    height: 60%;
+    // border: 1px solid white;
+    text-align: center;
+    div.value, div.standard {
+      float:left;
+      width: 107px;
+      height: 38.5px;
+      // border: 1px solid white;
+      p {
+        margin-top: 9px;
+        font-size: 28px;
+      }
+    }
 }
 div.screentrans {
-    margin-top: 5px;
+    // margin-top: 5px;
     float: left;
-    height:65px;
+    height:69px;
     width:10%;
     button {
-        width: 65px;
-        height: 65px;
-        color: black;
-        background-color: white 
+      margin-left: 6px;
+      width: 70px;
+      height: 71px;
+      font-size: 22px;
+      color: white;
+      background-color: black;
+      border: 1px solid #6c757d;
     }
 }
 div.ventilation {
-    height:65%;
-    border: 1px solid white;
+    height:65.6%;
+    border: 1px solid #6c757d;
+    background: rgba(14, 13, 13, 0.185);
 }
 div.switch {
     margin-top: 10px;
@@ -193,21 +411,31 @@ div.switch {
     float: left;
     height: 40px;
     width: 150px;
-    border: 1px solid white;
+    // border: 1px solid white;
 }
 div.desc {
     margin-top: 10px;
     float: left;
     height:40px;
     width: 600px;
-    border: 1px solid white;
+    // border: 1px solid white;
+    div.modeMessage {
+      margin-top: 4px;
+      margin-left: 17px;
+      p {
+        font-size: 28px;
+      }
+    }
+    span {
+      font-size: 28px;
+    }
 }
 div.carImg {
     margin: 10px 10px 5px 10px;
     float: left;
     height: 180px;
     width: 740px;
-    border: 1px solid white;
+    // border: 1px solid white;
 }
 .vue-js-switch#changed-font {
   // 스위치 폰트 크기
@@ -223,7 +451,6 @@ div.carImg {
     @include mx-carmodel-7pr;
   }
 }
-
 @if $profile == 'production' {
   @media renault7P {
     @include get-style-of('7pr');

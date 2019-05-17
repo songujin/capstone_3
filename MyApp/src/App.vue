@@ -44,16 +44,16 @@ export default {
           //   console.log(err.error)
           //   console.log(err.message)
           // })
-          console.log('vehicle start')
-          vehicle.engineOil.get().then((engineOil) => {
-            this.engineOillevel = engineOil.level
-            this.engineOilpressur = engineOil.pressureWarning
-            console.log(engineOil.level)
-            console.log(engineOil.pressureWarning)
-          }, function (err) {
-            console.log(err.error)
-            console.log(err.message)
-          })
+          // console.log('vehicle start')
+          // vehicle.engineOil.get().then((engineOil) => {
+          //   this.engineOillevel = engineOil.level
+          //   this.engineOilpressur = engineOil.pressureWarning
+          //   console.log(engineOil.level)
+          //   console.log(engineOil.pressureWarning)
+          // }, function (err) {
+          //   console.log(err.error)
+          //   console.log(err.message)
+          // })
         }, function () {
           throw Error('constuctor fails')
         })
@@ -158,36 +158,36 @@ export default {
         this.alarmBatterylag = false
         this.$router.push('/alarmBattery')
       }
-      if (this.alarmOillag === true && (this.engineOillevel === 'BargraphElement1' || this.engineOillevel === 'BargraphElement2')) {
-        storage.saveOilProblem('problem_LevelAPI')
-        this.alarmOillag = false
-        this.$router.push('/alarmEngineOil')
-      }
-      if (this.alarmOillag === true && this.engineOilpressur === true) {
-        storage.saveOilProblem('problem_PressAPI')
-        this.alarmOillag = false
-        this.$router.push('/alarmEngineOil')
-      }
-      if (this.alarmBatterylag === true && (this.batterychargeLevel <= 20)) {
-        storage.saveBatteryProblem('problem_LevelAPI')
-        this.alarmBatterylag = false
-        this.$router.push('/alarmBattery')
-      }
-      if (this.alarmBatterylag === true && (this.batterylowVoltage === 'BatteryWeak' || this.batterylowVoltage === 'BatteryWeakStartEngine')) {
-        storage.saveBatteryProblem('problem_VoltageAPI')
-        this.alarmBatterylag = false
-        this.$router.push('/alarmBattery')
-      }
+      // if (this.alarmOillag === true && (this.engineOillevel === 'BargraphElement1' || this.engineOillevel === 'BargraphElement2')) {
+      //   storage.saveOilProblem('problem_LevelAPI')
+      //   this.alarmOillag = false
+      //   this.$router.push('/alarmEngineOil')
+      // }
+      // if (this.alarmOillag === true && this.engineOilpressur === true) {
+      //   storage.saveOilProblem('problem_PressAPI')
+      //   this.alarmOillag = false
+      //   this.$router.push('/alarmEngineOil')
+      // }
+      // if (this.alarmBatterylag === true && (this.batterychargeLevel <= 20)) {
+      //   storage.saveBatteryProblem('problem_LevelAPI')
+      //   this.alarmBatterylag = false
+      //   this.$router.push('/alarmBattery')
+      // }
+      // if (this.alarmBatterylag === true && (this.batterylowVoltage === 'BatteryWeak' || this.batterylowVoltage === 'BatteryWeakStartEngine')) {
+      //   storage.saveBatteryProblem('problem_VoltageAPI')
+      //   this.alarmBatterylag = false
+      //   this.$router.push('/alarmBattery')
+      // }
     }
   },
   mounted () {
     this.startVehicle()
-    this.startVehicleBattery()
+    // this.startVehicleBattery()
     let AP = this
     this.initHardKeyAction()
     setInterval(function () {
       AP.alarmPopup()
-    }, 15000) // 30분 1800000
+    }, 10000) // 30분 1800000
   }
 }
 </script>

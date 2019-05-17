@@ -190,6 +190,30 @@ let storage = {
     let Probelm = localStorage.getItem('waterProblem')
     Probelm = Probelm || ''
     return Probelm
+  },
+  saveMode: function (m) {
+    localStorage.setItem('mode', m)
+  },
+  loadMode: function () {
+    let mode = localStorage.getItem('mode')
+    mode = mode || ''
+    return mode
+  },
+  saveModeFlag: function (m) {
+    localStorage.setItem('modeFlag', m)
+  },
+  loadModeFlag: function () {
+    let modeFlag = localStorage.getItem('modeFlag')
+    modeFlag = modeFlag || ''
+    return modeFlag
+  },
+  saveRecirmodeMessageg: function (m) {
+    localStorage.setItem('RecirmodeMessage', m)
+  },
+  loadRecirmodeMessage: function () {
+    let RecirmodeMessage = localStorage.getItem('RecirmodeMessage')
+    RecirmodeMessage = RecirmodeMessage || ''
+    return RecirmodeMessage
   }
   // saveOillevelApi: function (pText) {
   //   localStorage.setItem('oillevelApi', pText)

@@ -25,7 +25,7 @@
             <div class='detail'>
                 <div class='km'>
                   <radial-progress-bar :diameter="250"
-                      :completed-steps=km
+                      :completed-steps="km"
                       :total-steps=15000>
                     <p><br></p>
                     <p>Replacement Period<br>: {{ 15000 }} km</p>
