@@ -50,10 +50,10 @@
             <div class='top'>
                 <div class = 'switch'>
                   <toggle-button v-model="toggled" id="changed-font" @change="changeBody()"
-                  :labels="{checked: 'ON', unchecked: 'OFF'}"
+                  :labels="{checked: 'Automation ON', unchecked: 'Automation OFF'}"
                   :color="{checked: '#7DCE94'}"
                   :sync="true"
-                  :width="148"
+                  :width="169"
                   :height="37"/>
                 </div>
                 <div class = 'desc'>
@@ -62,16 +62,21 @@
                     <span>{{ modeMessage }}</span>
                   </div>
                   <div v-if='toggled===false' class = 'modeMessage'>
-                    <p>Circulation mode is off, click button</p>
+                    <!-- <p>Circulation mode is off, click button</p> -->
                   </div>
                 </div>
             </div>
             <div class = 'carImg'>
               <!--<img v-if='toggled===true' src='../assets/image/tmpimg1.jpg' >-->
               <!--<img v-if='toggled===true' src='../assets/image/tmpimg2.jpg' >-->
-              <img v-if='toggled===false' src='../assets/image/tmpcarOff.jpg' >
+              <!-- <img v-if='toggled===false' src='../assets/image/tmpcarOff.jpg' > -->
               <img v-if='toggled===true && modeFlag===false' src='../assets/image/tmpcarOut.gif' >
               <img v-if='toggled===true && modeFlag===true' src='../assets/image/cartmp.gif' >
+              <div class='modeOffMessage'>
+                <span v-if='toggled===false' class='pressMessage'>If you press the Automation switch button</span>
+                <span v-if='toggled===false' class='redPoint'>ON,</span>
+                <p v-if='toggled===false'>Circulation mode according to the atmosphere is automated </p>
+              </div>
             </div>
           </div>
         </div>
@@ -365,7 +370,11 @@ div.dust, div.fineDust, div.co2 {
 }
 div.dustFont, div.finedustFont, div.co2Font {
   background: black;
-  padding: 3px;
+  margin-left: 1px;
+  // padding: 3px;
+  p {
+    margin: 0;
+  }
 }
 div.measure {
     margin-left: 12px;
@@ -376,12 +385,12 @@ div.measure {
     text-align: center;
     div.value, div.standard {
       float:left;
-      width: 107px;
+      width: 104px;
       height: 38.5px;
       // border: 1px solid white;
       p {
-        margin-top: 9px;
-        font-size: 28px;
+        margin-top: 1px;
+        font-size: 23px;
       }
     }
 }
@@ -410,18 +419,18 @@ div.switch {
     margin-left: 5px;
     float: left;
     height: 40px;
-    width: 150px;
+    width: 169px;
     // border: 1px solid white;
 }
 div.desc {
-    margin-top: 10px;
+    margin-top: 2px;
     float: left;
     height:40px;
-    width: 600px;
+    width: 580px;
     // border: 1px solid white;
     div.modeMessage {
-      margin-top: 4px;
-      margin-left: 17px;
+      margin-top: 5px;
+      margin-left: 20px;
       p {
         font-size: 28px;
       }
@@ -435,7 +444,24 @@ div.carImg {
     float: left;
     height: 180px;
     width: 740px;
+    background: black;
     // border: 1px solid white;
+    div.modeOffMessage {
+      margin-top: 50px;
+      p {
+        text-align: center;
+        font-size: 25px;
+      }
+      span.pressMessage {
+        margin-left: 113px;
+        font-size: 25px;
+      }
+      span.redPoint {
+        margin-left: 4px;
+        font-size: 25px;
+        color: red;
+      }
+    }
 }
 .vue-js-switch#changed-font {
   // 스위치 폰트 크기
