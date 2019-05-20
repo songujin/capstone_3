@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div class='desc'>
-                    <p>Current status of Battery</p>
+                    <p>Battery</p>
                 </div>
                 <div class='btn2'>
                     <div class='btn'>
@@ -24,7 +24,7 @@
             </div>
             <div class='detail'>
               <div class='km'>
-                <radial-progress-bar :diameter="250"
+                <radial-progress-bar :diameter="200"
                     :completed-steps="km"
                     :total-steps=60000>
                   <p><br></p>
@@ -33,7 +33,7 @@
                 </radial-progress-bar>
               </div>
               <div class='cycle'>
-                <radial-progress-bar :diameter="250"
+                <radial-progress-bar :diameter="200"
                     :completed-steps=month
                     :total-steps=36>
                   <p><br></p>
@@ -41,7 +41,10 @@
                   <p>Remaining<br>: {{ 36 - month }} months</p>
                 </radial-progress-bar>
               </div>
-            </div>       
+              <div class="status">
+                <p style="font-size: 22px;">Current status: {{ }}</p>
+              </div>
+            </div>
         </div>  
     </div> 
   </div>
@@ -145,7 +148,7 @@ div.top {
 }
 div.detail {
     margin: 0 auto;
-    height: 100%;
+    height: 81.5%;
     width: 100%;
     text-align: center;
     border: 1px solid rgb(128, 128, 128);
@@ -178,24 +181,24 @@ div.parts > :nth-child(2) > .btn-secondary{
 div.km {
   float: left;
   width: 50%;
-  height: 100%;
+  height: 85%;
   .radial-progress-container {
     margin-top: 5px;
-    margin-left: 25px;
+    margin-left: 60px;
     p {
-      font-size: 18px;
+      font-size: 16px;
     }
   }
 }
 div.cycle {
   float: left;
   width: 50%;
-  height: 100%;
+  height: 85%;
   .radial-progress-container {
     margin-top: 5px;
-    margin-left: 20px;
+    margin-left: 30px;
     p {
-      font-size: 18px;
+      font-size: 16px;
     }
   }
 }

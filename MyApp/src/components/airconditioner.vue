@@ -88,6 +88,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import page from 'obigo-js-ui/mixins/page'
 import { storage } from '../js/manageLibs'
+import { Utils } from 'obigo-js-ui'
+
 export default {
   name: 'home',
   mixins: [page],
@@ -118,6 +120,20 @@ export default {
     this.toggled = storage.loadMode()
   },
   methods: {
+    getSensorValue: function () {
+      const baseUrl = 'http://api.openweathermap.org/data/2.5/forecast?id=1853909&APPID=2b738975dae95d234aaccf0654cfb6f4'
+      Utils.ajax.get({
+        url: baseUrl,
+        dataType: 'json',
+        timeout: 5000
+      })
+        .then((res) => {
+          console.log('[parse data]', res.data.cod)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
     changeBody () {
       storage.saveMode(this.toggled)
       console.log('[changeBody function]', this.toggled)
@@ -165,6 +181,10 @@ export default {
     }
   },
   mounted () {
+    let self = this
+    setInterval(function () {
+      self.getSensorValue()
+    }, 1000)
     // this.toggle.$event.value = storage.loadMode()
     // this.toggled = storage.loadMode()
     console.log('[mounted toggled value]', storage.loadMode())

@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div class='desc'>
-                    <p>Current status of Engine oil</p>
+                    <p>Engine oil</p>
                 </div>
                 <div class='btn2'>
                     <div class='btn'>
@@ -40,6 +40,9 @@
                     <p>Replacement Period<br>: {{ 12 }} months</p>
                     <p>Remaining<br>: {{ 12 - month }} months</p>
                   </radial-progress-bar>
+                </div>
+                <div class="status">
+                  <p style="font-size: 22px;">Current status: {{ }}</p>
                 </div>
             </div>       
         </div>  
@@ -97,7 +100,7 @@ export default {
       if (page === 'Engine oil') {
         str += 'management'
       } else if (page === 'Battery') {
-        str += 'battery'
+        str += 'warningEngineOil'
       } else if (page === 'Coolant') {
         str += 'water'
       } else if (page === 'Tire') {
@@ -142,7 +145,7 @@ div.top {
 }
 div.detail {
     margin: 0 auto;
-    height: 100%;
+    height: 81.5%;
     width: 100%;
     text-align: center;
     border: 1px solid rgb(128, 128, 128);
@@ -175,24 +178,24 @@ div.parts > :nth-child(1) > .btn-secondary{
 div.km {
   float: left;
   width: 50%;
-  height: 100%;
+  height: 85%;
   .radial-progress-container {
     margin-top: 5px;
-    margin-left: 25px;
+    margin-left: 60px;
     p {
-      font-size: 18px;
+      font-size: 16px;
     }
   }
 }
 div.cycle {
   float: left;
   width: 50%;
-  height: 100%;
+  height: 85%;
   .radial-progress-container {
     margin-top: 5px;
-    margin-left: 20px;
+    margin-left: 30px;
     p {
-      font-size: 18px;
+      font-size: 16px;
     }
   }
 }
