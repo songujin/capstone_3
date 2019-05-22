@@ -42,7 +42,7 @@
                   </radial-progress-bar>
                 </div>
                 <div class="status">
-                  <p style="font-size: 22px;">Current status: {{ }}</p>
+                  <p style="font-size: 22px;">Current status: {{ TireState }}</p>
                 </div>
             </div>       
         </div>  
@@ -70,12 +70,100 @@ export default {
           { name: 'Cabin filter' }
       ],
       km: 0,
-      month: 0
+      month: 0,
+      TireState: '',
+      pressure: '', // Unit: mbar
+      nowTotal: '',
+      pastTotal: '',
+      updateCnt: 0 // update를 했는지 안했는지 구분
+    }
+  },
+  created () {
+    this.updateCnt = storage.loadRFTireUpdate()
+    console.log('count : ' + this.updateCnt)
+  },
+  mounted () {
+    let date = new Date()
+    var betweenDay = (date.getTime() - storage.loadRFTireM()) / 1000 / 60 / 60 / 24
+    this.month = Math.floor(betweenDay / 30.4)
+
+    if (this.BeforeUpdate()) { // update 시도 전, 앱 최초 실행 시
+      console.log('hello first')
+      this.km = storage.loadRFTireKm()
+    } else { // update 시도 후
+      console.log('hello update')
+      let vehicle = window.navigator.vehicle
+      this.initVehicle(vehicle)
+    }
+
+    if (this.month >= 36) {
+      this.month = 36
+    }
+    if (this.km >= 60000) {
+      this.km = 60000
     }
   },
   methods: {
     update () {
       this.$router.push('/managePopupRF')
+    },
+    BeforeUpdate () {
+      if (this.updateCnt === 0) {
+        return true
+      }
+    },
+    initVehicle (v) {
+      console.log('enter init')
+      // Odometer
+      this.getOdometer(v.odometer)
+      this.subscribeOdometer(v.odometer)
+      // Tire
+      this.getTire(v.tire)
+      this.subscribeTire(v.tire)
+    },
+    getOdometer (vo) {
+      vo.get().then((odometer) => {
+        console.log('get')
+        this.nowTotal = odometer.distanceTotal
+        this.pastTotal = storage.loadRFTireKm()
+        this.km = this.nowTotal - this.pastTotal
+        console.log('get distanceTotal(now) ' + this.nowTotal)
+        console.log('get km ' + this.km)
+      }, function (err) {
+        console.log(err.error)
+        console.log(err.message)
+      })
+    },
+    subscribeOdometer (vo) {
+      vo.subscribe((odometer) => {
+        console.log('subscribe')
+        this.nowTotal = odometer.distanceTotal
+        this.pastTotal = storage.loadRFTireKm()
+        this.km = this.nowTotal - this.pastTotal
+        console.log('sub distanceTotal(now) ' + this.nowTotal)
+        console.log('get km ' + this.km)
+      })
+    },
+    getTire (vt) {
+      vt.get().then((tire) => {
+        console.log('get')
+        this.TireState = tire[0].state
+        this.pressure = tire[0].pressure
+        console.log('get TireState ' + this.TireState)
+        console.log('get pressure ' + this.pressure)
+      }, function (err) {
+        console.log(err.error)
+        console.log(err.message)
+      })
+    },
+    subscribeTire (vt) {
+      vt.subscribe((tire) => {
+        console.log('subscribe')
+        this.TireState = tire[0].state
+        this.pressure = tire[0].pressure
+        console.log('sub TireState ' + this.TireState)
+        console.log('sub pressure ' + this.pressure)
+      })
     },
     go () {
       this.$router.push('/')
@@ -95,18 +183,6 @@ export default {
         str += 'cabinAirFilter'
       }
       this.$router.push(str)
-    }
-  },
-  mounted () {
-    let date = new Date()
-    var betweenDay = (date.getTime() - storage.loadRFTireM()) / 1000 / 60 / 60 / 24
-    this.km = storage.loadRFTireKm()
-    this.month = Math.floor(betweenDay / 30.4)
-    if (this.month >= 36) {
-      this.month = 36
-    }
-    if (this.km >= 60000) {
-      this.km = 60000
     }
   }
 }

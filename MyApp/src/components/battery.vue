@@ -42,7 +42,7 @@
                 </radial-progress-bar>
               </div>
               <div class="status">
-                <p style="font-size: 22px;">Current status: {{ }}</p>
+                <p style="font-size: 22px;">Current status: {{ charegeLevel }}%</p>
               </div>
             </div>
         </div>  
@@ -54,6 +54,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import RadialProgressBar from 'vue-radial-progress'
 import { storage } from '../js/manageLibs'
+
 export default {
   name: 'battery',
   props: ['value'],
@@ -62,10 +63,6 @@ export default {
   },
   data: function () {
     return {
-      km_max: 60000,
-      km_value: 10000,
-      mon_max: 36,
-      mon_value: 3,
       items: [
           { name: 'Engine oil' },
           { name: 'Battery' },
@@ -73,17 +70,32 @@ export default {
           { name: 'Tire' },
           { name: 'Cabin filter' }
       ],
-      batterychargeLevel: '',
-      batterylowVoltage: '',
       km: 0,
-      month: 0
+      month: 0,
+      chargeLevel: '',
+      nowTotal: '',
+      pastTotal: '',
+      updateCnt: 0 // update를 했는지 안했는지 구분
     }
   },
+  created () {
+    this.updateCnt = storage.loadBatteryUpdate()
+    console.log('count : ' + this.updateCnt)
+  },
   mounted () {
-    this.km = storage.loadBatterykm()
     let date = new Date()
     var betweenDay = (date.getTime() - storage.loadBatteryM()) / 1000 / 60 / 60 / 24
     this.month = Math.floor(betweenDay / 30.4)
+
+    if (this.BeforeUpdate()) { // update 시도 전, 앱 최초 실행 시
+      console.log('hello first')
+      this.km = storage.loadBatterykm()
+    } else { // update 시도 후
+      console.log('hello update')
+      let vehicle = window.navigator.vehicle
+      this.initVehicle(vehicle)
+    }
+
     if (this.month >= 36) {
       this.month = 36
     }
@@ -94,6 +106,60 @@ export default {
   methods: {
     update () {
       this.$router.push('/managepopupBattery')
+    },
+    BeforeUpdate () {
+      if (this.updateCnt === 0) {
+        return true
+      }
+    },
+    initVehicle (v) {
+      console.log('enter init')
+      // Odometer
+      this.getOdometer(v.odometer)
+      this.subscribeOdometer(v.odometer)
+      // Battery
+      this.getBatteryStatus(v.batteryStatus)
+      this.subscribeBatteryStatus(v.batteryStatus)
+    },
+    getOdometer (vo) {
+      vo.get().then((odometer) => {
+        console.log('get')
+        this.nowTotal = odometer.distanceTotal
+        this.pastTotal = storage.loadBatterykm()
+        this.km = this.nowTotal - this.pastTotal
+        console.log('get distanceTotal(now) ' + this.nowTotal)
+        console.log('get km ' + this.km)
+      }, function (err) {
+        console.log(err.error)
+        console.log(err.message)
+      })
+    },
+    subscribeOdometer (vo) {
+      vo.subscribe((odometer) => {
+        console.log('subscribe')
+        this.nowTotal = odometer.distanceTotal
+        this.pastTotal = storage.loadBatterykm()
+        this.km = this.nowTotal - this.pastTotal
+        console.log('sub distanceTotal(now) ' + this.nowTotal)
+        console.log('get km ' + this.km)
+      })
+    },
+    getBatteryStatus (vb) {
+      vb.get().then((batteryStatus) => {
+        console.log('get')
+        this.chargeLevel = batteryStatus.chargeLevel
+        console.log('get chargeLevel ' + this.chargeLevel)
+      }, function (err) {
+        console.log(err.error)
+        console.log(err.message)
+      })
+    },
+    subscribeBatteryStatus (vb) {
+      vb.subscribe((batteryStatus) => {
+        console.log('subscribe')
+        this.chargeLevel = batteryStatus.chargeLevel
+        console.log('sub chargeLevel ' + this.chargeLevel)
+      })
     },
     go () {
       this.$router.push('/')
@@ -222,43 +288,3 @@ div.cycle {
   @include get-style-of($car-model)
 }
 </style>
-
-
-
-
-
-<!--<template>
-  <div>
-    <management-view></management-view>
-  </div>
-</template>
-<script>
-import management from './management.vue'
-export default {
-  name: 'managepopup',
-  components: {
-    'management-view': management
-  }
-}
-</script>
-<style lang='scss' scoped>
-@mixin mx-carmodel-7pr {
-  .contents {
-    color: white;
-  }
-}
-
-@mixin get-style-of($model) {
-  @if $model == '7pr' {
-    @include mx-carmodel-7pr;
-  }
-}
-
-@if $profile == 'production' {
-  @media renault7P {
-    @include get-style-of('7pr');
-  }
-} @else {
-  @include get-style-of($car-model)
-}
-</style>-->

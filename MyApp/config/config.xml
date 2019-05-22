@@ -36,7 +36,7 @@
 
     <feature name="http://www.obigo.com/api/applicationmanager.getownerapplication" required="true"><param name="version" value="3.1.5.7"/></feature>
   <feature name="http://www.obigo.com/api/vehicle" required="true">
-    <param name="version" value="2.1.1.6"/>
+    <param name="version" value="2.1.1.9"/>
   </feature>
    <feature name="http://www.obigo.com/api/storage" required="true">
     <param name="version" value="1.1.0.0"/>

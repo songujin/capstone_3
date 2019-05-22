@@ -42,7 +42,7 @@
                   </radial-progress-bar>
                 </div>
                 <div class="status">
-                  <p style="font-size: 22px;">Current status: {{ }}</p>
+                  <p style="font-size: 22px;">Current status: {{ oilLevel }}%</p>
                 </div>
             </div>       
         </div>  
@@ -69,17 +69,32 @@ export default {
           { name: 'Tire' },
           { name: 'Cabin filter' }
       ],
-      engineOillevel: '0',
-      engineOilpressur: '0',
       month: 0,
-      km: 0
+      km: 0,
+      oilLevel: '0',
+      nowTotal: '',
+      pastTotal: '',
+      updateCnt: 0 // update를 했는지 안했는지 구분
     }
   },
+  created () {
+    this.updateCnt = storage.loadEngineOilUpdate()
+    console.log('count : ' + this.updateCnt)
+  },
   mounted () {
-    this.km = storage.loadEngineOilkm()
     let date = new Date()
     var betweenDay = (date.getTime() - storage.loadEngineOilM()) / 1000 / 60 / 60 / 24
     this.month = Math.floor(betweenDay / 30.4)
+
+    if (this.beforeUpdate()) { // 앱 최초 실행 후 처음 입장 시
+      this.km = storage.loadEngineOilkm()
+      console.log('hello first')
+    } else { // update 시도 후
+      console.log('hello update')
+      let vehicle = window.navigator.vehicle
+      this.initVehicle(vehicle)
+    }
+
     if (this.month >= 12) {
       this.month = 12
     }
@@ -91,6 +106,60 @@ export default {
   methods: {
     update () {
       this.$router.push('/managePopupOil')
+    },
+    BeforeUpdate () {
+      if (this.updateCnt === 0) {
+        return true
+      }
+    },
+    initVehicle (v) {
+      console.log('enter init')
+      // Odometer
+      this.getOdometer(v.odometer)
+      this.subscribeOdometer(v.odometer)
+      // EnginOil
+      this.getEngineOil(v.engineOil)
+      this.subscribeEngineOil(v.engineOil)
+    },
+    getOdometer (vo) {
+      vo.get().then((odometer) => {
+        console.log('get')
+        this.nowTotal = odometer.distanceTotal
+        this.pastTotal = storage.loadEngineOilkm()
+        this.km = this.nowTotal - this.pastTotal
+        console.log('get distanceTotal(now) ' + this.nowTotal)
+        console.log('get km ' + this.km)
+      }, function (err) {
+        console.log(err.error)
+        console.log(err.message)
+      })
+    },
+    subscribeOdometer (vo) {
+      vo.subscribe((odometer) => {
+        console.log('subscribe')
+        this.nowTotal = odometer.distanceTotal
+        this.pastTotal = storage.loadEngineOilkm()
+        this.km = this.nowTotal - this.pastTotal
+        console.log('sub distanceTotal(now) ' + this.nowTotal)
+        console.log('get km ' + this.km)
+      })
+    },
+    getEngineOil (ve) {
+      ve.get().then((engineOil) => {
+        console.log('get')
+        this.oilLevel = engineOil.level
+        console.log('get oilLevel ' + this.oilLevel)
+      }, function (err) {
+        console.log(err.error)
+        console.log(err.message)
+      })
+    },
+    subscribeEngineOil (ve) {
+      ve.subscribe((engineOil) => {
+        console.log('subscribe')
+        this.oilLevel = engineOil.level
+        console.log('sub oilLevel ' + this.oilLevel)
+      })
     },
     go () {
       this.$router.push('/')

@@ -16,7 +16,7 @@
                     <p>Total Distance</p>
                 </div>
                 <div class='odometer'>
-                    <p>{{ distance }}km</p>
+                    <vue-numeric-input v-model="userInputKM" separator="," :min="0" :controls="false"></vue-numeric-input>
                 </div>
             </div>
             <div class='btn'>
@@ -45,38 +45,44 @@ export default {
   data: function () {
     return {
       title: 'Setting',
-      distance: '10000',
+      userInputKM: '', // 사용자 입력 km
       selectedDate: '',
       setMonth: '',
       state: {
         disabledDates: {
           from: new Date()
         }
-      }
+      },
+      pastTotal: '' // 교체할 때의 누적거리
     }
   },
   mounted () {
-    this.startVehicle()
+    let vo = window.navigator.vehicle.odometer
+    this.initVehicle(vo)
   },
   methods: {
-    // persist () {
-    //   this.$store.commit('changeBatteryMonth', this.batteryMonth)
-    // }
-    // startVehicle () {
-    //   let vehicle = window.navigator.vehicle
-    //   if (vehicle) {
-    //     vehicle.start(function () {
-    //       window.navigator.vehicle.odometer.get().then(function (data) {
-    //         console.log(data.distanceTotal)
-    //         this.distance = data.distanceTotal
-    //       }, function (err) {
-    //         console.log(err)
-    //       })
-    //     }, function () {
-    //       throw Error('constuctor fails')
-    //     })
-    //   }
-    // },
+    initVehicle (vo) {
+      console.log('enter init')
+      this.getOdometer(vo)
+      this.subscribeOdometer(vo) // 2번 실행되고 있음.. why?
+    },
+    getOdometer (vo) {
+      vo.get().then((odometer) => {
+        console.log('get')
+        this.nowTotal = odometer.distanceTotal
+        console.log('get distanceTotal(now)' + this.nowTotal)
+      }, function (err) {
+        console.log(err.error)
+        console.log(err.message)
+      })
+    },
+    subscribeOdometer (vo) {
+      vo.subscribe((odometer) => {
+        console.log('subscribe')
+        this.nowTotal = odometer.distanceTotal
+        console.log('sub distanceTotal(now)' + this.nowTotal)
+      })
+    },
     goback () {
       this.$router.push('/water')
     },
@@ -120,8 +126,27 @@ export default {
         this.setMonth = 12
       }
       var setDate = new Date(settingDate.year, this.setMonth - 1, settingDate.date)
-      storage.saveBatterykm(this.distance)
-      storage.saveBatteryM(setDate.getTime())
+      storage.saveWaterM(setDate.getTime())
+
+      var today = new Date(date.getFullYear(), date.getMonth(), date.getDate())
+
+      if (today.getTime() === setDate.getTime()) { // 오늘 부품을 교체할 시
+        storage.saveWaterkm(this.nowTotal)
+        console.log('PopWater NT ' + this.nowTotal)
+      } else if (today.getTime() > setDate.getTime()) { // 과거에 부품을 교체했을 시
+        if (this.userInputKM === '') {
+          this.title = 'Please enter a distance'
+          return false
+        }
+        if (this.userInputKM > this.nowTotal) {
+          this.title = 'Input error'
+          return false
+        }
+
+        storage.saveWaterkm(this.userInputKM)
+      }
+
+      storage.saveWaterUpdate(1) // update를 했다는 의미
 
       this.$router.push('/Water')
     }

@@ -98,7 +98,7 @@ export default {
   },
   data: function () {
     return {
-      count: 0, // 이건 왜 있는건지 모르겠음...
+      count: 0,
       dustValue: 100, // 실시간으로 미세먼지 받아와야함
       dustLevel: '', // 미세먼지 등급은 mounted() 에서 계산
       fineDustValue: 15, // 실시간으로 초미세먼지 받아와야함
@@ -121,7 +121,7 @@ export default {
   },
   methods: {
     getSensorValue: function () {
-      const baseUrl = 'http://api.openweathermap.org/data/2.5/forecast?id=1853909&APPID=2b738975dae95d234aaccf0654cfb6f4'
+      const baseUrl = 'http://api.openweathermap.org/data/2.5/forecast?id=1853909&APPID=2b738975dae95d234aaccf0654cfb6f4' // http://devx.kr/capstone/
       Utils.ajax.get({
         url: baseUrl,
         dataType: 'json',

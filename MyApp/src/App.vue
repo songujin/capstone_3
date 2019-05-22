@@ -22,12 +22,10 @@ export default {
       alarmRRFlag: true,
       alarmLRFlag: true,
       alarmLFFlag: true,
-      alarmOillag: true,
-      alarmBatterylag: true,
-      engineOillevel: '',
-      engineOilpressur: '',
-      batterychargeLevel: '',
-      batterylowVoltage: ''
+      alarmEngineOilFlag: true,
+      alarmBatteryFlag: true,
+      alarmCFilterFlag: true,
+      alarmWaterFlag: true
     }
   },
   methods: {
@@ -35,44 +33,7 @@ export default {
       let vehicle = window.navigator.vehicle
       if (vehicle) {
         vehicle.start(() => {
-          // vehicle.batteryStatus.get().then((batteryStatus) => {
-          //   this.batterychargeLevel = batteryStatus.chargeLevel
-          //   this.batterylowVoltage = batteryStatus.lowVoltageDisplay
-          //   console.log(batteryStatus.chargeLevel)
-          //   console.log(batteryStatus.lowVoltageDisplay)
-          // }, function (err) {
-          //   console.log(err.error)
-          //   console.log(err.message)
-          // })
-          // console.log('vehicle start')
-          // vehicle.engineOil.get().then((engineOil) => {
-          //   this.engineOillevel = engineOil.level
-          //   this.engineOilpressur = engineOil.pressureWarning
-          //   console.log(engineOil.level)
-          //   console.log(engineOil.pressureWarning)
-          // }, function (err) {
-          //   console.log(err.error)
-          //   console.log(err.message)
-          // })
-        }, function () {
-          throw Error('constuctor fails')
-        })
-      }
-    },
-    startVehicleBattery () {
-      let vehicle = window.navigator.vehicle
-      if (vehicle) {
-        vehicle.start(() => {
-          console.log('vehicle start')
-          vehicle.batteryStatus.get().then((batteryStatus) => {
-            this.batterychargeLevel = batteryStatus.chargeLevel
-            this.batterylowVoltage = batteryStatus.lowVoltageDisplay
-            console.log(batteryStatus.chargeLevel)
-            console.log(batteryStatus.lowVoltageDisplay)
-          }, function (err) {
-            console.log(err.error)
-            console.log(err.message)
-          })
+          console.log('hello startVehicle')
         }, function () {
           throw Error('constuctor fails')
         })
@@ -138,51 +99,50 @@ export default {
         this.alarmLRFlag = false
         this.$router.push('/alarmLR')
       }
-      if (this.alarmOillag === true && 15000 - storage.loadEngineOilkm() <= 0) {
+      if (this.alarmOilFlag === true && 15000 - storage.loadEngineOilkm() <= 0) {
         storage.saveOilProblem('problem_Distance')
-        this.alarmOillag = false
+        this.alarmOilFlag = false
         this.$router.push('/alarmEngineOil')
       }
-      if (this.alarmOillag === true && 12 - this.calculateM(storage.loadEngineOilM()) <= 0) {
+      if (this.alarmOilFlag === true && 12 - this.calculateM(storage.loadEngineOilM()) <= 0) {
         storage.saveOilProblem('problem_Date')
-        this.alarmOillag = false
+        this.alarmOilFlag = false
         this.$router.push('/alarmEngineOil')
       }
-      if (this.alarmBatterylag === true && 60000 - storage.loadBatterykm() <= 0) {
+      if (this.alarmBatteryFlag === true && 60000 - storage.loadBatterykm() <= 0) {
         storage.saveBatteryProblem('problem_Distance')
-        this.alarmBatterylag = false
+        this.alarmBatteryFlag = false
         this.$router.push('/alarmBattery')
       }
-      if (this.alarmBatterylag === true && 36 - this.calculateM(storage.loadBatteryM()) <= 0) {
+      if (this.alarmBatteryFlag === true && 36 - this.calculateM(storage.loadBatteryM()) <= 0) {
         storage.saveBatteryProblem('problem_Date')
-        this.alarmBatterylag = false
+        this.alarmBatteryFlag = false
         this.$router.push('/alarmBattery')
       }
-      // if (this.alarmOillag === true && (this.engineOillevel === 'BargraphElement1' || this.engineOillevel === 'BargraphElement2')) {
-      //   storage.saveOilProblem('problem_LevelAPI')
-      //   this.alarmOillag = false
-      //   this.$router.push('/alarmEngineOil')
-      // }
-      // if (this.alarmOillag === true && this.engineOilpressur === true) {
-      //   storage.saveOilProblem('problem_PressAPI')
-      //   this.alarmOillag = false
-      //   this.$router.push('/alarmEngineOil')
-      // }
-      // if (this.alarmBatterylag === true && (this.batterychargeLevel <= 20)) {
-      //   storage.saveBatteryProblem('problem_LevelAPI')
-      //   this.alarmBatterylag = false
-      //   this.$router.push('/alarmBattery')
-      // }
-      // if (this.alarmBatterylag === true && (this.batterylowVoltage === 'BatteryWeak' || this.batterylowVoltage === 'BatteryWeakStartEngine')) {
-      //   storage.saveBatteryProblem('problem_VoltageAPI')
-      //   this.alarmBatterylag = false
-      //   this.$router.push('/alarmBattery')
-      // }
+      if (this.alarmCFilterFlag === true && 15000 - storage.loadCFilterKm() <= 0) {
+        storage.saveCFilterProblem('problem_Distance')
+        this.alarmCFilterFlag = false
+        this.$router.push('/alarmCFilter')
+      }
+      if (this.alarmCFilterFlag === true && 6 - this.calculateM(storage.loadCFilterM()) <= 0) {
+        storage.saveCFilterProblem('problem_Date')
+        this.alarmCFilterFlag = false
+        this.$router.push('/alarmCFilter')
+      }
+      if (this.alarmWaterFlag === true && 15000 - storage.loadWaterkm() <= 0) {
+        storage.saveWaterProblem('problem_Distance')
+        this.alarmWaterFlag = false
+        this.$router.push('/alarmWater')
+      }
+      if (this.alarmWaterFlag === true && 6 - this.calculateM(storage.loadWaterM()) <= 0) {
+        storage.saveWaterProblem('problem_Date')
+        this.alarmWaterFlag = false
+        this.$router.push('/alarmWater')
+      }
     }
   },
   mounted () {
     this.startVehicle()
-    // this.startVehicleBattery()
     let AP = this
     this.initHardKeyAction()
     setInterval(function () {

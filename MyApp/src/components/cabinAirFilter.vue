@@ -70,12 +70,70 @@ export default {
           { name: 'Cabin filter' }
       ],
       km: 0,
-      month: 0
+      month: 0,
+      nowTotal: '', // 현재 차량의 총 이동거리
+      pastTotal: '', // 과거 교체했을 당시의 총 이동거리
+      updateCnt: 0 // update를 했는지 안했는지 구분
+    }
+  },
+  created () {
+    this.updateCnt = storage.loadCFilterUpdate()
+    console.log('count : ' + this.updateCnt)
+  },
+  mounted () {
+    let date = new Date()
+    var betweenDay = (date.getTime() - storage.loadCFilterM()) / 1000 / 60 / 60 / 24
+    this.month = Math.floor(betweenDay / 30.4)
+
+    if (this.BeforeUpdate()) { // update 시도 전, 앱 최초 실행 시
+      console.log('hello first')
+      this.km = storage.loadCFilterKm()
+    } else { // update 시도 후
+      console.log('hello update')
+      let vo = window.navigator.vehicle.odometer
+      this.initVehicle(vo)
+    }
+
+    if (this.month >= 6) {
+      this.month = 6
     }
   },
   methods: {
     update () {
       this.$router.push('/managePopupCF')
+    },
+    BeforeUpdate () {
+      if (this.updateCnt === 0) {
+        return true
+      }
+    },
+    initVehicle (vo) {
+      console.log('enter init')
+      this.getOdometer(vo)
+      this.subscribeOdometer(vo)
+    },
+    getOdometer (vo) {
+      vo.get().then((odometer) => {
+        console.log('get')
+        this.nowTotal = odometer.distanceTotal
+        this.pastTotal = storage.loadCFilterKm()
+        this.km = this.nowTotal - this.pastTotal
+        console.log('get distanceTotal(now) ' + this.nowTotal)
+        console.log('get km ' + this.km)
+      }, function (err) {
+        console.log(err.error)
+        console.log(err.message)
+      })
+    },
+    subscribeOdometer (vo) {
+      vo.subscribe((odometer) => {
+        console.log('subscribe')
+        this.nowTotal = odometer.distanceTotal
+        this.pastTotal = storage.loadCFilterKm()
+        this.km = this.nowTotal - this.pastTotal
+        console.log('sub distanceTotal(now) ' + this.nowTotal)
+        console.log('get km ' + this.km)
+      })
     },
     go () {
       this.$router.push('/')
@@ -95,18 +153,6 @@ export default {
         str += 'cabinAirFilter'
       }
       this.$router.push(str)
-    }
-  },
-  mounted () {
-    let date = new Date()
-    var betweenDay = (date.getTime() - storage.loadCFilterM()) / 1000 / 60 / 60 / 24
-    this.km = storage.loadCFilterKm()
-    this.month = Math.floor(betweenDay / 30.4)
-    if (this.month >= 6) {
-      this.month = 6
-    }
-    if (this.km >= 15000) {
-      this.km = 15000
     }
   }
 }

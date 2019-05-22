@@ -5,6 +5,7 @@ import ObigoUI from 'obigo-js-ui'
 import router from './router'
 import store from './store'
 import ToggleButton from 'vue-js-toggle-button'
+import VueNumericInput from 'vue-numeric-input'
 import BootstrapVue from 'bootstrap-vue'
 
 import Button from 'bootstrap-vue/es/components/button'
@@ -16,6 +17,7 @@ Vue.use(ObigoUI)
 Vue.use(router)
 Vue.use(ToggleButton)
 Vue.use(BootstrapVue)
+Vue.use(VueNumericInput)
 Vue.use(Button)
 
 /* eslint-disable no-new */
