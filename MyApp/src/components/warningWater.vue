@@ -90,6 +90,9 @@ div.text {
   width: 90%;
   height: 100%;
   margin-left: 20px;
+  p {
+    margin-top: 40px;
+  }
 }
 div.desc {
   float: left;
