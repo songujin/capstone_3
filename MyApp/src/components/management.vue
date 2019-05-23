@@ -42,7 +42,7 @@
                   </radial-progress-bar>
                 </div>
                 <div class="status">
-                  <p style="font-size: 22px;">Current status: {{ oilLevel }}%</p>
+                  <p style="font-size: 22px;">Current status: {{ oilLevel }}</p>
                 </div>
             </div>       
         </div>  
@@ -71,7 +71,7 @@ export default {
       ],
       month: 0,
       km: 0,
-      oilLevel: '0',
+      oilLevel: '',
       nowTotal: '',
       pastTotal: '',
       updateCnt: 0 // update를 했는지 안했는지 구분
@@ -86,20 +86,12 @@ export default {
     var betweenDay = (date.getTime() - storage.loadEngineOilM()) / 1000 / 60 / 60 / 24
     this.month = Math.floor(betweenDay / 30.4)
 
-    if (this.beforeUpdate()) { // 앱 최초 실행 후 처음 입장 시
-      this.km = storage.loadEngineOilkm()
-      console.log('hello first')
-    } else { // update 시도 후
-      console.log('hello update')
-      let vehicle = window.navigator.vehicle
-      this.initVehicle(vehicle)
-    }
+    let vehicle = window.navigator.vehicle
+    this.initEngineOil(vehicle.engineOil)
+    this.initOdometer(vehicle.odometer)
 
     if (this.month >= 12) {
       this.month = 12
-    }
-    if (this.km >= 15000) {
-      this.km = 15000
     }
     console.log(date.getTime())
   },
@@ -112,23 +104,32 @@ export default {
         return true
       }
     },
-    initVehicle (v) {
-      console.log('enter init')
+    initOdometer (vo) {
+      console.log('enter initOdometer')
       // Odometer
-      this.getOdometer(v.odometer)
-      this.subscribeOdometer(v.odometer)
-      // EnginOil
-      this.getEngineOil(v.engineOil)
-      this.subscribeEngineOil(v.engineOil)
+      this.getOdometer(vo)
+      this.subscribeOdometer(vo)
     },
     getOdometer (vo) {
       vo.get().then((odometer) => {
         console.log('get')
-        this.nowTotal = odometer.distanceTotal
-        this.pastTotal = storage.loadEngineOilkm()
-        this.km = this.nowTotal - this.pastTotal
+        if (this.BeforeUpdate()) { // update 시도 전, 앱 최초 실행 시
+          console.log('hello first')
+          this.nowTotal = odometer.distanceTotal
+          this.km = this.nowTotal
+          // this.km = storage.loadEngineOilkm()
+        } else { // update 시도 후
+          console.log('hello update')
+          this.nowTotal = odometer.distanceTotal
+          this.pastTotal = storage.loadEngineOilkm()
+          this.km = this.nowTotal - this.pastTotal
+        }
         console.log('get distanceTotal(now) ' + this.nowTotal)
         console.log('get km ' + this.km)
+
+        if (this.km >= 15000) {
+          this.km = 15000
+        }
       }, function (err) {
         console.log(err.error)
         console.log(err.message)
@@ -137,12 +138,30 @@ export default {
     subscribeOdometer (vo) {
       vo.subscribe((odometer) => {
         console.log('subscribe')
-        this.nowTotal = odometer.distanceTotal
-        this.pastTotal = storage.loadEngineOilkm()
-        this.km = this.nowTotal - this.pastTotal
+        if (this.BeforeUpdate()) { // update 시도 전, 앱 최초 실행 시
+          console.log('hello first')
+          this.nowTotal = odometer.distanceTotal
+          this.km = this.nowTotal
+          // this.km = storage.loadEngineOilkm()
+        } else { // update 시도 후
+          console.log('hello update')
+          this.nowTotal = odometer.distanceTotal
+          this.pastTotal = storage.loadEngineOilkm()
+          this.km = this.nowTotal - this.pastTotal
+        }
         console.log('sub distanceTotal(now) ' + this.nowTotal)
         console.log('get km ' + this.km)
+
+        if (this.km >= 15000) {
+          this.km = 15000
+        }
       })
+    },
+    initEngineOil (ve) {
+      console.log('enter initEngineOil')
+      // EnginOil
+      this.getEngineOil(ve)
+      this.subscribeEngineOil(ve)
     },
     getEngineOil (ve) {
       ve.get().then((engineOil) => {

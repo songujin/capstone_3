@@ -42,7 +42,7 @@
                 </radial-progress-bar>
               </div>
               <div class="status">
-                <p style="font-size: 22px;">Current status: {{ charegeLevel }}%</p>
+                <p style="font-size: 22px;">Current status: {{ chargeLevel }}%</p>
               </div>
             </div>
         </div>  
@@ -87,20 +87,12 @@ export default {
     var betweenDay = (date.getTime() - storage.loadBatteryM()) / 1000 / 60 / 60 / 24
     this.month = Math.floor(betweenDay / 30.4)
 
-    if (this.BeforeUpdate()) { // update 시도 전, 앱 최초 실행 시
-      console.log('hello first')
-      this.km = storage.loadBatterykm()
-    } else { // update 시도 후
-      console.log('hello update')
-      let vehicle = window.navigator.vehicle
-      this.initVehicle(vehicle)
-    }
+    let vehicle = window.navigator.vehicle
+    this.initBatteryStatus(vehicle.batteryStatus)
+    this.initOdometer(vehicle.odometer)
 
     if (this.month >= 36) {
       this.month = 36
-    }
-    if (this.km >= 60000) {
-      this.km = 60000
     }
   },
   methods: {
@@ -112,23 +104,32 @@ export default {
         return true
       }
     },
-    initVehicle (v) {
-      console.log('enter init')
+    initOdometer (vo) {
+      console.log('enter initOdometer')
       // Odometer
-      this.getOdometer(v.odometer)
-      this.subscribeOdometer(v.odometer)
-      // Battery
-      this.getBatteryStatus(v.batteryStatus)
-      this.subscribeBatteryStatus(v.batteryStatus)
+      this.getOdometer(vo)
+      this.subscribeOdometer(vo)
     },
     getOdometer (vo) {
       vo.get().then((odometer) => {
         console.log('get')
-        this.nowTotal = odometer.distanceTotal
-        this.pastTotal = storage.loadBatterykm()
-        this.km = this.nowTotal - this.pastTotal
+        if (this.BeforeUpdate()) { // update 시도 전, 앱 최초 실행 시
+          console.log('hello first')
+          this.nowTotal = odometer.distanceTotal
+          this.km = this.nowTotal
+          // this.km = storage.loadBatterykm()
+        } else { // update 시도 후
+          console.log('hello update')
+          this.nowTotal = odometer.distanceTotal
+          this.pastTotal = storage.loadBatterykm()
+          this.km = this.nowTotal - this.pastTotal
+        }
         console.log('get distanceTotal(now) ' + this.nowTotal)
         console.log('get km ' + this.km)
+
+        if (this.km >= 60000) {
+          this.km = 60000
+        }
       }, function (err) {
         console.log(err.error)
         console.log(err.message)
@@ -137,12 +138,30 @@ export default {
     subscribeOdometer (vo) {
       vo.subscribe((odometer) => {
         console.log('subscribe')
-        this.nowTotal = odometer.distanceTotal
-        this.pastTotal = storage.loadBatterykm()
-        this.km = this.nowTotal - this.pastTotal
+        if (this.BeforeUpdate()) { // update 시도 전, 앱 최초 실행 시
+          console.log('hello first')
+          this.nowTotal = odometer.distanceTotal
+          this.km = this.nowTotal
+          // this.km = storage.loadBatterykm()
+        } else { // update 시도 후
+          console.log('hello update')
+          this.nowTotal = odometer.distanceTotal
+          this.pastTotal = storage.loadBatterykm()
+          this.km = this.nowTotal - this.pastTotal
+        }
         console.log('sub distanceTotal(now) ' + this.nowTotal)
         console.log('get km ' + this.km)
+
+        if (this.km >= 60000) {
+          this.km = 60000
+        }
       })
+    },
+    initBatteryStatus (vb) {
+      console.log('enter initBatteryStatus')
+      // Battery
+      this.getBatteryStatus(vb)
+      this.subscribeBatteryStatus(vb)
     },
     getBatteryStatus (vb) {
       vb.get().then((batteryStatus) => {

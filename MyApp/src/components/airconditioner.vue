@@ -187,6 +187,7 @@ export default {
     }, 1000)
     // this.toggle.$event.value = storage.loadMode()
     // this.toggled = storage.loadMode()
+    storage.saveFirst('0')
     console.log('[mounted toggled value]', storage.loadMode())
     this.toggled = storage.loadMode()
     this.modeFlag = ''

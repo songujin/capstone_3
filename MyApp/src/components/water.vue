@@ -86,20 +86,12 @@ export default {
     var betweenDay = (date.getTime() - storage.loadWaterM()) / 1000 / 60 / 60 / 24
     this.month = Math.floor(betweenDay / 30.4)
 
-    if (this.BeforeUpdate()) { // update 시도 전, 앱 최초 실행
-      this.km = storage.loadWaterkm()
-      console.log('hello first')
-    } else { // update 시도 후
-      console.log('hello update')
-      let vehicle = window.navigator.vehicle
-      this.initVehicle(vehicle)
-    }
+    let vehicle = window.navigator.vehicle
+    this.initWater(vehicle.water)
+    this.initOdometer(vehicle.odometer)
 
     if (this.month >= 24) {
       this.month = 24
-    }
-    if (this.km >= 40000) {
-      this.km = 40000
     }
   },
   methods: {
@@ -111,23 +103,32 @@ export default {
         return true
       }
     },
-    initVehicle (v) {
-      console.log('enter init')
+    initOdometer (vo) {
+      console.log('enter initOdometer')
       // Odometer
-      this.getOdometer(v.odometer)
-      this.subscribeOdometer(v.odometer)
-      // Water
-      this.getWater(v.water)
-      this.subscribeWater(v.water)
+      this.getOdometer(vo)
+      this.subscribeOdometer(vo)
     },
     getOdometer (vo) {
       vo.get().then((odometer) => {
         console.log('get')
-        this.nowTotal = odometer.distanceTotal
-        this.pastTotal = storage.loadWaterkm()
-        this.km = this.nowTotal - this.pastTotal
+        if (this.BeforeUpdate()) { // update 시도 전, 앱 최초 실행 시
+          console.log('hello first')
+          this.nowTotal = odometer.distanceTotal
+          this.km = this.nowTotal
+          // this.km = storage.loadWaterkm()
+        } else { // update 시도 후
+          console.log('hello update')
+          this.nowTotal = odometer.distanceTotal
+          this.pastTotal = storage.loadWaterkm()
+          this.km = this.nowTotal - this.pastTotal
+        }
         console.log('get distanceTotal(now) ' + this.nowTotal)
         console.log('get km ' + this.km)
+
+        if (this.km >= 40000) {
+          this.km = 40000
+        }
       }, function (err) {
         console.log(err.error)
         console.log(err.message)
@@ -136,12 +137,30 @@ export default {
     subscribeOdometer (vo) {
       vo.subscribe((odometer) => {
         console.log('subscribe')
-        this.nowTotal = odometer.distanceTotal
-        this.pastTotal = storage.loadWaterkm()
-        this.km = this.nowTotal - this.pastTotal
+        if (this.BeforeUpdate()) { // update 시도 전, 앱 최초 실행 시
+          console.log('hello first')
+          this.nowTotal = odometer.distanceTotal
+          this.km = this.nowTotal
+          // this.km = storage.loadWaterkm()
+        } else { // update 시도 후
+          console.log('hello update')
+          this.nowTotal = odometer.distanceTotal
+          this.pastTotal = storage.loadWaterkm()
+          this.km = this.nowTotal - this.pastTotal
+        }
         console.log('sub distanceTotal(now) ' + this.nowTotal)
         console.log('get km ' + this.km)
+
+        if (this.km >= 40000) {
+          this.km = 40000
+        }
       })
+    },
+    initWater (vw) {
+      console.log('enter initWater')
+      // Water
+      this.getWater(vw)
+      this.subscribeWater(vw)
     },
     getWater (vw) {
       vw.get().then((water) => {

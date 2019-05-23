@@ -45,7 +45,7 @@ export default {
   data: function () {
     return {
       title: 'Setting',
-      distance: '20000',
+      distance: '',
       selectedDate: '',
       setMonth: '',
       state: {
@@ -56,27 +56,32 @@ export default {
     }
   },
   mounted () {
-    this.startVehicle()
+    let vo = window.navigator.vehicle.odometer
+    this.initOdometer(vo)
   },
   methods: {
-    startVehicle () {
-      let vehicle = window.navigator.vehicle
-      if (vehicle) {
-        if (vehicle.odometer === undefined) {
-          vehicle.start(() => {
-            console.log('vehicle start')
-            vehicle.odometer.get().then((odometer) => {
-              this.distance = odometer.distanceTotal
-              // this.$data.distance = odometer.distanceTotal
-            }, function (err) {
-              console.log(err.error)
-              console.log(err.message)
-            })
-          }, function () {
-            throw Error('constuctor fails')
-          })
-        }
-      }
+    initOdometer (vo) {
+      console.log('enter initOdometer')
+      // Odometer
+      this.getOdometer(vo)
+      this.subscribeOdometer(vo)
+    },
+    getOdometer (vo) {
+      vo.get().then((odometer) => {
+        console.log('get')
+        this.distance = odometer.distanceTotal
+        console.log('get distanceTotal(now) ' + this.distance)
+      }, function (err) {
+        console.log(err.error)
+        console.log(err.message)
+      })
+    },
+    subscribeOdometer (vo) {
+      vo.subscribe((odometer) => {
+        console.log('subscribe')
+        this.distance = odometer.distanceTotal
+        console.log('sub distanceTotal(now) ' + this.distance)
+      })
     },
     go () {
       let date = new Date()
