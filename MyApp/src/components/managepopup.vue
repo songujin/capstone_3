@@ -83,6 +83,9 @@ export default {
         console.log('sub distanceTotal(now) ' + this.distance)
       })
     },
+    goback () {
+      this.$router.push('/')
+    },
     go () {
       let date = new Date()
       let monthNames = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]
@@ -147,9 +150,7 @@ export default {
       storage.saveCFilterKm(this.distance)
       storage.saveCFilterM(setDate.getTime())
 
-      var count = 0
-      count++
-      storage.saveFirst(count)
+      storage.saveFirst('false') // managepopup에 한번 입장했음을 의미
       this.$router.push('/management')
     }
   }

@@ -44,4 +44,7 @@
   <feature name="http://www.obigo.com/api/SVG" required="true">
     <param name="version" value="1.1.0.0"/>
   </feature>
+  <feature name="http://www.obigo.com/api/network" required="true">
+    <param name="version" value="1.1.0.0"/>
+  </feature>
 </widget>

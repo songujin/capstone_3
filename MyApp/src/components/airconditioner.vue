@@ -98,7 +98,7 @@ export default {
   },
   data: function () {
     return {
-      count: 0,
+      boolean: 'true',
       dustValue: 100, // 실시간으로 미세먼지 받아와야함
       dustLevel: '', // 미세먼지 등급은 mounted() 에서 계산
       fineDustValue: 15, // 실시간으로 초미세먼지 받아와야함
@@ -113,8 +113,10 @@ export default {
     }
   },
   created () {
-    this.count = storage.loadFirst()
+    this.boolean = storage.loadFirst()
     this.toggled = storage.loadMode()
+
+    console.log('created boolean ' + this.boolean)
   },
   beforeMount () {
     this.toggled = storage.loadMode()
@@ -175,7 +177,7 @@ export default {
       // }
     },
     isFirst () {
-      if (this.count === '0') {
+      if (this.boolean === 'true') { // true 일 경우
         return true
       }
     }
@@ -187,7 +189,8 @@ export default {
     }, 1000)
     // this.toggle.$event.value = storage.loadMode()
     // this.toggled = storage.loadMode()
-    storage.saveFirst('0')
+    // storage.saveFirst('true') // true일 경우 managepopup
+
     console.log('[mounted toggled value]', storage.loadMode())
     this.toggled = storage.loadMode()
     this.modeFlag = ''

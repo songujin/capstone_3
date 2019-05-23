@@ -260,12 +260,12 @@ let storage = {
     return count
   },
   // =========== First ===========
-  saveFirst: function (cnt) {
-    localStorage.setItem('First', cnt)
+  saveFirst: function (boolean) {
+    localStorage.setItem('First', boolean)
   },
   loadFirst: function () {
     let First = localStorage.getItem('First')
-    First = First || 0
+    First = First || true
     return First
   },
   // =========== Alarm ============
