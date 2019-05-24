@@ -25,19 +25,48 @@ export default {
       alarmEngineOilFlag: true,
       alarmBatteryFlag: true,
       alarmCFilterFlag: true,
-      alarmWaterFlag: true
+      alarmWaterFlag: true,
+      chargeLevel: '',
+      warningBatteryFlag: true
     }
   },
   methods: {
-    startVehicle () {
+    startVehicle: function () {
+      let self = this
       let vehicle = window.navigator.vehicle
       if (vehicle) {
         vehicle.start(() => {
           console.log('hello startVehicle')
+          self.initBatteryStatus(vehicle.batteryStatus)
         }, function () {
           throw Error('constuctor fails')
         })
       }
+    },
+    initBatteryStatus (vb) {
+      console.log('enter initBatteryStatus')
+      // Battery
+      this.getBatteryStatus(vb)
+      this.subscribeBatteryStatus(vb)
+    },
+    getBatteryStatus (vb) {
+      vb.get().then((batteryStatus) => {
+        console.log('get')
+        this.chargeLevel = batteryStatus.chargeLevel
+        this.$store.commit('setChargeLevel', this.chargeLevel)
+        console.log('get chargeLevel ' + this.chargeLevel)
+      }, function (err) {
+        console.log(err.error)
+        console.log(err.message)
+      })
+    },
+    subscribeBatteryStatus (vb) {
+      vb.subscribe((batteryStatus) => {
+        console.log('subscribe')
+        this.chargeLevel = batteryStatus.chargeLevel
+        this.$store.commit('setChargeLevel', this.chargeLevel)
+        console.log('sub chargeLevel ' + this.chargeLevel)
+      })
     },
     onBack (evt) {
       console.log(evt)
@@ -148,6 +177,14 @@ export default {
     setInterval(function () {
       AP.alarmPopup()
     }, 10000) // 30분 1800000
+  },
+  watch: {
+    chargeLevel: function () {
+      if (this.chargeLevel < 10 && this.warningBatteryFlag === true) {
+        this.warningBatteryFlag = false
+        this.$router.pusth('/warningBattery')
+      }
+    }
   }
 }
 </script>

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import * as getters from './getters'
 import createLogger from './util/logger'
 
 Vue.use(Vuex)
@@ -8,18 +8,17 @@ Vue.use(Vuex)
 const debug = process.env.NODE_ENV !== 'production'
 
 const store = new Vuex.Store({
+  getters,
   state: {
-    alarmRFValue: 0
+    chargeLevel: 0
   },
   mutations: {
-    changeAlarmRFValue (state, value) {
-      state.value = value
+    setChargeLevel (state, value) {
+      state.chargeLevel = value
     }
   },
   strict: debug,
   plugins: debug ? [createLogger()] : []
 })
-
-Vue.use(store)
 
 export default store

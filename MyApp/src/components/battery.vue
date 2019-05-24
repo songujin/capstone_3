@@ -54,6 +54,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import RadialProgressBar from 'vue-radial-progress'
 import { storage } from '../js/manageLibs'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'battery',
@@ -78,6 +79,11 @@ export default {
       updateCnt: 0 // update를 했는지 안했는지 구분
     }
   },
+  computed: {
+    ...mapGetters([
+      'getChargeLevel'
+    ])
+  },
   created () {
     this.updateCnt = storage.loadBatteryUpdate()
     console.log('count : ' + this.updateCnt)
@@ -88,11 +94,16 @@ export default {
     this.month = Math.floor(betweenDay / 30.4)
 
     let vehicle = window.navigator.vehicle
-    this.initBatteryStatus(vehicle.batteryStatus)
     this.initOdometer(vehicle.odometer)
 
     if (this.month >= 36) {
       this.month = 36
+    }
+    this.chargeLevel = this.getChargeLevel
+  },
+  watch: {
+    getChargeLevel: function (newVal, old) {
+      this.chargeLevel = this.getChargeLevel
     }
   },
   methods: {
@@ -155,29 +166,6 @@ export default {
         if (this.km >= 60000) {
           this.km = 60000
         }
-      })
-    },
-    initBatteryStatus (vb) {
-      console.log('enter initBatteryStatus')
-      // Battery
-      this.getBatteryStatus(vb)
-      this.subscribeBatteryStatus(vb)
-    },
-    getBatteryStatus (vb) {
-      vb.get().then((batteryStatus) => {
-        console.log('get')
-        this.chargeLevel = batteryStatus.chargeLevel
-        console.log('get chargeLevel ' + this.chargeLevel)
-      }, function (err) {
-        console.log(err.error)
-        console.log(err.message)
-      })
-    },
-    subscribeBatteryStatus (vb) {
-      vb.subscribe((batteryStatus) => {
-        console.log('subscribe')
-        this.chargeLevel = batteryStatus.chargeLevel
-        console.log('sub chargeLevel ' + this.chargeLevel)
       })
     },
     go () {
