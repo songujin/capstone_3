@@ -26,8 +26,8 @@ export default {
       alarmBatteryFlag: true,
       alarmCFilterFlag: true,
       alarmWaterFlag: true,
-      chargeLevel: '',
-      warningBatteryFlag: true
+      warningBatteryFlag: true,
+      chargeLevel: ''
     }
   },
   methods: {
@@ -38,6 +38,7 @@ export default {
         vehicle.start(() => {
           console.log('hello startVehicle')
           self.initBatteryStatus(vehicle.batteryStatus)
+          self.initTire(vehicle.tire)
         }, function () {
           throw Error('constuctor fails')
         })
@@ -66,6 +67,61 @@ export default {
         this.chargeLevel = batteryStatus.chargeLevel
         this.$store.commit('setChargeLevel', this.chargeLevel)
         console.log('sub chargeLevel ' + this.chargeLevel)
+      })
+    },
+    initTire (vt) {
+      console.log('enter initTire')
+      // Tire
+      this.getTire(vt)
+      this.subscribeTire(vt)
+    },
+    getTire (vt) {
+      vt.get().then((tire) => {
+        console.log('get')
+        this.tireStateRF = tire[0].state
+        this.pressureRF = tire[0].pressure
+        this.tireStateLF = tire[1].state
+        this.pressureLF = tire[1].pressure
+        this.tireStateRR = tire[2].state
+        this.pressureRR = tire[2].pressure
+        this.tireStateLR = tire[3].state
+        this.pressureLR = tire[3].pressure
+        this.$store.commit('setTireStateRF', this.tireStateRF)
+        this.$store.commit('setPressureRF', this.pressureRF)
+        this.$store.commit('setTireStateLF', this.tireStateLF)
+        this.$store.commit('setPressureLF', this.pressureLF)
+        this.$store.commit('setTireStateRR', this.tireStateRR)
+        this.$store.commit('setPressureRR', this.pressureRR)
+        this.$store.commit('setTireStateLR', this.tireStateLR)
+        this.$store.commit('setPressureLR', this.pressureLR)
+        console.log('get TireState ' + this.TireState)
+        console.log('get pressure ' + this.pressure)
+      }, function (err) {
+        console.log(err.error)
+        console.log(err.message)
+      })
+    },
+    subscribeTire (vt) {
+      vt.subscribe((tire) => {
+        console.log('subscribe')
+        this.tireStateRF = tire[0].state
+        this.pressureRF = tire[0].pressure
+        this.tireStateLF = tire[1].state
+        this.pressureLF = tire[1].pressure
+        this.tireStateRR = tire[2].state
+        this.pressureRR = tire[2].pressure
+        this.tireStateLR = tire[3].state
+        this.pressureLR = tire[3].pressure
+        this.$store.commit('setTireStateRF', this.tireStateRF)
+        this.$store.commit('setPressureRF', this.pressureRF)
+        this.$store.commit('setTireStateLF', this.tireStateLF)
+        this.$store.commit('setPressureLF', this.pressureLF)
+        this.$store.commit('setTireStateRR', this.tireStateRR)
+        this.$store.commit('setPressureRR', this.pressureRR)
+        this.$store.commit('setTireStateLR', this.tireStateLR)
+        this.$store.commit('setPressureLR', this.pressureLR)
+        console.log('sub TireState ' + this.TireState)
+        console.log('sub pressure ' + this.pressure)
       })
     },
     onBack (evt) {
@@ -182,7 +238,7 @@ export default {
     chargeLevel: function () {
       if (this.chargeLevel < 10 && this.warningBatteryFlag === true) {
         this.warningBatteryFlag = false
-        this.$router.pusth('/warningBattery')
+        this.$router.push('/warningBattery')
       }
     }
   }

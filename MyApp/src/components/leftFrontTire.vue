@@ -24,7 +24,7 @@
             </div>
             <div class='detail'>
                 <div class='km'>
-                  <radial-progress-bar :diameter="200"
+                  <radial-progress-bar :diameter="250"
                       :completed-steps="km"
                       :total-steps=60000>
                     <p><br></p>
@@ -33,16 +33,13 @@
                   </radial-progress-bar>
                 </div>
                 <div class='cycle'>
-                  <radial-progress-bar :diameter="200"
+                  <radial-progress-bar :diameter="250"
                       :completed-steps=month
                       :total-steps=36>
                     <p><br></p>
                     <p>Replacement Period<br>: {{ 36 }} months</p>
                     <p>Remaining<br>: {{ 36 - month }} months</p>
                   </radial-progress-bar>
-                </div>
-                <div class="status">
-                  <p style="font-size: 22px;">Current status: {{ TireState }}, {{ pressure }}</p>
                 </div>
             </div> 
         </div>  
@@ -71,8 +68,8 @@ export default {
       ],
       km: 0,
       month: 0,
-      TireState: '',
-      pressure: '', // Unit: mbar
+      // TireState: '',
+      // pressure: '', // Unit: mbar
       nowTotal: '',
       pastTotal: '',
       updateCnt: 0 // update를 했는지 안했는지 구분
@@ -88,7 +85,7 @@ export default {
     this.month = Math.floor(betweenDay / 30.4)
 
     let vehicle = window.navigator.vehicle
-    this.initTire(vehicle.tire)
+    // this.initTire(vehicle.tire)
     this.initOdometer(vehicle.odometer)
 
     if (this.month >= 36) {
@@ -157,33 +154,6 @@ export default {
         }
       })
     },
-    initTire (vt) {
-      console.log('enter initTire')
-      // Tire
-      this.getTire(vt)
-      this.subscribeTire(vt)
-    },
-    getTire (vt) {
-      vt.get().then((tire) => {
-        console.log('get')
-        this.TireState = tire[1].state
-        this.pressure = tire[1].pressure
-        console.log('get TireState ' + this.TireState)
-        console.log('get pressure ' + this.pressure)
-      }, function (err) {
-        console.log(err.error)
-        console.log(err.message)
-      })
-    },
-    subscribeTire (vt) {
-      vt.subscribe((tire) => {
-        console.log('subscribe')
-        this.TireState = tire[1].state
-        this.pressure = tire[1].pressure
-        console.log('sub TireState ' + this.TireState)
-        console.log('sub pressure ' + this.pressure)
-      })
-    },
     go () {
       this.$router.push('/')
     },
@@ -238,7 +208,7 @@ div.top {
 }
 div.detail {
     margin: 0 auto;
-    height: 81.5%;
+    height: 100%;
     width: 100%;
     text-align: center;
     border: 1px solid rgb(128, 128, 128);
@@ -271,24 +241,24 @@ div.parts > :nth-child(4) > .btn-secondary{
 div.km {
   float: left;
   width: 50%;
-  height: 85%;
+  height: 100%;
   .radial-progress-container {
     margin-top: 5px;
-    margin-left: 60px;
+    margin-left: 25px;
     p {
-      font-size: 16px;
+      font-size: 18px;
     }
   }
 }
 div.cycle {
   float: left;
   width: 50%;
-  height: 85%;
+  height: 100%;
   .radial-progress-container {
     margin-top: 5px;
-    margin-left: 30px;
+    margin-left: 20px;
     p {
-      font-size: 16px;
+      font-size: 18px;
     }
   }
 }
