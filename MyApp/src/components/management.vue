@@ -26,7 +26,8 @@
                 <div class='km'>
                   <radial-progress-bar :diameter="200"
                       :completed-steps="km"
-                      :total-steps=15000>
+                      :total-steps=15000
+                      stopColor = '#ff0000'>
                     <p><br></p>
                     <p>Replacement Period<br>: {{ 15000 }} km</p>
                     <p>Remaining<br>: {{ 15000 - km }} km</p>
@@ -35,16 +36,24 @@
                 <div class='cycle'>
                   <radial-progress-bar :diameter="200"
                       :completed-steps=month
-                      :total-steps=12>
+                      :total-steps=12
+                      stopColor = '#ff0000'>
                     <p><br></p>
                     <p>Replacement Period<br>: {{ 12 }} months</p>
                     <p>Remaining<br>: {{ 12 - month }} months</p>
                   </radial-progress-bar>
                 </div>
-                <div class="status">
-                  <p style="font-size: 22px;">Current status: {{ oilLevel }}</p>
-                </div>
-            </div>       
+            </div>
+            <div class='status'>
+              <div class='s_title'>
+                <p>EngineOil<br> Level</p>
+              </div>
+              <div class='s_bar'>
+                <mdb-container>
+                  <mdb-progress :height="27" :value="oilLevel" :color="variant" striped animated>{{ oilLevel }}%</mdb-progress>
+                </mdb-container>
+              </div>
+            </div>  
         </div>  
     </div> 
   </div>
@@ -53,12 +62,15 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import RadialProgressBar from 'vue-radial-progress'
+import { mdbContainer, mdbProgress } from 'mdbvue'
 import { storage } from '../js/manageLibs'
 
 export default {
   name: 'management',
   components: {
-    RadialProgressBar
+    RadialProgressBar,
+    mdbContainer,
+    mdbProgress
   },
   data: function () {
     return {
@@ -71,7 +83,8 @@ export default {
       ],
       month: 0,
       km: 0,
-      oilLevel: '',
+      oilLevel: 0,
+      variant: 'info',
       nowTotal: '',
       pastTotal: '',
       updateCnt: 0 // update를 했는지 안했는지 구분
@@ -166,8 +179,36 @@ export default {
     getEngineOil (ve) {
       ve.get().then((engineOil) => {
         console.log('get')
-        this.oilLevel = engineOil.level
-        console.log('get oilLevel ' + this.oilLevel)
+        // this.oilLevel = engineOil.level
+        // console.log('get oilLevel ' + this.oilLevel)
+        switch (engineOil.level) {
+          case 'warning': this.oilLevel = 0
+            break
+          case 'BargraphElement1': this.oilLevel = 12.5
+            break
+          case 'BargraphElement2': this.oilLevel = 25
+            break
+          case 'BargraphElement3': this.oilLevel = 37.5
+            break
+          case 'BargraphElement4': this.oilLevel = 50
+            break
+          case 'BargraphElement5': this.oilLevel = 62.5
+            break
+          case 'BargraphElement6': this.oilLevel = 75
+            break
+          case 'BargraphElement7': this.oilLevel = 87.5
+            break
+          case 'BargraphElement8': this.oilLevel = 100
+            break
+        }
+
+        if (this.oilLevel >= 70) {
+          this.variant = 'success'
+        } else if (this.oilLevel >= 50) {
+          this.variant = 'warning'
+        } else {
+          this.variant = 'danger'
+        }
       }, function (err) {
         console.log(err.error)
         console.log(err.message)
@@ -176,8 +217,36 @@ export default {
     subscribeEngineOil (ve) {
       ve.subscribe((engineOil) => {
         console.log('subscribe')
-        this.oilLevel = engineOil.level
-        console.log('sub oilLevel ' + this.oilLevel)
+        // this.oilLevel = engineOil.level
+        // console.log('sub oilLevel ' + this.oilLevel)
+        switch (engineOil.level) {
+          case 'warning': this.oilLevel = 0
+            break
+          case 'BargraphElement1': this.oilLevel = 12.5
+            break
+          case 'BargraphElement2': this.oilLevel = 25
+            break
+          case 'BargraphElement3': this.oilLevel = 37.5
+            break
+          case 'BargraphElement4': this.oilLevel = 50
+            break
+          case 'BargraphElement5': this.oilLevel = 62.5
+            break
+          case 'BargraphElement6': this.oilLevel = 75
+            break
+          case 'BargraphElement7': this.oilLevel = 87.5
+            break
+          case 'BargraphElement8': this.oilLevel = 100
+            break
+        }
+
+        if (this.oilLevel >= 70) {
+          this.variant = 'success'
+        } else if (this.oilLevel >= 50) {
+          this.variant = 'warning'
+        } else {
+          this.variant = 'danger'
+        }
       })
     },
     go () {
@@ -233,7 +302,7 @@ div.top {
 }
 div.detail {
     margin: 0 auto;
-    height: 81.5%;
+    height: 65%;
     width: 100%;
     text-align: center;
     border: 1px solid rgb(128, 128, 128);
@@ -285,6 +354,31 @@ div.cycle {
     p {
       font-size: 16px;
     }
+  }
+}
+div.status {
+  margin: 0 auto;
+  width: 100%;
+  height: 16%;
+}
+div.s_title {
+  float: left;
+  width: 20%;
+  p {
+    font-size: 18px;
+    margin-left: 17px;
+  }
+}
+div.s_bar {
+  float: left;
+  width: 72%;
+  margin-top: 13px;
+  .container {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .progress {
+    background-color: rgb(50, 50, 50)
   }
 }
 @mixin mx-carmodel-7pr {

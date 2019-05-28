@@ -26,7 +26,8 @@
                 <div class='km'>
                   <radial-progress-bar :diameter="200"
                       :completed-steps="km"
-                      :total-steps=15000>
+                      :total-steps=15000
+                      stopColor = '#ff0000'>
                     <p><br></p>
                     <p>Replacement Period<br>: {{ 15000 }} km</p>
                     <p>Remaining<br>: {{ 15000 - km }} km</p>
@@ -35,16 +36,24 @@
                 <div class='cycle'>
                   <radial-progress-bar :diameter="200"
                       :completed-steps=month
-                      :total-steps=6>
+                      :total-steps=6
+                      stopColor = '#ff0000'>
                     <p><br></p>
                     <p>Replacement Period<br>: {{ 6 }} months</p>
                     <p>Remaining<br>: {{ 6 - month }} months</p>
                   </radial-progress-bar>
                 </div>
-                <div class="status">
-                  <p style="font-size: 22px;">Current status: {{ }}</p>
-                </div>
-            </div>       
+            </div>
+            <div class='status'>
+              <div class='s_title'>
+                <p>Pollution Level</p>
+              </div>
+              <div class='s_bar'>
+                <mdb-container>
+                  <mdb-progress :height="27" :value="pollution" :color="variant" striped animated>{{ pollution }}%</mdb-progress>
+                </mdb-container>
+              </div>
+            </div>  
         </div>  
     </div> 
   </div>
@@ -53,12 +62,15 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import RadialProgressBar from 'vue-radial-progress'
+import { mdbContainer, mdbProgress } from 'mdbvue'
 import { storage } from '../js/manageLibs'
 
 export default {
   name: 'cabinAirFilter',
   components: {
-    RadialProgressBar
+    RadialProgressBar,
+    mdbContainer,
+    mdbProgress
   },
   data: function () {
     return {
@@ -71,6 +83,8 @@ export default {
       ],
       km: 0,
       month: 0,
+      pollution: 50,
+      variant: 'success',
       nowTotal: '', // 현재 차량의 총 이동거리
       pastTotal: '', // 과거 교체했을 당시의 총 이동거리
       updateCnt: 0 // update를 했는지 안했는지 구분
@@ -90,6 +104,14 @@ export default {
 
     if (this.month >= 6) {
       this.month = 6
+    }
+
+    if (this.pollution === 100) {
+      this.variant = 'danger'
+    } else if (this.pollution > 70) {
+      this.variant = 'warning'
+    } else {
+      this.variant = 'success'
     }
   },
   methods: {
@@ -208,7 +230,7 @@ div.top {
 }
 div.detail {
     margin: 0 auto;
-    height: 81.5%;
+    height: 65%;
     width: 100%;
     text-align: center;
     border: 1px solid rgb(128, 128, 128);
@@ -260,6 +282,31 @@ div.cycle {
     p {
       font-size: 16px;
     }
+  }
+}
+div.status {
+  margin: 0 auto;
+  width: 100%;
+  height: 16%;
+}
+div.s_title {
+  float: left;
+  width: 20%;
+  p {
+    font-size: 18px;
+    margin-left: 22px;
+  }
+}
+div.s_bar {
+  float: left;
+  width: 72%;
+  margin-top: 13px;
+  .container {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .progress {
+    background-color: rgb(50, 50, 50)
   }
 }
 @mixin mx-carmodel-7pr {

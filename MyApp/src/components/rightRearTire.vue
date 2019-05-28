@@ -26,7 +26,8 @@
                 <div class='km'>
                   <radial-progress-bar :diameter="250"
                       :completed-steps="km"
-                      :total-steps=60000>
+                      :total-steps=60000
+                      stopColor = '#ff0000'>
                     <p><br></p>
                     <p>Replacement Period<br>: {{ 60000 }} km</p>
                     <p>Remaining<br>: {{ 60000 - km }} km</p>
@@ -35,7 +36,8 @@
                 <div class='cycle'>
                   <radial-progress-bar :diameter="250"
                       :completed-steps=month
-                      :total-steps=36>
+                      :total-steps=36
+                      stopColor = '#ff0000'>
                     <p><br></p>
                     <p>Replacement Period<br>: {{ 36 }} months</p>
                     <p>Remaining<br>: {{ 36 - month }} months</p>

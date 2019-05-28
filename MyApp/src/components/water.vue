@@ -26,7 +26,8 @@
                 <div class='km'>
                   <radial-progress-bar :diameter="200"
                       :completed-steps="km"
-                      :total-steps=40000>
+                      :total-steps=40000
+                      stopColor = '#ff0000'>
                     <p><br></p>
                     <p>Replacement Period<br>: {{ 40000 }} km</p>
                     <p>Remaining<br>: {{ 40000 - km }} km</p>
@@ -35,16 +36,24 @@
                 <div class='cycle'>
                   <radial-progress-bar :diameter="200"
                       :completed-steps=month
-                      :total-steps=24>
+                      :total-steps=24
+                      stopColor = '#ff0000'>
                     <p><br></p>
                     <p>Replacement Period<br>: {{ 24 }} months</p>
                     <p>Remaining<br>: {{ 24 - month }} months</p>
                   </radial-progress-bar>
                 </div>
-                <div class="status">
-                  <p style="font-size: 22px;">Current status: {{ tempWarning }}</p>
-                </div>
-            </div>       
+            </div>
+            <div class='status'>
+              <div class='s_title'>
+                <p>TEMP</p>
+              </div>
+              <div class='s_bar'>
+                <mdb-container>
+                  <mdb-progress :height="27" :value="temp+40" max = "254" :color="variant" striped animated>{{temp}}°C</mdb-progress>
+                </mdb-container>
+              </div>
+            </div>
         </div>  
     </div> 
   </div>
@@ -53,12 +62,15 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import RadialProgressBar from 'vue-radial-progress'
+import { mdbContainer, mdbProgress } from 'mdbvue'
 import { storage } from '../js/manageLibs'
 
 export default {
   name: 'battery',
   components: {
-    RadialProgressBar
+    RadialProgressBar,
+    mdbContainer,
+    mdbProgress
   },
   data: function () {
     return {
@@ -71,7 +83,8 @@ export default {
       ],
       km: 0,
       month: 0,
-      tempWarning: '0', // boolean
+      temp: 0,
+      variant: 'success',
       nowTotal: '',
       pastTotal: '',
       updateCnt: 0 // update를 했는지 안했는지 구분
@@ -87,7 +100,7 @@ export default {
     this.month = Math.floor(betweenDay / 30.4)
 
     let vehicle = window.navigator.vehicle
-    this.initWater(vehicle.water)
+    this.initEngineCoolant(vehicle.engineCoolant)
     this.initOdometer(vehicle.odometer)
 
     if (this.month >= 24) {
@@ -156,27 +169,37 @@ export default {
         }
       })
     },
-    initWater (vw) {
-      console.log('enter initWater')
-      // Water
-      this.getWater(vw)
-      this.subscribeWater(vw)
+    initEngineCoolant (vc) {
+      console.log('enter initEngineCoolant')
+      // EngineCoolant
+      this.getEngineCoolant(vc)
+      this.subscribeEngineCoolant(vc)
     },
-    getWater (vw) {
-      vw.get().then((water) => {
+    getEngineCoolant (vc) {
+      vc.get().then((engineCoolant) => {
         console.log('get')
-        this.tempWarning = water.tempWarning
-        console.log('get tempWarning ' + this.tempWarning)
+        this.temp = engineCoolant.temperature
+        console.log('get temperature ' + this.temperature)
+        if (this.temp > 110 || this.temp < 0) {
+          this.variant = 'danger'
+        } else {
+          this.variant = 'success'
+        }
       }, function (err) {
         console.log(err.error)
         console.log(err.message)
       })
     },
-    subscribeWater (vw) {
-      vw.subscribe((water) => {
+    subscribeEngineCoolant (vc) {
+      vc.subscribe((engineCoolant) => {
         console.log('subscribe')
-        this.tempWarning = water.tempWarning
-        console.log('sub tempWarning ' + this.tempWarning)
+        this.temp = engineCoolant.temperature
+        console.log('sub temperature ' + this.temperature)
+        if (this.temp > 110 || this.temp < 0) {
+          this.variant = 'danger'
+        } else {
+          this.variant = 'success'
+        }
       })
     },
     go () {
@@ -233,7 +256,7 @@ div.top {
 }
 div.detail {
     margin: 0 auto;
-    height: 81.5%;
+    height: 65%;
     width: 100%;
     text-align: center;
     border: 1px solid rgb(128, 128, 128);
@@ -285,6 +308,27 @@ div.cycle {
     p {
       font-size: 16px;
     }
+  }
+}
+div.s_title {
+  float: left;
+  width: 20%;
+  p {
+    font-size: 22px;
+    margin-left: 35px;
+    margin-top: 8px;
+  }
+}
+div.s_bar {
+  float: left;
+  width: 72%;
+  margin-top: 13px;
+  .container {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .progress {
+    background-color: rgb(50, 50, 50)
   }
 }
 @mixin mx-carmodel-7pr {

@@ -26,7 +26,8 @@
               <div class='km'>
                 <radial-progress-bar :diameter="200"
                     :completed-steps="km"
-                    :total-steps=60000>
+                    :total-steps=60000
+                    stopColor = '#ff0000'>
                   <p><br></p>
                   <p>Replacement Period<br>: {{ 60000 }} km</p>
                   <p>Remaining<br>: {{ 60000 - km }} km</p>
@@ -35,14 +36,22 @@
               <div class='cycle'>
                 <radial-progress-bar :diameter="200"
                     :completed-steps=month
-                    :total-steps=36>
+                    :total-steps=36
+                    stopColor = '#ff0000'>
                   <p><br></p>
                   <p>Replacement Period<br>: {{ 36 }} months</p>
                   <p>Remaining<br>: {{ 36 - month }} months</p>
                 </radial-progress-bar>
               </div>
-              <div class="status">
-                <p style="font-size: 22px;">Current status: {{ chargeLevel }}%</p>
+            </div>
+            <div class='status'>
+              <div class='s_title'>
+                <p>Charge Level</p>
+              </div>
+              <div class='s_bar'>
+                <mdb-container>
+                  <mdb-progress :height="27" :value="chargeLevel" :color="variant" striped animated>{{ chargeLevel }}%</mdb-progress>
+                </mdb-container>
               </div>
             </div>
         </div>  
@@ -53,6 +62,7 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import RadialProgressBar from 'vue-radial-progress'
+import { mdbContainer, mdbProgress } from 'mdbvue'
 import { storage } from '../js/manageLibs'
 import { mapGetters } from 'vuex'
 
@@ -60,7 +70,9 @@ export default {
   name: 'battery',
   props: ['value'],
   components: {
-    RadialProgressBar
+    RadialProgressBar,
+    mdbContainer,
+    mdbProgress
   },
   data: function () {
     return {
@@ -73,7 +85,8 @@ export default {
       ],
       km: 0,
       month: 0,
-      chargeLevel: '',
+      chargeLevel: 50,
+      variant: '',
       nowTotal: '',
       pastTotal: '',
       updateCnt: 0 // update를 했는지 안했는지 구분
@@ -100,6 +113,14 @@ export default {
       this.month = 36
     }
     this.chargeLevel = this.getChargeLevel
+    console.log('charge ' + this.chargeLevel)
+    if (this.chargeLevel > 70) {
+      this.variant = 'success'
+    } else if (this.chargeLevel > 50) {
+      this.variant = 'warning'
+    } else {
+      this.variant = 'danger'
+    }
   },
   watch: {
     getChargeLevel: function (newVal, old) {
@@ -221,7 +242,7 @@ div.top {
 }
 div.detail {
     margin: 0 auto;
-    height: 81.5%;
+    height: 65%;
     width: 100%;
     text-align: center;
     border: 1px solid rgb(128, 128, 128);
@@ -273,6 +294,31 @@ div.cycle {
     p {
       font-size: 16px;
     }
+  }
+}
+div.status {
+  margin: 0 auto;
+  width: 100%;
+  height: 16%;
+}
+div.s_title {
+  float: left;
+  width: 20%;
+  p {
+    font-size: 18px;
+    margin-left: 35px;
+  }
+}
+div.s_bar {
+  float: left;
+  width: 72%;
+  margin-top: 13px;
+  .container {
+    padding-right: 0px;
+    padding-left: 0px;
+  } 
+  .progress {
+    background-color: rgb(50, 50, 50)
   }
 }
 @mixin mx-carmodel-7pr {
