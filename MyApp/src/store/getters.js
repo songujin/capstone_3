@@ -25,3 +25,9 @@ export const getTireStateLR = state => {
 export const getPressureLR = state => {
   return state.pressureLR
 }
+export const getOilLevel = state => {
+  return state.oilLevel
+}
+export const getTemp = state => {
+  return state.temp
+}

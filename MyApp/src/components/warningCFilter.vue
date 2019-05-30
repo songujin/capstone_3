@@ -83,7 +83,7 @@ div.btnGo {
 div.text {
   background-image: url('../img/warning.png');
   background-repeat: no-repeat;
-  background-size: 30% 50%;
+  background-size: 25% 60%;
   background-position-x: center;
   background-position-y: top;
   float: left;

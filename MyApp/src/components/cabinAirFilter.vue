@@ -105,10 +105,10 @@ export default {
     if (this.month >= 6) {
       this.month = 6
     }
-
-    if (this.pollution === 100) {
+    if (this.month === 1) {
       this.variant = 'danger'
-    } else if (this.pollution > 70) {
+      this.$router.push('/warningCFilter')
+    } else if (this.month === 2) {
       this.variant = 'warning'
     } else {
       this.variant = 'success'

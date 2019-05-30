@@ -125,6 +125,15 @@ export default {
   watch: {
     getChargeLevel: function (newVal, old) {
       this.chargeLevel = this.getChargeLevel
+    },
+    chargeLevel: function (newVal, old) {
+      if (this.chargeLevel > 70) {
+        this.variant = 'success'
+      } else if (this.chargeLevel > 50) {
+        this.variant = 'warning'
+      } else {
+        this.variant = 'danger'
+      }
     }
   },
   methods: {

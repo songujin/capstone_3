@@ -18,7 +18,9 @@ const store = new Vuex.Store({
     tireStateRR: '',
     pressureRR: 0,
     tireStateLR: '',
-    pressureLR: 0
+    pressureLR: 0,
+    oilLevel: '',
+    temp: ''
   },
   mutations: {
     setChargeLevel (state, value) {
@@ -47,6 +49,12 @@ const store = new Vuex.Store({
     },
     setPressureLR (state, value) {
       state.pressureLR = value
+    },
+    setOilLevel (state, value) {
+      state.oilLevel = value
+    },
+    setTemp (state, value) {
+      state.temp = value
     }
   },
   strict: debug,

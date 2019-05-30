@@ -27,7 +27,23 @@ export default {
       alarmCFilterFlag: true,
       alarmWaterFlag: true,
       warningBatteryFlag: true,
-      chargeLevel: ''
+      warningRFFlag: true,
+      warningRRFlag: true,
+      warningLRFlag: true,
+      warningLFFlag: true,
+      warningEngineOilFlag: true,
+      warningWaterFlag: true,
+      chargeLevel: '',
+      oilLevel: '',
+      temp: '',
+      tireStateRF: '',
+      pressureRF: '',
+      tireStateLF: '',
+      pressureLF: '',
+      tireStateRR: '',
+      pressureRR: '',
+      tireStateLR: '',
+      pressureLR: ''
     }
   },
   methods: {
@@ -39,10 +55,75 @@ export default {
           console.log('hello startVehicle')
           self.initBatteryStatus(vehicle.batteryStatus)
           self.initTire(vehicle.tire)
+          self.initEngineOil(vehicle.engineOil)
+          self.initEngineCoolant(vehicle.engineCoolant)
         }, function () {
           throw Error('constuctor fails')
         })
       }
+    },
+    initEngineOil (ve) {
+      console.log('enter initEngineOil')
+      // EnginOil
+      this.getEngineOil(ve)
+      this.subscribeEngineOil(ve)
+    },
+    getEngineOil (ve) {
+      ve.get().then((engineOil) => {
+        console.log('get')
+        switch (engineOil.level) {
+          case 'warning': this.oilLevel = 0
+            break
+          case 'BargraphElement1': this.oilLevel = 12.5
+            break
+          case 'BargraphElement2': this.oilLevel = 25
+            break
+          case 'BargraphElement3': this.oilLevel = 37.5
+            break
+          case 'BargraphElement4': this.oilLevel = 50
+            break
+          case 'BargraphElement5': this.oilLevel = 62.5
+            break
+          case 'BargraphElement6': this.oilLevel = 75
+            break
+          case 'BargraphElement7': this.oilLevel = 87.5
+            break
+          case 'BargraphElement8': this.oilLevel = 100
+            break
+        }
+        this.$store.commit('setOilLevel', this.oilLevel)
+        console.log('get oilLevel ' + this.oilLevel)
+      }, function (err) {
+        console.log(err.error)
+        console.log(err.message)
+      })
+    },
+    subscribeEngineOil (ve) {
+      ve.subscribe((engineOil) => {
+        console.log('subscribe')
+        switch (engineOil.level) {
+          case 'warning': this.oilLevel = 0
+            break
+          case 'BargraphElement1': this.oilLevel = 12.5
+            break
+          case 'BargraphElement2': this.oilLevel = 25
+            break
+          case 'BargraphElement3': this.oilLevel = 37.5
+            break
+          case 'BargraphElement4': this.oilLevel = 50
+            break
+          case 'BargraphElement5': this.oilLevel = 62.5
+            break
+          case 'BargraphElement6': this.oilLevel = 75
+            break
+          case 'BargraphElement7': this.oilLevel = 87.5
+            break
+          case 'BargraphElement8': this.oilLevel = 100
+            break
+        }
+        this.$store.commit('setOilLevel', this.oilLevel)
+        console.log('sub oilLevel ' + this.oilLevel)
+      })
     },
     initBatteryStatus (vb) {
       console.log('enter initBatteryStatus')
@@ -122,6 +203,31 @@ export default {
         this.$store.commit('setPressureLR', this.pressureLR)
         console.log('sub TireState ' + this.TireState)
         console.log('sub pressure ' + this.pressure)
+      })
+    },
+    initEngineCoolant (vc) {
+      console.log('enter initEngineCoolant')
+      // EngineCoolant
+      this.getEngineCoolant(vc)
+      this.subscribeEngineCoolant(vc)
+    },
+    getEngineCoolant (vc) {
+      vc.get().then((engineCoolant) => {
+        console.log('get')
+        this.temp = engineCoolant.temperature
+        this.$store.commit('setTemp', this.temp)
+        console.log('get temperature ' + this.temp)
+      }, function (err) {
+        console.log(err.error)
+        console.log(err.message)
+      })
+    },
+    subscribeEngineCoolant (vc) {
+      vc.subscribe((engineCoolant) => {
+        console.log('subscribe')
+        this.temp = engineCoolant.temperature
+        this.$store.commit('setTemp', this.temp)
+        console.log('sub temperature ' + this.temp)
       })
     },
     onBack (evt) {
@@ -236,9 +342,69 @@ export default {
   },
   watch: {
     chargeLevel: function () {
-      if (this.chargeLevel < 10 && this.warningBatteryFlag === true) {
+      if (this.chargeLevel <= 50 && this.warningBatteryFlag === true) {
         this.warningBatteryFlag = false
         this.$router.push('/warningBattery')
+      }
+    },
+    oilLevel: function () {
+      if (this.oilLevel < 50 && this.warningEngineOilFlag === true) {
+        this.warningEngineOilFlag = false
+        this.$router.push('/warningEngineOil')
+      }
+    },
+    temp: function () {
+      if ((this.temp > 110 || this.temp < 0) && this.warningWaterFlag === true) {
+        this.warningWaterFlag = false
+        this.$router.push('/warningWater')
+      }
+    },
+    tireStateRF: function () {
+      if (this.tireStateRF !== 'Good State' && this.warningRFFlag === true) {
+        this.warningRFFlag = false
+        this.$router.push('/warningRF')
+      }
+    },
+    pressureRF: function () {
+      if ((this.pressureRF < 1900 || this.pressureRF > 3800) && this.warningRFFlag === true) {
+        this.warningRFFlag = false
+        this.$router.push('/warningRF')
+      }
+    },
+    tireStateLF: function () {
+      if (this.tireStateLF !== 'Good State' && this.warningLFFlag === true) {
+        this.warningLFFlag = false
+        this.$router.push('/warningLF')
+      }
+    },
+    pressureLF: function () {
+      if ((this.pressureLF < 1900 || this.pressureLF > 3800) && this.warningLFFlag === true) {
+        this.warningLFFlag = false
+        this.$router.push('/warningLF')
+      }
+    },
+    tireStateRR: function () {
+      if (this.tireStateRR !== 'Good State' && this.warningRRFlag === true) {
+        this.warningRRFlag = false
+        this.$router.push('/warningRR')
+      }
+    },
+    pressureRR: function () {
+      if ((this.pressureRR < 1900 || this.pressureRR > 3800) && this.warningRRFlag === true) {
+        this.warningRRFlag = false
+        this.$router.push('/warningRR')
+      }
+    },
+    tireStateLR: function () {
+      if (this.tireStateLR !== 'Good State' && this.warningWaterFlag === true) {
+        this.warningWaterFlag = false
+        this.$router.push('/warningLR')
+      }
+    },
+    pressureLR: function () {
+      if ((this.pressureLR < 1900 || this.pressureLR > 3800) && this.warningLRFlag === true) {
+        this.warningLRFlag = false
+        this.$router.push('/warningLR')
       }
     }
   }

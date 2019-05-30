@@ -64,6 +64,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import RadialProgressBar from 'vue-radial-progress'
 import { mdbContainer, mdbProgress } from 'mdbvue'
 import { storage } from '../js/manageLibs'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'battery',
@@ -90,6 +91,11 @@ export default {
       updateCnt: 0 // update를 했는지 안했는지 구분
     }
   },
+  computed: {
+    ...mapGetters([
+      'getTemp'
+    ])
+  },
   created () {
     this.updateCnt = storage.loadWaterUpdate()
     console.log('count : ' + this.updateCnt)
@@ -100,11 +106,27 @@ export default {
     this.month = Math.floor(betweenDay / 30.4)
 
     let vehicle = window.navigator.vehicle
-    this.initEngineCoolant(vehicle.engineCoolant)
     this.initOdometer(vehicle.odometer)
-
+    this.temp = this.getTemp
+    if (this.temp > 110 || this.temp < 0) {
+      this.variant = 'danger'
+    } else {
+      this.variant = 'success'
+    }
     if (this.month >= 24) {
       this.month = 24
+    }
+  },
+  watch: {
+    getTemp: function (newVal, old) {
+      this.temp = this.getTemp
+    },
+    temp: function (newVal, old) {
+      if (this.temp > 110 || this.temp < 0) {
+        this.variant = 'danger'
+      } else {
+        this.variant = 'success'
+      }
     }
   },
   methods: {
@@ -166,39 +188,6 @@ export default {
 
         if (this.km >= 40000) {
           this.km = 40000
-        }
-      })
-    },
-    initEngineCoolant (vc) {
-      console.log('enter initEngineCoolant')
-      // EngineCoolant
-      this.getEngineCoolant(vc)
-      this.subscribeEngineCoolant(vc)
-    },
-    getEngineCoolant (vc) {
-      vc.get().then((engineCoolant) => {
-        console.log('get')
-        this.temp = engineCoolant.temperature
-        console.log('get temperature ' + this.temperature)
-        if (this.temp > 110 || this.temp < 0) {
-          this.variant = 'danger'
-        } else {
-          this.variant = 'success'
-        }
-      }, function (err) {
-        console.log(err.error)
-        console.log(err.message)
-      })
-    },
-    subscribeEngineCoolant (vc) {
-      vc.subscribe((engineCoolant) => {
-        console.log('subscribe')
-        this.temp = engineCoolant.temperature
-        console.log('sub temperature ' + this.temperature)
-        if (this.temp > 110 || this.temp < 0) {
-          this.variant = 'danger'
-        } else {
-          this.variant = 'success'
         }
       })
     },

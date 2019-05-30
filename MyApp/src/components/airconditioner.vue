@@ -121,16 +121,23 @@ export default {
   beforeMount () {
     this.toggled = storage.loadMode()
   },
+  watch: {
+    dustValue: function (newVal, old) {
+      console.log('[watch]', this.dustValue)
+    }
+  },
   methods: {
     getSensorValue: function () {
-      const baseUrl = 'http://api.openweathermap.org/data/2.5/forecast?id=1853909&APPID=2b738975dae95d234aaccf0654cfb6f4' // http://devx.kr/capstone/
+      const baseUrl = 'https://api.thingspeak.com/channels/790637/feeds.json?api_key=FGH157XY2MZ7LZO3&results=1' // http://devx.kr/capstone/
       Utils.ajax.get({
         url: baseUrl,
         dataType: 'json',
         timeout: 5000
       })
         .then((res) => {
-          console.log('[parse data]', res.data.cod)
+          console.log('[parse data PM2.5]', res.data.feeds[0].field2)
+          this.dustValue = res.data.feeds[0].field2
+          console.log('[parse data PM10]', res.data.feeds[0].field3)
         })
         .catch((err) => {
           console.log(err)
@@ -292,6 +299,9 @@ export default {
     // this.changeBody()
   },
   computed: {
+    dustValue: function () {
+      console.log('[computed]', this.dustValue)
+    },
     co2Bg: function () {
       if (this.co2Level === '좋음') {
         return {

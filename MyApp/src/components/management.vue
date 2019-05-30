@@ -64,6 +64,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import RadialProgressBar from 'vue-radial-progress'
 import { mdbContainer, mdbProgress } from 'mdbvue'
 import { storage } from '../js/manageLibs'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'management',
@@ -90,6 +91,11 @@ export default {
       updateCnt: 0 // update를 했는지 안했는지 구분
     }
   },
+  computed: {
+    ...mapGetters([
+      'getOilLevel'
+    ])
+  },
   created () {
     this.updateCnt = storage.loadEngineOilUpdate()
     console.log('count : ' + this.updateCnt)
@@ -100,13 +106,33 @@ export default {
     this.month = Math.floor(betweenDay / 30.4)
 
     let vehicle = window.navigator.vehicle
-    this.initEngineOil(vehicle.engineOil)
     this.initOdometer(vehicle.odometer)
-
+    this.oilLevel = this.getOilLevel
     if (this.month >= 12) {
       this.month = 12
     }
+    if (this.oilLevel >= 70) {
+      this.variant = 'success'
+    } else if (this.oilLevel >= 50) {
+      this.variant = 'warning'
+    } else {
+      this.variant = 'danger'
+    }
     console.log(date.getTime())
+  },
+  watch: {
+    getOilLevel: function (newVal, old) {
+      this.oilLevel = this.getOilLevel
+    },
+    oilLevel: function (newVal, old) {
+      if (this.oilLevel >= 70) {
+        this.variant = 'success'
+      } else if (this.oilLevel >= 50) {
+        this.variant = 'warning'
+      } else {
+        this.variant = 'danger'
+      }
+    }
   },
   methods: {
     update () {
@@ -175,79 +201,6 @@ export default {
       // EnginOil
       this.getEngineOil(ve)
       this.subscribeEngineOil(ve)
-    },
-    getEngineOil (ve) {
-      ve.get().then((engineOil) => {
-        console.log('get')
-        // this.oilLevel = engineOil.level
-        // console.log('get oilLevel ' + this.oilLevel)
-        switch (engineOil.level) {
-          case 'warning': this.oilLevel = 0
-            break
-          case 'BargraphElement1': this.oilLevel = 12.5
-            break
-          case 'BargraphElement2': this.oilLevel = 25
-            break
-          case 'BargraphElement3': this.oilLevel = 37.5
-            break
-          case 'BargraphElement4': this.oilLevel = 50
-            break
-          case 'BargraphElement5': this.oilLevel = 62.5
-            break
-          case 'BargraphElement6': this.oilLevel = 75
-            break
-          case 'BargraphElement7': this.oilLevel = 87.5
-            break
-          case 'BargraphElement8': this.oilLevel = 100
-            break
-        }
-
-        if (this.oilLevel >= 70) {
-          this.variant = 'success'
-        } else if (this.oilLevel >= 50) {
-          this.variant = 'warning'
-        } else {
-          this.variant = 'danger'
-        }
-      }, function (err) {
-        console.log(err.error)
-        console.log(err.message)
-      })
-    },
-    subscribeEngineOil (ve) {
-      ve.subscribe((engineOil) => {
-        console.log('subscribe')
-        // this.oilLevel = engineOil.level
-        // console.log('sub oilLevel ' + this.oilLevel)
-        switch (engineOil.level) {
-          case 'warning': this.oilLevel = 0
-            break
-          case 'BargraphElement1': this.oilLevel = 12.5
-            break
-          case 'BargraphElement2': this.oilLevel = 25
-            break
-          case 'BargraphElement3': this.oilLevel = 37.5
-            break
-          case 'BargraphElement4': this.oilLevel = 50
-            break
-          case 'BargraphElement5': this.oilLevel = 62.5
-            break
-          case 'BargraphElement6': this.oilLevel = 75
-            break
-          case 'BargraphElement7': this.oilLevel = 87.5
-            break
-          case 'BargraphElement8': this.oilLevel = 100
-            break
-        }
-
-        if (this.oilLevel >= 70) {
-          this.variant = 'success'
-        } else if (this.oilLevel >= 50) {
-          this.variant = 'warning'
-        } else {
-          this.variant = 'danger'
-        }
-      })
     },
     go () {
       this.$router.push('/')
