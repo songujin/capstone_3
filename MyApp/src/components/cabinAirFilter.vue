@@ -87,7 +87,8 @@ export default {
       variant: 'success',
       nowTotal: '', // 현재 차량의 총 이동거리
       pastTotal: '', // 과거 교체했을 당시의 총 이동거리
-      updateCnt: 0 // update를 했는지 안했는지 구분
+      updateCnt: 0, // update를 했는지 안했는지 구분
+      flag: true
     }
   },
   created () {
@@ -105,10 +106,13 @@ export default {
     if (this.month >= 6) {
       this.month = 6
     }
-    if (this.month === 1) {
+    if ((6 - this.month) === 1) {
       this.variant = 'danger'
-      this.$router.push('/warningCFilter')
-    } else if (this.month === 2) {
+      if (this.flag === true) {
+        this.flag = false
+        // this.$router.push('/warningCFilter')
+      }
+    } else if ((6 - this.month) === 2) {
       this.variant = 'warning'
     } else {
       this.variant = 'success'

@@ -210,7 +210,7 @@ export default {
       if (page === 'Engine oil') {
         str += 'management'
       } else if (page === 'Battery') {
-        str += 'warningEngineOil'
+        str += 'battery'
       } else if (page === 'Coolant') {
         str += 'water'
       } else if (page === 'Tire') {

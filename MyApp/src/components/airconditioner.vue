@@ -99,11 +99,11 @@ export default {
   data: function () {
     return {
       boolean: 'true',
-      dustValue: 100, // 실시간으로 미세먼지 받아와야함
+      dustValue: 0, // 실시간으로 미세먼지 받아와야함
       dustLevel: '', // 미세먼지 등급은 mounted() 에서 계산
-      fineDustValue: 15, // 실시간으로 초미세먼지 받아와야함
+      fineDustValue: 0, // 실시간으로 초미세먼지 받아와야함
       fineDustLevel: '', // 초미세먼지 등급도 mounted () 에서 계산
-      co2Value: 4234, // 실시간으로 이산화탄소 받아오기
+      co2Value: 1, // 실시간으로 이산화탄소 받아오기
       co2Level: '', // 이산화탄소 등급도 mounted ()에서 계산
       toggled: storage.loadMode(),
       dustFinalLevel: 'GOOD', // 미세먼지 농도 둘중 하나라도 나쁘면 나쁨
@@ -115,7 +115,6 @@ export default {
   created () {
     this.boolean = storage.loadFirst()
     this.toggled = storage.loadMode()
-
     console.log('created boolean ' + this.boolean)
   },
   beforeMount () {
@@ -124,6 +123,27 @@ export default {
   watch: {
     dustValue: function (newVal, old) {
       console.log('[watch]', this.dustValue)
+      if (this.dustValue >= 0 && this.dustValue <= 30) {
+        this.dustLevel = '좋음'
+      } else if (this.dustValue >= 31 && this.dustValue <= 80) {
+        this.dustLevel = '보통'
+      } else if (this.dustValue >= 81 && this.dustValue <= 150) {
+        this.dustLevel = '나쁨'
+      } else if (this.dustValue >= 151) {
+        this.dustLevel = '매우 나쁨'
+      }
+    },
+    fineDustValue: function (newVal, old) {
+      console.log('[watch]', this.fineDustValue)
+      if (this.fineDustValue >= 0 && this.fineDustValue <= 15) {
+        this.fineDustLevel = '좋음'
+      } else if (this.fineDustValue >= 16 && this.fineDustValue <= 35) {
+        this.fineDustLevel = '보통'
+      } else if (this.fineDustValue >= 36 && this.fineDustValue <= 75) {
+        this.fineDustLevel = '나쁨'
+      } else if (this.fineDustValue >= 76) {
+        this.fineDustLevel = '매우 나쁨'
+      }
     }
   },
   methods: {
@@ -138,6 +158,7 @@ export default {
           console.log('[parse data PM2.5]', res.data.feeds[0].field2)
           this.dustValue = res.data.feeds[0].field2
           console.log('[parse data PM10]', res.data.feeds[0].field3)
+          this.fineDustValue = res.data.feeds[0].field3
         })
         .catch((err) => {
           console.log(err)
@@ -300,7 +321,11 @@ export default {
   },
   computed: {
     dustValue: function () {
+      this.changeBody()
       console.log('[computed]', this.dustValue)
+    },
+    fineDustValue: function () {
+      this.changeBody()
     },
     co2Bg: function () {
       if (this.co2Level === '좋음') {

@@ -360,7 +360,7 @@ export default {
       }
     },
     tireStateRF: function () {
-      if (this.tireStateRF !== 'Good State' && this.warningRFFlag === true) {
+      if (this.tireStateRF !== 'PressureOkAndNoFailure' && this.warningRFFlag === true) {
         this.warningRFFlag = false
         this.$router.push('/warningRF')
       }
@@ -372,7 +372,7 @@ export default {
       }
     },
     tireStateLF: function () {
-      if (this.tireStateLF !== 'Good State' && this.warningLFFlag === true) {
+      if (this.tireStateLF !== 'PressureOkAndNoFailure' && this.warningLFFlag === true) {
         this.warningLFFlag = false
         this.$router.push('/warningLF')
       }
@@ -384,7 +384,7 @@ export default {
       }
     },
     tireStateRR: function () {
-      if (this.tireStateRR !== 'Good State' && this.warningRRFlag === true) {
+      if (this.tireStateRR !== 'PressureOkAndNoFailure' && this.warningRRFlag === true) {
         this.warningRRFlag = false
         this.$router.push('/warningRR')
       }
@@ -396,7 +396,7 @@ export default {
       }
     },
     tireStateLR: function () {
-      if (this.tireStateLR !== 'Good State' && this.warningWaterFlag === true) {
+      if (this.tireStateLR !== 'PressureOkAndNoFailure' && this.warningWaterFlag === true) {
         this.warningWaterFlag = false
         this.$router.push('/warningLR')
       }

@@ -435,12 +435,12 @@ div.position {
     width: 100%;
     text-align: center;
     background-image: url('../img/tireBackground.png');
-    // p {
-    //     text-align: center;
-    //     margin-top: 15%;
-    //     font-size: 30px;
-    //     color: rgba(180, 189, 183, 0.795);
-    // }
+    p {
+        text-align: center;
+        margin-top: 15%;
+        font-size: 30px;
+        color: rgba(180, 189, 183, 0.795);
+    }
     div.right {
         width: 100%;
         height: 50%;
