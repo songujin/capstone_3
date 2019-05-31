@@ -9,6 +9,7 @@
 import footer from 'obigo-js-ui-rnbs/components/footer'
 import { storage } from './js/manageLibs'
 import 'obigo-js-webapi/vehicle/vehicle'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'home',
@@ -45,6 +46,18 @@ export default {
       tireStateLR: '',
       pressureLR: ''
     }
+  },
+  computed: {
+    ...mapGetters([
+      'getAlarmWater',
+      'getAlarmCF',
+      'getAlarmBattery',
+      'getAlarmOil',
+      'getAlarmLF',
+      'getAlarmLR',
+      'getAlarmRF',
+      'getAlarmRR'
+    ])
   },
   methods: {
     startVehicle: function () {
@@ -250,7 +263,7 @@ export default {
       return Math.floor(betweenDay / 30.4)
     },
     alarmPopup () {
-      if (this.alarmRFFlag === true && 60000 - storage.loadRFTireKm() <= 0) {
+      if (this.alarmRFFlag === true && 60000 - this.getAlarmRF <= 0) {
         storage.saveRFProblem('problem_Distance')
         this.alarmRFFlag = false
         this.$router.push('/alarmRF')
@@ -260,7 +273,7 @@ export default {
         this.alarmRFFlag = false
         this.$router.push('/alarmRF')
       }
-      if (this.alarmRRFlag === true && 60000 - storage.loadRRTireKm() <= 0) {
+      if (this.alarmRRFlag === true && 60000 - this.getAlarmRR <= 0) {
         storage.saveRRProblem('problem_Distance')
         this.alarmRRFlag = false
         this.$router.push('/alarmRR')
@@ -270,7 +283,7 @@ export default {
         this.alarmRRFlag = false
         this.$router.push('/alarmRR')
       }
-      if (this.alarmLFFlag === true && 60000 - storage.loadLFTireKm() <= 0) {
+      if (this.alarmLFFlag === true && 60000 - this.getAlarmLF <= 0) {
         storage.saveLFProblem('problem_Distance')
         this.alarmLFFlag = false
         this.$router.push('/alarmLF')
@@ -280,7 +293,7 @@ export default {
         this.alarmLFFlag = false
         this.$router.push('/alarmLF')
       }
-      if (this.alarmLRFlag === true && 60000 - storage.loadLRTireKm() <= 0) {
+      if (this.alarmLRFlag === true && 60000 - this.getAlarmLR <= 0) {
         storage.saveLRProblem('problem_Distance')
         this.alarmLRFlag = false
         this.$router.push('/alarmLR')
@@ -290,17 +303,17 @@ export default {
         this.alarmLRFlag = false
         this.$router.push('/alarmLR')
       }
-      if (this.alarmOilFlag === true && 15000 - storage.loadEngineOilkm() <= 0) {
+      if (this.alarmEngineOilFlag === true && 15000 - this.getAlarmOil <= 0) {
         storage.saveOilProblem('problem_Distance')
-        this.alarmOilFlag = false
+        this.alarmEngineOilFlag = false
         this.$router.push('/alarmEngineOil')
       }
-      if (this.alarmOilFlag === true && 12 - this.calculateM(storage.loadEngineOilM()) <= 0) {
+      if (this.alarmEngineOilFlag === true && 12 - this.calculateM(storage.loadEngineOilM()) <= 0) {
         storage.saveOilProblem('problem_Date')
-        this.alarmOilFlag = false
+        this.alarmEngineOilFlag = false
         this.$router.push('/alarmEngineOil')
       }
-      if (this.alarmBatteryFlag === true && 60000 - storage.loadBatterykm() <= 0) {
+      if (this.alarmBatteryFlag === true && 60000 - this.getAlarmBattery <= 0) {
         storage.saveBatteryProblem('problem_Distance')
         this.alarmBatteryFlag = false
         this.$router.push('/alarmBattery')
@@ -310,7 +323,7 @@ export default {
         this.alarmBatteryFlag = false
         this.$router.push('/alarmBattery')
       }
-      if (this.alarmCFilterFlag === true && 15000 - storage.loadCFilterKm() <= 0) {
+      if (this.alarmCFilterFlag === true && 15000 - this.getAlarmCF <= 0) {
         storage.saveCFilterProblem('problem_Distance')
         this.alarmCFilterFlag = false
         this.$router.push('/alarmCFilter')
@@ -320,12 +333,12 @@ export default {
         this.alarmCFilterFlag = false
         this.$router.push('/alarmCFilter')
       }
-      if (this.alarmWaterFlag === true && 15000 - storage.loadWaterkm() <= 0) {
+      if (this.alarmWaterFlag === true && 40000 - this.getAlarmWater <= 0) {
         storage.saveWaterProblem('problem_Distance')
         this.alarmWaterFlag = false
         this.$router.push('/alarmWater')
       }
-      if (this.alarmWaterFlag === true && 6 - this.calculateM(storage.loadWaterM()) <= 0) {
+      if (this.alarmWaterFlag === true && 24 - this.calculateM(storage.loadWaterM()) <= 0) {
         storage.saveWaterProblem('problem_Date')
         this.alarmWaterFlag = false
         this.$router.push('/alarmWater')

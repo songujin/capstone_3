@@ -151,12 +151,14 @@ export default {
           console.log('hello first')
           this.nowTotal = odometer.distanceTotal
           this.km = this.nowTotal
+          this.$store.commit('setAlarmWater', this.km)
           // this.km = storage.loadWaterkm()
         } else { // update 시도 후
           console.log('hello update')
           this.nowTotal = odometer.distanceTotal
           this.pastTotal = storage.loadWaterkm()
           this.km = this.nowTotal - this.pastTotal
+          this.$store.commit('setAlarmWater', this.km)
         }
         console.log('get distanceTotal(now) ' + this.nowTotal)
         console.log('get km ' + this.km)
@@ -176,12 +178,14 @@ export default {
           console.log('hello first')
           this.nowTotal = odometer.distanceTotal
           this.km = this.nowTotal
+          this.$store.commit('setAlarmWater', this.km)
           // this.km = storage.loadWaterkm()
         } else { // update 시도 후
           console.log('hello update')
           this.nowTotal = odometer.distanceTotal
           this.pastTotal = storage.loadWaterkm()
           this.km = this.nowTotal - this.pastTotal
+          this.$store.commit('setAlarmWater', this.km)
         }
         console.log('sub distanceTotal(now) ' + this.nowTotal)
         console.log('get km ' + this.km)

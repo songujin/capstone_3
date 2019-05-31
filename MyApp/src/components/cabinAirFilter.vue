@@ -64,6 +64,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import RadialProgressBar from 'vue-radial-progress'
 import { mdbContainer, mdbProgress } from 'mdbvue'
 import { storage } from '../js/manageLibs'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'cabinAirFilter',
@@ -87,9 +88,13 @@ export default {
       variant: 'success',
       nowTotal: '', // 현재 차량의 총 이동거리
       pastTotal: '', // 과거 교체했을 당시의 총 이동거리
-      updateCnt: 0, // update를 했는지 안했는지 구분
-      flag: true
+      updateCnt: 0 // update를 했는지 안했는지 구분
     }
+  },
+  computed: {
+    ...mapGetters([
+      'getWarningFlag'
+    ])
   },
   created () {
     this.updateCnt = storage.loadCFilterUpdate()
@@ -106,15 +111,18 @@ export default {
     if (this.month >= 6) {
       this.month = 6
     }
-    if ((6 - this.month) === 1) {
+    if ((6 - this.month) <= 1) {
+      this.pollution = 90
       this.variant = 'danger'
-      if (this.flag === true) {
-        this.flag = false
-        // this.$router.push('/warningCFilter')
+      if (this.getWarningFlag === true) {
+        this.$store.commit('setWarningFlag', false)
+        this.$router.push('/warningCFilter')
       }
     } else if ((6 - this.month) === 2) {
+      this.pollution = 60
       this.variant = 'warning'
     } else {
+      this.pollution = 30
       this.variant = 'success'
     }
   },
@@ -140,12 +148,14 @@ export default {
           console.log('hello first')
           this.nowTotal = odometer.distanceTotal
           this.km = this.nowTotal
+          this.$store.commit('setAlarmCF', this.km)
           // this.km = storage.loadCFilterKm()
         } else { // update 시도 후
           console.log('hello update')
           this.nowTotal = odometer.distanceTotal
           this.pastTotal = storage.loadCFilterKm()
           this.km = this.nowTotal - this.pastTotal
+          this.$store.commit('setAlarmCF', this.km)
         }
         console.log('get distanceTotal(now) ' + this.nowTotal)
         console.log('get km ' + this.km)
@@ -165,12 +175,14 @@ export default {
           console.log('hello first')
           this.nowTotal = odometer.distanceTotal
           this.km = this.nowTotal
+          this.$store.commit('setAlarmCF', this.km)
           // this.km = storage.loadCFilterKm()
         } else { // update 시도 후
           console.log('hello update')
           this.nowTotal = odometer.distanceTotal
           this.pastTotal = storage.loadCFilterKm()
           this.km = this.nowTotal - this.pastTotal
+          this.$store.commit('setAlarmCF', this.km)
         }
         console.log('sub distanceTotal(now) ' + this.nowTotal)
         console.log('get km ' + this.km)

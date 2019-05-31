@@ -31,3 +31,31 @@ export const getOilLevel = state => {
 export const getTemp = state => {
   return state.temp
 }
+export const getWarningFlag = state => {
+  return state.warningFlag
+}
+export const getAlarmWater = state => {
+  return state.alarmWater
+}
+export const getAlarmCF = state => {
+  return state.alarmCF
+}
+export const getAlarmBattery = state => {
+  return state.alarmBattery
+}
+export const getAlarmOil = state => {
+  return state.alarmOil
+}
+export const getAlarmLF = state => {
+  return state.alarmLF
+}
+export const getAlarmLR = state => {
+  return state.alarmLR
+}
+export const getAlarmRF = state => {
+  return state.alarmRF
+}
+export const getAlarmRR = state => {
+  return state.alarmRR
+}
+

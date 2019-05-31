@@ -213,7 +213,6 @@ div.buy, div.distance {
         margin: 0 10px;
         height: 95%;
         width: 58%;
-        border: 1px solid gray;
         p {
             text-align: center;
             font-size: 20px;
@@ -242,6 +241,10 @@ div.btn {
   font-size: 22px;
   width: 176px;
   float: left;
+}
+.vue-numeric-input {
+  width: 196px !important;
+  margin-left: 10px;
 }
 @mixin mx-carmodel-7pr {
   .contents {

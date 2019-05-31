@@ -123,6 +123,17 @@ export default {
   watch: {
     modeFlag: function (newVal, old) {
     },
+    co2Value: function (newVal, old) {
+      if (this.co2Value >= 0 && this.co2Value <= 450) {
+        this.co2Level = '좋음'
+      } else if (this.co2Value >= 451 && this.co2Value <= 1500) {
+        this.co2Level = '보통'
+      } else if (this.co2Value >= 1501 && this.co2Value <= 4000) {
+        this.co2Level = '나쁨'
+      } else if (this.co2Value >= 4001) {
+        this.co2Level = '매우 나쁨'
+      }
+    },
     dustValue: function (newVal, old) {
       console.log('[watch]', this.dustValue)
       if (this.dustValue >= 0 && this.dustValue <= 30) {
@@ -163,6 +174,8 @@ export default {
           this.dustValue = res.data.feeds[0].field2
           console.log('[parse data PM10]', res.data.feeds[0].field3)
           this.fineDustValue = res.data.feeds[0].field3
+          this.co2Value = res.data.feeds[0].field4
+          console.log('[co2]', this.co2Value)
         })
         .catch((err) => {
           console.log(err)
@@ -280,7 +293,7 @@ export default {
       this.co2Level = '좋음'
     } else if (this.co2Value >= 451 && this.co2Value <= 1500) {
       this.co2Level = '보통'
-    } else if (this.co2Value >= 1501 && this.Sco2Value <= 4000) {
+    } else if (this.co2Value >= 1501 && this.co2Value <= 4000) {
       this.co2Level = '나쁨'
     } else if (this.co2Value >= 4001) {
       this.co2Level = '매우 나쁨'
@@ -313,11 +326,11 @@ export default {
     } else {
       this.toggled = false
     }
-    if (storage.loadModeFlag() === 'true') {
-      this.modeFlag = true
-    } else {
-      this.modeFlag = false
-    }
+    // if (storage.loadModeFlag() === 'true') {
+    //   this.modeFlag = true
+    // } else {
+    //   this.modeFlag = false
+    // }
     // this.toggled = storage.loadMode()
     console.log('[save Mode]', this.toggled)
     console.log('[save Mode Flag]', this.modeFlag)
@@ -325,7 +338,6 @@ export default {
   },
   computed: {
     co2Bg: function () {
-      console.log('TEST : ' + this.modeFlag)
       if ((this.dustLevel === '나쁨' || this.dustLevel === '매우 나쁨' || this.fineDustLevel === '나쁨' || this.fineDustLevel === '매우 나쁨') && (this.co2Level === '좋음' || this.co2Level === '보통')) {
         this.modeFlag = true
       } else {

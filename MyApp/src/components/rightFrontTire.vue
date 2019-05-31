@@ -116,12 +116,14 @@ export default {
           console.log('hello first')
           this.nowTotal = odometer.distanceTotal
           this.km = this.nowTotal
+          this.$store.commit('setAlarmRF', this.km)
           // this.km = storage.loadRFTireKm()
         } else { // update 시도 후
           console.log('hello update')
           this.nowTotal = odometer.distanceTotal
           this.pastTotal = storage.loadRFTireKm()
           this.km = this.nowTotal - this.pastTotal
+          this.$store.commit('setAlarmRF', this.km)
         }
         console.log('get distanceTotal(now) ' + this.nowTotal)
         console.log('get km ' + this.km)
@@ -141,12 +143,14 @@ export default {
           console.log('hello first')
           this.nowTotal = odometer.distanceTotal
           this.km = this.nowTotal
+          this.$store.commit('setAlarmRF', this.km)
           // this.km = storage.loadRFTireKm()
         } else { // update 시도 후
           console.log('hello update')
           this.nowTotal = odometer.distanceTotal
           this.pastTotal = storage.loadRFTireKm()
           this.km = this.nowTotal - this.pastTotal
+          this.$store.commit('setAlarmRF', this.km)
         }
         console.log('sub distanceTotal(now) ' + this.nowTotal)
         console.log('get km ' + this.km)

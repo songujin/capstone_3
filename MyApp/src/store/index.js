@@ -20,9 +20,21 @@ const store = new Vuex.Store({
     tireStateLR: '',
     pressureLR: 0,
     oilLevel: '',
-    temp: ''
+    temp: '',
+    warningFlag: true,
+    alarmWater: 0,
+    alarmCF: 0,
+    alarmBattery: 0,
+    alarmOil: 0,
+    alarmLF: 0,
+    alarmLR: 0,
+    alarmRF: 0,
+    alarmRR: 0
   },
   mutations: {
+    setWarningFlag (state, value) {
+      state.warningFlag = value
+    },
     setChargeLevel (state, value) {
       state.chargeLevel = value
     },
@@ -55,6 +67,30 @@ const store = new Vuex.Store({
     },
     setTemp (state, value) {
       state.temp = value
+    },
+    setAlarmWater (state, value) {
+      state.alarmWater = value
+    },
+    setAlarmCF (state, value) {
+      state.alarmCF = value
+    },
+    setAlarmBattery (state, value) {
+      state.alarmBattery = value
+    },
+    setAlarmOil (state, value) {
+      state.alarmOil = value
+    },
+    setAlarmLF (state, value) {
+      state.alarmLF = value
+    },
+    setAlarmLR (state, value) {
+      state.alarmLR = value
+    },
+    setAlarmRF (state, value) {
+      state.alarmRF = value
+    },
+    setAlarmRR (state, value) {
+      state.alarmRR = value
     }
   },
   strict: debug,
