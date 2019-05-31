@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><widget xmlns="http://www.w3.org/ns/widgets" id="http://www.obigo.com/widget_id/a34a3c8d171abc178d87f997cb567c01" version="1.0.0" viewmodes="fullscreen">
     <name>Pure</name>
     <description/>
-    <icon src="icon.png"/>
+    <icon src="PureLogo.png"/>
     <content src="index.html" type="text/html"/>
     <author>Obigo</author>
     <license>Obigo</license>
-    <thumbnail src="thumbnail.png"/>
+    <thumbnail src="PureLogo.png"/>
     <access origin="*"/>
     <meta-data>
       <manifest-version>1.2.1.1</manifest-version>

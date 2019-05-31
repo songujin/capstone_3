@@ -121,6 +121,8 @@ export default {
     this.toggled = storage.loadMode()
   },
   watch: {
+    modeFlag: function (newVal, old) {
+    },
     dustValue: function (newVal, old) {
       console.log('[watch]', this.dustValue)
       if (this.dustValue >= 0 && this.dustValue <= 30) {
@@ -132,6 +134,7 @@ export default {
       } else if (this.dustValue >= 151) {
         this.dustLevel = '매우 나쁨'
       }
+      // this.changeBody()
     },
     fineDustValue: function (newVal, old) {
       console.log('[watch]', this.fineDustValue)
@@ -144,6 +147,7 @@ export default {
       } else if (this.fineDustValue >= 76) {
         this.fineDustLevel = '매우 나쁨'
       }
+      // this.changeBody()
     }
   },
   methods: {
@@ -320,14 +324,13 @@ export default {
     // this.changeBody()
   },
   computed: {
-    dustValue: function () {
-      this.changeBody()
-      console.log('[computed]', this.dustValue)
-    },
-    fineDustValue: function () {
-      this.changeBody()
-    },
     co2Bg: function () {
+      console.log('TEST : ' + this.modeFlag)
+      if ((this.dustLevel === '나쁨' || this.dustLevel === '매우 나쁨' || this.fineDustLevel === '나쁨' || this.fineDustLevel === '매우 나쁨') && (this.co2Level === '좋음' || this.co2Level === '보통')) {
+        this.modeFlag = true
+      } else {
+        this.modeFlag = false
+      }
       if (this.co2Level === '좋음') {
         return {
           color: '#31ddff'
@@ -349,6 +352,11 @@ export default {
       }
     },
     dustBg: function () {
+      if ((this.dustLevel === '나쁨' || this.dustLevel === '매우 나쁨' || this.fineDustLevel === '나쁨' || this.fineDustLevel === '매우 나쁨') && (this.co2Level === '좋음' || this.co2Level === '보통')) {
+        this.modeFlag = true
+      } else {
+        this.modeFlag = false
+      }
       if (this.dustLevel === '좋음') {
         return {
           color: '#31ddff'
@@ -368,6 +376,11 @@ export default {
       }
     },
     fineDustBg: function () {
+      if ((this.dustLevel === '나쁨' || this.dustLevel === '매우 나쁨' || this.fineDustLevel === '나쁨' || this.fineDustLevel === '매우 나쁨') && (this.co2Level === '좋음' || this.co2Level === '보통')) {
+        this.modeFlag = true
+      } else {
+        this.modeFlag = false
+      }
       if (this.fineDustLevel === '좋음') {
         return {
           color: '#31ddff'
