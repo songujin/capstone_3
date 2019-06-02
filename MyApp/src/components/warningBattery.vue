@@ -38,7 +38,7 @@ export default {
 div.popup {
     margin: 65px auto 55px auto;
     width: 50%;
-    height: 55%;
+    height: 50%;
     border: 1px solid gray;
     background: rgba(14, 13, 13, 0.185);
 }
@@ -78,7 +78,7 @@ div.btnGo {
   float: left;
   text-align: center;
   margin-left: 12px;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 div.text {
   background-image: url('../img/warning.png');
