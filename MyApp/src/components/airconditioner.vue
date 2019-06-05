@@ -162,7 +162,7 @@ export default {
     }
   },
   methods: {
-    getSensorValue: function () {
+    getDustSensorValue: function () {
       const baseUrl = 'https://api.thingspeak.com/channels/790637/feeds.json?api_key=FGH157XY2MZ7LZO3&results=1' // http://devx.kr/capstone/
       Utils.ajax.get({
         url: baseUrl,
@@ -174,7 +174,20 @@ export default {
           this.dustValue = res.data.feeds[0].field2
           console.log('[parse data PM10]', res.data.feeds[0].field3)
           this.fineDustValue = res.data.feeds[0].field3
-          this.co2Value = res.data.feeds[0].field4
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    getCo2SensorValue: function () {
+      const baseUrl = 'https://api.thingspeak.com/channels/793917/fields/1.json?api_key=YKQCBYQG5HR1B29I&results=1'
+      Utils.ajax.get({
+        url: baseUrl,
+        dataType: 'json',
+        timeout: 5000
+      })
+        .then((res) => {
+          this.co2Value = res.data.feeds[0].field1
           console.log('[co2]', this.co2Value)
         })
         .catch((err) => {
@@ -230,7 +243,8 @@ export default {
   mounted () {
     let self = this
     setInterval(function () {
-      self.getSensorValue()
+      self.getDustSensorValue()
+      self.getCo2SensorValue()
     }, 1000)
     // this.toggle.$event.value = storage.loadMode()
     // this.toggled = storage.loadMode()
@@ -343,6 +357,11 @@ export default {
       } else {
         this.modeFlag = false
       }
+      if (this.modeFlag === true) {
+        this.RecirmodeMessage = 'Recirculation'
+      } else if (this.modeFlag === false) {
+        this.RecirmodeMessage = 'ventilation'
+      }
       if (this.co2Level === '좋음') {
         return {
           color: '#31ddff'
@@ -369,6 +388,11 @@ export default {
       } else {
         this.modeFlag = false
       }
+      if (this.modeFlag === true) {
+        this.RecirmodeMessage = 'Recirculation'
+      } else if (this.modeFlag === false) {
+        this.RecirmodeMessage = 'ventilation'
+      }
       if (this.dustLevel === '좋음') {
         return {
           color: '#31ddff'
@@ -392,6 +416,11 @@ export default {
         this.modeFlag = true
       } else {
         this.modeFlag = false
+      }
+      if (this.modeFlag === true) {
+        this.RecirmodeMessage = 'Recirculation'
+      } else if (this.modeFlag === false) {
+        this.RecirmodeMessage = 'ventilation'
       }
       if (this.fineDustLevel === '좋음') {
         return {

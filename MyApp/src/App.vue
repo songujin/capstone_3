@@ -351,7 +351,7 @@ export default {
     this.initHardKeyAction()
     setInterval(function () {
       AP.alarmPopup()
-    }, 10000) // 30분 1800000
+    }, 3000) // 30분 1800000
   },
   watch: {
     chargeLevel: function () {
