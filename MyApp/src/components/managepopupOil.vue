@@ -5,7 +5,7 @@
             <p>{{ title }}</p>
             <div class='buy'>
                 <div class='text'>
-                    <p>구매 날짜</p>
+                    <p>Replacement Date</p>
                 </div>
                 <div class='date'>
                   <vuejs-datepicker v-model="selectedDate" placeholder="click..." style="color:black;" :disabledDates="state.disabledDates" format="yyyy-MM-dd"></vuejs-datepicker>
@@ -13,18 +13,18 @@
             </div>
             <div class='distance'>
                 <div class='text'>
-                    <p>주행 거리</p>
+                    <p>Total Distance</p>
                 </div>
                 <div class='odometer'>
-                    <p>{{ distance }}km</p>
+                    <vue-numeric-input v-model="userInputKM" separator="," :min="0" :controls="false"></vue-numeric-input>
                 </div>
             </div>
             <div class='btn'>
               <div class='btnBack'>
-                <p @click='goback()'>취소</p>
+                <b-button @click='goback()'>Cancel</b-button>
               </div>
               <div class='btnGo'>
-                <p @click='go()'>확인</p>
+                <b-button @click='go()'>Ok</b-button>
               </div>
             </div>
         </div>
@@ -44,37 +44,44 @@ export default {
   },
   data: function () {
     return {
-      title: '관리 시작 기준 설정',
-      distance: '10000',
+      title: 'Setting',
+      userInputKM: '', // 사용자 입력 km
       selectedDate: '',
       setMonth: '',
       state: {
         disabledDates: {
           from: new Date()
         }
-      }
+      },
+      nowTotal: '' // 교체할 때의 누적거리
     }
   },
   mounted () {
-    this.startVehicle()
+    let vo = window.navigator.vehicle.odometer
+    this.initVehicle(vo)
   },
   methods: {
-    startVehicle () {
-      let vehicle = window.navigator.vehicle
-      if (vehicle) {
-        vehicle.start(() => {
-          console.log('vehicle start')
-          vehicle.odometer.get().then((odometer) => {
-            this.distance = odometer.distanceTotal
-            // this.$data.distance = odometer.distanceTotal
-          }, function (err) {
-            console.log(err.error)
-            console.log(err.message)
-          })
-        }, function () {
-          throw Error('constuctor fails')
-        })
-      }
+    initVehicle (vo) {
+      console.log('enter init')
+      this.getOdometer(vo)
+      this.subscribeOdometer(vo) // 2번 실행되고 있음.. why?
+    },
+    getOdometer (vo) {
+      vo.get().then((odometer) => {
+        console.log('get')
+        this.nowTotal = odometer.distanceTotal
+        console.log('get distanceTotal(now)' + this.nowTotal)
+      }, function (err) {
+        console.log(err.error)
+        console.log(err.message)
+      })
+    },
+    subscribeOdometer (vo) {
+      vo.subscribe((odometer) => {
+        console.log('subscribe')
+        this.nowTotal = odometer.distanceTotal
+        console.log('sub distanceTotal(now)' + this.nowTotal)
+      })
     },
     goback () {
       this.$router.push('/management')
@@ -124,18 +131,33 @@ export default {
         this.setMonth = 12
       }
       var setDate = new Date(settingDate.year, this.setMonth - 1, settingDate.date)
-      // var betweenDay = (date.getTime() - setDate.getTime()) / 1000 / 60 / 60 / 24
-      // this.setMonth = Math.floor(betweenDay / 30.4)
-      // console.log(this.setMonth)
+
       console.log(settingDate.year)
-      // console.log(this.setMonth)
       console.log(settingDate.date)
       console.log(date.getTime())
       console.log(setDate.getTime())
-      // console.log(betweenDay)
 
       storage.saveEngineOilM(setDate.getTime())
-      storage.saveEngineOilkm(this.distance)
+
+      var today = new Date(date.getFullYear(), date.getMonth(), date.getDate())
+
+      if (today.getTime() === setDate.getTime()) { // 오늘 부품을 교체할 시
+        storage.saveEngineOilkm(this.nowTotal)
+        console.log('PopOil NT ' + this.nowTotal)
+      } else if (today.getTime() > setDate.getTime()) { // 과거에 부품을 교체했을 시
+        if (this.userInputKM === '') {
+          this.title = 'Please enter a distance'
+          return false
+        }
+        if (this.userInputKM > this.nowTotal) {
+          this.title = 'Input error'
+          return false
+        }
+
+        storage.saveEngineOilkm(this.userInputKM)
+      }
+
+      storage.saveEngineOilUpdate(1) // update를 했다는 의미
 
       this.$router.push('/management')
     }
@@ -148,58 +170,91 @@ export default {
   color: white;
 }
 div.popup {
-    margin: 25px auto 55px auto;
+    margin: 48px auto 55px auto;
     width: 50%;
     height: 60%;
-    border: 1px solid white;
+    border: 1px solid gray;
     > p {
+        background: black;
+        margin: 0px;
         text-align: center;
-        margin: 10px;
-        font-size: 20px;
+        font-size: 22px;
+        height: 35px;
+        border-bottom: 1px solid gray;
     }
 }
 div.buy, div.distance {
+    background: rgba(14, 13, 13, 0.185);
     margin: 0 auto;
     padding: 5px;
-    height: 33%;
+    height: 30%;
     width: 100%;
-    border: 1px solid white;
     text-align: center;
-    div.text, div.date, div.odometer {
+    div.text {
         position: relative;
-        left: 5%;
         float: left;
         text-align: center;
         margin: 0 10px;
         height: 95%;
-        width: 40%;
-        border: 1px solid white;
+        width: 30%;
         p {
             text-align: center;
-            margin-top: 20px;
+            font-size: 20px;
+        }
+    }
+    div.date {
+        padding-top: 15px;
+        padding-left: 15px;
+        position: relative;
+        float: left;
+        text-align: center;
+        margin: 0 10px;
+        height: 95%;
+        width: 58%;
+        p {
+            text-align: center;
+            font-size: 20px;
+        }
+    }
+    div.odometer {
+        position: relative;
+        float: left;
+        text-align: center;
+        margin: 0 10px;
+        height: 95%;
+        width: 58%;
+        p {
+            text-align: center;
             font-size: 20px;
         }
     }
 }
 div.btn {
+    background: rgba(14, 13, 13, 0.185);
     margin: 0 auto;
-    padding: 3px;
-    height: 33%;
+    padding: 0 auto;
+    height: 25%;
     width: 100%;
     text-align: center;
     div.btnGo, div.btnBack {
         position: relative;
-        left: 4%;
-        float: left;
         text-align: center;
-        margin: 0 60px;
-        border: 1px solid white;
         p {
             text-align: center;
             font-size: 20px;
             padding: 5px;
         }
     }
+}
+.btn-secondary {
+  background: black;
+  font-size: 22px;
+  width: 176px;
+  float: left;
+}
+.vue-numeric-input {
+  width: 196px !important;
+  margin-left: 10px;
 }
 @mixin mx-carmodel-7pr {
   .contents {

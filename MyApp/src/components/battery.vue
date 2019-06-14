@@ -2,169 +2,224 @@
   <div>
     <div class='contents'>
         <div class='parts'>
-            <div class='select' v-for="item in items" :key="item.name">
-                <p ref="string" @click='gomanage(item.name)'>{{ item.name }}</p>
-            </div>
+            <b-button-group class='select' v-for="item in items" :key="item.name">
+                <b-button ref="string" @click='gomanage(item.name)'>{{ item.name }}</b-button>
+            </b-button-group>
         </div>
         <div class='manage'>
             <div class='top'>
                 <div class='btn1'>
-                    <button>
-                        <router-link v-bind:to="{ name: 'managepopupBattery' }">날짜수정</router-link>
-                    </button>
+                    <div class='btn'>
+                        <b-button @click='update()'>Update</b-button>
+                    </div>
                 </div>
                 <div class='desc'>
-                    <p>배터리의 현재 상태</p>
+                    <p>Battery</p>
                 </div>
                 <div class='btn2'>
-                    <button>
-                        <router-link v-bind:to="{ name: 'airconditioner' }">Go</router-link>
-                    </button>
+                    <div class='btn'>
+                        <b-button @click='go()'>Go</b-button>
+                    </div>
                 </div>     
             </div>
             <div class='detail'>
-                <div class='api'>
-                <span>Battery</span><span> : </span><span>{{batterychargeLevel}}</span><span> , </span><span>{{batterylowVoltage}}</span>
-                </div>
-                <div class='km'>
-                  <div class='km_str'>
-                    <span class='kmstr_left'>{{ 60000 - km }}km 남음</span>
-                    <span class='kmstr_right'>60,000km 마다 교체</span>
-                  </div>
-                  <div class='km_bar'>
-                    <progress-bar size="large" :val=(km)*(100/60000)></progress-bar>
-                  </div>
-                </div>
-                <div class='cycle'>
-                  <div class='mon_str'>
-                    <span class='monstr_left'>{{ 36 - month }}개월 남음</span>
-                    <span class='monstr_right'>36개월 마다 교체</span>
-                  </div>
-                  <div class='mon_bar'>
-                    <progress-bar size="large" :val=(month)*100/36></progress-bar>
-                  </div>
-                </div>
-                <div class='img'></div>
-            </div>       
+              <div class='km'>
+                <radial-progress-bar :diameter="200"
+                    :completed-steps="km"
+                    :total-steps=60000
+                    stopColor = '#ff0000'>
+                  <p><br></p>
+                  <p>Replacement Period<br>: {{ 60000 }} km</p>
+                  <p>Remaining<br>: {{ 60000 - km }} km</p>
+                </radial-progress-bar>
+              </div>
+              <div class='cycle'>
+                <radial-progress-bar :diameter="200"
+                    :completed-steps=month
+                    :total-steps=36
+                    stopColor = '#ff0000'>
+                  <p><br></p>
+                  <p>Replacement Period<br>: {{ 36 }} months</p>
+                  <p>Remaining<br>: {{ 36 - month }} months</p>
+                </radial-progress-bar>
+              </div>
+            </div>
+            <div class='status'>
+              <div class='s_title'>
+                <p>Charge Level</p>
+              </div>
+              <div class='s_bar'>
+                <mdb-container>
+                  <mdb-progress :height="27" :value="chargeLevel" :color="variant" striped animated>{{ chargeLevel }}%</mdb-progress>
+                </mdb-container>
+              </div>
+            </div>
         </div>  
     </div> 
   </div>
 </template>
 <script>
-import managepopup from './managepopup.vue'
-import managepopupBattery from './managepopupBattery.vue'
-import 'obigo-js-webapi/vehicle/vehicle'
-import ProgressBar from 'vue-simple-progress'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+import RadialProgressBar from 'vue-radial-progress'
+import { mdbContainer, mdbProgress } from 'mdbvue'
 import { storage } from '../js/manageLibs'
-// window.navigator.vehicle.start(function () {
-//   window.navigator.vehicle.engineOil.get().then(function (data) {
-//     alert(data.level)
-//     console.log(data.level)
-//     console.log(data.pressureWarning)
-//   }, function (err) {
-//     console.log(err)
-//   })
-//   // call vehicle API after initialization is completed
-// }, function () {
-//   throw Error('constructor fails')
-// })
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'battery',
   props: ['value'],
   components: {
-    'manage-popup': managepopup,
-    'manage-popupBattery': managepopupBattery,
-    'progress-bar': ProgressBar
+    RadialProgressBar,
+    mdbContainer,
+    mdbProgress
   },
   data: function () {
     return {
-      km_max: 60000,
-      km_value: 10000,
-      mon_max: 36,
-      mon_value: 3,
       items: [
-          { name: '엔진 오일' },
-          { name: '배터리' },
-          { name: '냉각수' },
-          { name: '타이어' },
-          { name: '캐빈필터' }
+          { name: 'Engine oil' },
+          { name: 'Battery' },
+          { name: 'Coolant' },
+          { name: 'Tire' },
+          { name: 'Cabin filter' }
       ],
-      batterychargeLevel: '',
-      batterylowVoltage: '',
       km: 0,
-      month: 0
+      month: 0,
+      chargeLevel: 50,
+      variant: '',
+      nowTotal: '',
+      pastTotal: '',
+      updateCnt: 0 // update를 했는지 안했는지 구분
     }
   },
+  computed: {
+    ...mapGetters([
+      'getChargeLevel'
+    ])
+  },
+  created () {
+    this.updateCnt = storage.loadBatteryUpdate()
+    console.log('count : ' + this.updateCnt)
+  },
   mounted () {
-    this.startVehicle()
-    this.km = storage.loadBatterykm()
     let date = new Date()
     var betweenDay = (date.getTime() - storage.loadBatteryM()) / 1000 / 60 / 60 / 24
     this.month = Math.floor(betweenDay / 30.4)
 
-    this.alarmPopUp()
+    let vehicle = window.navigator.vehicle
+    this.initOdometer(vehicle.odometer)
+
+    if (this.month >= 36) {
+      this.month = 36
+    }
+    this.chargeLevel = this.getChargeLevel
+    console.log('charge ' + this.chargeLevel)
+    if (this.chargeLevel > 70) {
+      this.variant = 'success'
+    } else if (this.chargeLevel > 50) {
+      this.variant = 'warning'
+    } else {
+      this.variant = 'danger'
+    }
+  },
+  watch: {
+    getChargeLevel: function (newVal, old) {
+      this.chargeLevel = this.getChargeLevel
+    },
+    chargeLevel: function (newVal, old) {
+      if (this.chargeLevel > 70) {
+        this.variant = 'success'
+      } else if (this.chargeLevel > 50) {
+        this.variant = 'warning'
+      } else {
+        this.variant = 'danger'
+      }
+    }
   },
   methods: {
-    alarmPopUp () {
-      if (60000 - this.km <= 0) {
-        storage.saveBatteryProblem('problem_Distance')
-        // this.$router.push('/alarmCFilter')    // 해당 페이지를 확인하기 위해서, 실제로는 go에서 넘어올 때 떠야한다.
-        // storage.saveAlarm('cabinFilter')   // aircondition에서 넘어올 때 뜨게 하기 위해서..
+    update () {
+      this.$router.push('/managepopupBattery')
+    },
+    BeforeUpdate () {
+      if (this.updateCnt === 0) {
+        return true
       }
-      if (36 - this.month <= 0) {
-        storage.saveBatteryProblem('problem_Date')
-      }
+    },
+    initOdometer (vo) {
+      console.log('enter initOdometer')
+      // Odometer
+      this.getOdometer(vo)
+      this.subscribeOdometer(vo)
+    },
+    getOdometer (vo) {
+      vo.get().then((odometer) => {
+        console.log('get')
+        if (this.BeforeUpdate()) { // update 시도 전, 앱 최초 실행 시
+          console.log('hello first')
+          this.nowTotal = odometer.distanceTotal
+          this.km = this.nowTotal
+          this.$store.commit('setAlarmBattery', this.km)
+          // this.km = storage.loadBatterykm()
+        } else { // update 시도 후
+          console.log('hello update')
+          this.nowTotal = odometer.distanceTotal
+          this.pastTotal = storage.loadBatterykm()
+          this.km = this.nowTotal - this.pastTotal
+          this.$store.commit('setAlarmBattery', this.km)
+        }
+        console.log('get distanceTotal(now) ' + this.nowTotal)
+        console.log('get km ' + this.km)
+
+        if (this.km >= 60000) {
+          this.km = 60000
+        }
+      }, function (err) {
+        console.log(err.error)
+        console.log(err.message)
+      })
+    },
+    subscribeOdometer (vo) {
+      vo.subscribe((odometer) => {
+        console.log('subscribe')
+        if (this.BeforeUpdate()) { // update 시도 전, 앱 최초 실행 시
+          console.log('hello first')
+          this.nowTotal = odometer.distanceTotal
+          this.km = this.nowTotal
+          this.$store.commit('setAlarmBattery', this.km)
+          // this.km = storage.loadBatterykm()
+        } else { // update 시도 후
+          console.log('hello update')
+          this.nowTotal = odometer.distanceTotal
+          this.pastTotal = storage.loadBatterykm()
+          this.km = this.nowTotal - this.pastTotal
+          this.$store.commit('setAlarmBattery', this.km)
+        }
+        console.log('sub distanceTotal(now) ' + this.nowTotal)
+        console.log('get km ' + this.km)
+
+        if (this.km >= 60000) {
+          this.km = 60000
+        }
+      })
+    },
+    go () {
+      this.$router.push('/')
     },
     gomanage (page) {
       let str = '/'
-
-      if (page === '엔진 오일') {
+      if (page === 'Engine oil') {
         str += 'management'
-      } else if (page === '배터리') {
+      } else if (page === 'Battery') {
         str += 'battery'
-      } else if (page === '냉각수') {
+      } else if (page === 'Coolant') {
         str += 'water'
-      } else if (page === '타이어') {
+      } else if (page === 'Tire') {
         str += 'tire'
-      } else if (page === '캐빈필터') {
+      } else if (page === 'Cabin filter') {
         str += 'cabinAirFilter'
       }
       this.$router.push(str)
-    },
-    startVehicle () {
-      let vehicle = window.navigator.vehicle
-      if (vehicle) {
-        vehicle.start(() => {
-          console.log('vehicle start')
-          vehicle.batteryStatus.get().then((batteryStatus) => {
-            this.batterychargeLevel = batteryStatus.chargeLevel
-            this.batterylowVoltage = batteryStatus.lowVoltageDisplay
-            console.log(batteryStatus.chargeLevel)
-            console.log(batteryStatus.lowVoltageDisplay)
-          }, function (err) {
-            console.log(err.error)
-            console.log(err.message)
-          })
-        }, function () {
-          throw Error('constuctor fails')
-        })
-      }
     }
-    // startVehicle () {
-    //   let vehicle = window.navigator.vehicle
-    //   if (vehicle) {
-    //     if (vehicle.engineOil === undefined) {
-    //       vehicle.start(() => {
-    //         vehicle.engineOil.get().then(function (data) {
-    //           this.$data.engineOil = data
-    //         })
-    //         alert('vehicle start')
-    //         console.log('vehicle start')
-    //       })
-    //     }
-    //   }
-    // }
   }
 }
 </script>
@@ -177,12 +232,10 @@ div.parts {
     float: left;
     height: 85%;
     width: 25%;
-    border: 1px solid white;
 }
 div.select {
     height: 20%;
     width: 100%;
-    border: 1px solid white;
     p {
         text-align: center;
         margin: 15px;
@@ -193,26 +246,25 @@ div.manage {
     float: left;
     height: 85%;
     width: 75%;
-    border: 1px solid white;
+    border: 1px solid rgb(128, 128, 128);
 }
 div.top {
-    height: 76.6px;
+    height: 60.6px;
     width: 100%;
-    border: 1px solid white;
+    background: rgba(14, 13, 13, 0.493);
 }
 div.detail {
     margin: 0 auto;
-    height: 100%;
+    height: 65%;
     width: 100%;
     text-align: center;
-    border: 1px solid white;
+    border: 1px solid rgb(128, 128, 128);
 }
 div.btn2 {
     float: right;
 }
 div.btn1 {
     float: left;
-    margin-left: 20px;
 }
 div.desc {
     float: left;
@@ -220,69 +272,67 @@ div.desc {
     padding: 8px;
     height: 50%;
     width: 60%;
-    border: 1px solid white;
-    margin: 20px 33px 5px 23px;
+    margin: 6px 0px 5px 7px;
     p {
-        font-size: 20px;
+        font-size: 22px;
     }
 }
-button {
-    float: right;
+.btn-secondary {
+  background: black;
+  font-size: 22px;
+}
+div.parts > :nth-child(2) > .btn-secondary{
+  border-width: 4px;
+  border-color: gray;
+}
+div.km {
+  float: left;
+  width: 50%;
+  height: 85%;
+  .radial-progress-container {
     margin-top: 5px;
-    margin-right: 9.79px;
-    width: 65px;
-    height: 65px;
-    color: black;
-    background-color: white 
+    margin-left: 60px;
+    p {
+      font-size: 16px;
+    }
+  }
 }
-div.api {
-    position: absolute;
-    top: 30%;
-    left: 82%;
+div.cycle {
+  float: left;
+  width: 50%;
+  height: 85%;
+  .radial-progress-container {
+    margin-top: 5px;
+    margin-left: 30px;
+    p {
+      font-size: 16px;
+    }
+  }
 }
-div.km, div.cycle {
-    position: relative;
-    left: 5%;
-    top: 10%;
-    height: 25%;
-    width: 70%;
-    // border: 1px solid white;
-    margin-bottom: 5px;
-}
-div.km_str, div.mon_str {
-    position: relative;
-    height: 46%;
-    width: 100%;
-    border: 1px solid white;
-}
-div.km_bar, div.mon_bar {
-    position: relative;
-    height: 46%;
-    width: 100%;
-    border: 1px solid white;
-    margin-top: 6px;
-}
-span.kmstr_left, span.monstr_left {
-  top:7px;
-  left:5%;
-  position: absolute;
-  text-align: left;
+div.status {
+  margin: 0 auto;
   width: 100%;
+  height: 16%;
 }
-span.kmstr_right, span.monstr_right {
-  top:7px;
-  right:5%;
-  position: absolute;
-  text-align: right;
-  width: 100%;
+div.s_title {
+  float: left;
+  width: 20%;
+  p {
+    font-size: 18px;
+    margin-left: 35px;
+  }
 }
-div.img {
-    position: absolute;
-    top: 37%;
-    left: 81.5%;
-    height: 130px;
-    width: 110px;
-    border: 1px solid white;
+div.s_bar {
+  float: left;
+  width: 72%;
+  margin-top: 13px;
+  .container {
+    padding-right: 0px;
+    padding-left: 0px;
+  } 
+  .progress {
+    background-color: rgb(50, 50, 50)
+  }
 }
 @mixin mx-carmodel-7pr {
   .contents {
@@ -304,43 +354,3 @@ div.img {
   @include get-style-of($car-model)
 }
 </style>
-
-
-
-
-
-<!--<template>
-  <div>
-    <management-view></management-view>
-  </div>
-</template>
-<script>
-import management from './management.vue'
-export default {
-  name: 'managepopup',
-  components: {
-    'management-view': management
-  }
-}
-</script>
-<style lang='scss' scoped>
-@mixin mx-carmodel-7pr {
-  .contents {
-    color: white;
-  }
-}
-
-@mixin get-style-of($model) {
-  @if $model == '7pr' {
-    @include mx-carmodel-7pr;
-  }
-}
-
-@if $profile == 'production' {
-  @media renault7P {
-    @include get-style-of('7pr');
-  }
-} @else {
-  @include get-style-of($car-model)
-}
-</style>-->

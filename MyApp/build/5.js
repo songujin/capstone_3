@@ -5,14 +5,14 @@ webpackJsonp([5],{
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_managepopupOil_vue__ = __webpack_require__(245);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_managepopupOil_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_managepopupOil_vue__);
-/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_managepopupOil_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_managepopupOil_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4193427b_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_managepopupOil_vue__ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_managepopup_vue__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_managepopup_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_managepopup_vue__);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_managepopup_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_managepopup_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_dffb35f2_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_managepopup_vue__ = __webpack_require__(253);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(249)
+  __webpack_require__(252)
 }
 var normalizeComponent = __webpack_require__(11)
 /* script */
@@ -25,18 +25,18 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-4193427b"
+var __vue_scopeId__ = "data-v-dffb35f2"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_managepopupOil_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4193427b_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_managepopupOil_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_managepopup_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_dffb35f2_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_managepopup_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "src/components/managepopupOil.vue"
+Component.options.__file = "src/components/managepopup.vue"
 
 /* hot reload */
 if (true) {(function () {
@@ -45,9 +45,9 @@ if (true) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4193427b", Component.options)
+    hotAPI.createRecord("data-v-dffb35f2", Component.options)
   } else {
-    hotAPI.reload("data-v-4193427b", Component.options)
+    hotAPI.reload("data-v-dffb35f2", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -59,207 +59,7 @@ if (true) {(function () {
 
 /***/ }),
 
-/***/ 236:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var storage = {
-  saveRFTireKm: function saveRFTireKm(km) {
-    localStorage.setItem('RFtireKm', km);
-  },
-  loadRFTireKm: function loadRFTireKm() {
-    var RFtireKm = localStorage.getItem('RFtireKm');
-    RFtireKm = RFtireKm || '';
-    return RFtireKm;
-  },
-  saveRRTireKm: function saveRRTireKm(km) {
-    localStorage.setItem('RRtireKm', km);
-  },
-  loadRRTireKm: function loadRRTireKm() {
-    var RRtireKm = localStorage.getItem('RRtireKm');
-    RRtireKm = RRtireKm || '';
-    return RRtireKm;
-  },
-  saveLFTireKm: function saveLFTireKm(km) {
-    localStorage.setItem('LFtireKm', km);
-  },
-  loadLFTireKm: function loadLFTireKm() {
-    var LFtireKm = localStorage.getItem('LFtireKm');
-    LFtireKm = LFtireKm || '';
-    return LFtireKm;
-  },
-  saveLRTireKm: function saveLRTireKm(km) {
-    localStorage.setItem('LRtireKm', km);
-  },
-  loadLRTireKm: function loadLRTireKm() {
-    var LRtireKm = localStorage.getItem('LRtireKm');
-    LRtireKm = LRtireKm || '';
-    return LRtireKm;
-  },
-  saveCFilterKm: function saveCFilterKm(km) {
-    localStorage.setItem('CFilterKm', km);
-  },
-  loadCFilterKm: function loadCFilterKm() {
-    var CFilterKm = localStorage.getItem('CFilterKm');
-    CFilterKm = CFilterKm || '';
-    return CFilterKm;
-  },
-  saveRFTireM: function saveRFTireM(m) {
-    localStorage.setItem('RFtireM', m);
-  },
-  loadRFTireM: function loadRFTireM() {
-    var RFtireM = localStorage.getItem('RFtireM');
-    RFtireM = RFtireM || '';
-    return RFtireM;
-  },
-  saveRRTireM: function saveRRTireM(m) {
-    localStorage.setItem('RRtireM', m);
-  },
-  loadRRTireM: function loadRRTireM() {
-    var RRtireM = localStorage.getItem('RRtireM');
-    RRtireM = RRtireM || '';
-    return RRtireM;
-  },
-  saveLFTireM: function saveLFTireM(m) {
-    localStorage.setItem('LFtireM', m);
-  },
-  loadLFTireM: function loadLFTireM() {
-    var LFtireM = localStorage.getItem('LFtireM');
-    LFtireM = LFtireM || '';
-    return LFtireM;
-  },
-  saveLRTireM: function saveLRTireM(m) {
-    localStorage.setItem('LRtireM', m);
-  },
-  loadLRTireM: function loadLRTireM() {
-    var LRtireM = localStorage.getItem('LRtireM');
-    LRtireM = LRtireM || '';
-    return LRtireM;
-  },
-  saveCFilterM: function saveCFilterM(m) {
-    localStorage.setItem('CFilterM', m);
-  },
-  loadCFilterM: function loadCFilterM() {
-    var CFilterM = localStorage.getItem('CFilterM');
-    CFilterM = CFilterM || '';
-    return CFilterM;
-  },
-  saveFirst: function saveFirst(cnt) {
-    localStorage.setItem('First', cnt);
-  },
-  loadFirst: function loadFirst() {
-    var First = localStorage.getItem('First');
-    First = First || '0';
-    return First;
-  },
-  saveCFilterProblem: function saveCFilterProblem(pText) {
-    localStorage.setItem('Problem', pText);
-  },
-  loadCFilterProblem: function loadCFilterProblem() {
-    var Probelm = localStorage.getItem('Problem');
-    Probelm = Probelm || '';
-    return Probelm;
-  },
-  saveRFProblem: function saveRFProblem(pText) {
-    localStorage.setItem('Problem', pText);
-  },
-  loadRFProblem: function loadRFProblem() {
-    var Probelm = localStorage.getItem('Problem');
-    Probelm = Probelm || '';
-    return Probelm;
-  },
-  saveRRProblem: function saveRRProblem(pText) {
-    localStorage.setItem('Problem', pText);
-  },
-  loadRRProblem: function loadRRProblem() {
-    var Probelm = localStorage.getItem('Problem');
-    Probelm = Probelm || '';
-    return Probelm;
-  },
-  saveLFProblem: function saveLFProblem(pText) {
-    localStorage.setItem('Problem', pText);
-  },
-  loadLFProblem: function loadLFProblem() {
-    var Probelm = localStorage.getItem('Problem');
-    Probelm = Probelm || '';
-    return Probelm;
-  },
-  saveLRProblem: function saveLRProblem(pText) {
-    localStorage.setItem('Problem', pText);
-  },
-  loadLRProblem: function loadLRProblem() {
-    var Probelm = localStorage.getItem('Problem');
-    Probelm = Probelm || '';
-    return Probelm;
-  },
-  saveAlarm: function saveAlarm(name) {
-    localStorage.setItem('Alarm', name);
-  },
-  loadAlarm: function loadAlarm() {
-    var Alarm = localStorage.getItem('Alarm');
-    Alarm = Alarm || '';
-    return Alarm;
-  },
-  saveEngineOilkm: function saveEngineOilkm(km) {
-    localStorage.setItem('engineOilkm', km);
-  },
-  loadEngineOilkm: function loadEngineOilkm() {
-    var engineOilkm = localStorage.getItem('engineOilkm');
-    engineOilkm = engineOilkm || '';
-    return engineOilkm;
-  },
-  saveEngineOilM: function saveEngineOilM(m) {
-    localStorage.setItem('engineOilM', m);
-  },
-  loadEngineOilM: function loadEngineOilM() {
-    var engineOilM = localStorage.getItem('engineOilM');
-    engineOilM = engineOilM || '';
-    return engineOilM;
-  },
-  saveBatterykm: function saveBatterykm(km) {
-    localStorage.setItem('batterykm', km);
-  },
-  loadBatterykm: function loadBatterykm() {
-    var batterykm = localStorage.getItem('batterykm');
-    batterykm = batterykm || '';
-    return batterykm;
-  },
-  saveBatteryM: function saveBatteryM(m) {
-    localStorage.setItem('batteryM', m);
-  },
-  loadBatteryM: function loadBatteryM() {
-    var batteryM = localStorage.getItem('batteryM');
-    batteryM = batteryM || '';
-    return batteryM;
-  },
-  saveOilProblem: function saveOilProblem(pText) {
-    localStorage.setItem('Problem', pText);
-  },
-  loadOilProblem: function loadOilProblem() {
-    var Probelm = localStorage.getItem('Problem');
-    Probelm = Probelm || '';
-    return Probelm;
-  },
-  saveBatteryProblem: function saveBatteryProblem(pText) {
-    localStorage.setItem('Problem', pText);
-  },
-  loadBatteryProblem: function loadBatteryProblem() {
-    var Probelm = localStorage.getItem('Problem');
-    Probelm = Probelm || '';
-    return Probelm;
-  }
-};
-
-exports.storage = storage;
-
-/***/ }),
-
-/***/ 237:
+/***/ 244:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1751,7 +1551,7 @@ var Datepicker = {render: function(){var _vm=this;var _h=_vm.$createElement;var 
 
 /***/ }),
 
-/***/ 241:
+/***/ 246:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(9)();
@@ -1759,14 +1559,14 @@ exports = module.exports = __webpack_require__(9)();
 
 
 // module
-exports.push([module.i, "\n.contents[data-v-4193427b] {\n  padding: 20px;\n  color: white;\n}\ndiv.popup[data-v-4193427b] {\n  margin: 25px auto 55px auto;\n  width: 50%;\n  height: 60%;\n  border: 1px solid white;\n}\ndiv.popup > p[data-v-4193427b] {\n  text-align: center;\n  margin: 10px;\n  font-size: 20px;\n}\ndiv.buy[data-v-4193427b],\ndiv.distance[data-v-4193427b] {\n  margin: 0 auto;\n  padding: 5px;\n  height: 33%;\n  width: 100%;\n  border: 1px solid white;\n  text-align: center;\n}\ndiv.buy div.text[data-v-4193427b],\ndiv.buy div.date[data-v-4193427b],\ndiv.buy div.odometer[data-v-4193427b],\ndiv.distance div.text[data-v-4193427b],\ndiv.distance div.date[data-v-4193427b],\ndiv.distance div.odometer[data-v-4193427b] {\n  position: relative;\n  left: 5%;\n  float: left;\n  text-align: center;\n  margin: 0 10px;\n  height: 95%;\n  width: 40%;\n  border: 1px solid white;\n}\ndiv.buy div.text p[data-v-4193427b],\ndiv.buy div.date p[data-v-4193427b],\ndiv.buy div.odometer p[data-v-4193427b],\ndiv.distance div.text p[data-v-4193427b],\ndiv.distance div.date p[data-v-4193427b],\ndiv.distance div.odometer p[data-v-4193427b] {\n  text-align: center;\n  margin-top: 20px;\n  font-size: 20px;\n}\ndiv.btn[data-v-4193427b] {\n  margin: 0 auto;\n  padding: 3px;\n  height: 33%;\n  width: 100%;\n  text-align: center;\n}\ndiv.btn div.btnGo[data-v-4193427b],\ndiv.btn div.btnBack[data-v-4193427b] {\n  position: relative;\n  left: 4%;\n  float: left;\n  text-align: center;\n  margin: 0 60px;\n  border: 1px solid white;\n}\ndiv.btn div.btnGo p[data-v-4193427b],\ndiv.btn div.btnBack p[data-v-4193427b] {\n  text-align: center;\n  font-size: 20px;\n  padding: 5px;\n}", ""]);
+exports.push([module.i, "\n.contents[data-v-dffb35f2] {\n  padding: 20px;\n  color: white;\n}\ndiv.popup[data-v-dffb35f2] {\n  margin: 25px auto 55px auto;\n  width: 50%;\n  height: 60%;\n  border: 1px solid white;\n}\ndiv.popup > p[data-v-dffb35f2] {\n  text-align: center;\n  margin: 10px;\n  font-size: 20px;\n}\ndiv.buy[data-v-dffb35f2],\ndiv.distance[data-v-dffb35f2] {\n  margin: 0 auto;\n  padding: 5px;\n  height: 33%;\n  width: 100%;\n  border: 1px solid white;\n  text-align: center;\n}\ndiv.buy div.text[data-v-dffb35f2],\ndiv.buy div.date[data-v-dffb35f2],\ndiv.buy div.odometer[data-v-dffb35f2],\ndiv.distance div.text[data-v-dffb35f2],\ndiv.distance div.date[data-v-dffb35f2],\ndiv.distance div.odometer[data-v-dffb35f2] {\n  position: relative;\n  left: 5%;\n  float: left;\n  text-align: center;\n  margin: 0 10px;\n  height: 95%;\n  width: 40%;\n  border: 1px solid white;\n}\ndiv.buy div.text p[data-v-dffb35f2],\ndiv.buy div.date p[data-v-dffb35f2],\ndiv.buy div.odometer p[data-v-dffb35f2],\ndiv.distance div.text p[data-v-dffb35f2],\ndiv.distance div.date p[data-v-dffb35f2],\ndiv.distance div.odometer p[data-v-dffb35f2] {\n  text-align: center;\n  margin-top: 20px;\n  font-size: 20px;\n}\ndiv.btn[data-v-dffb35f2] {\n  margin: 0 auto;\n  width: 65px;\n  height: 40px;\n  border: 1px solid white;\n}\ndiv.btn p[data-v-dffb35f2] {\n  text-align: center;\n  margin: 14px;\n  font-size: 15px;\n}", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 245:
+/***/ 248:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1776,18 +1576,18 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _manageLibs = __webpack_require__(236);
+var _manageLibs = __webpack_require__(96);
 
-var _vuejsDatepicker = __webpack_require__(237);
+var _vuejsDatepicker = __webpack_require__(244);
 
 var _vuejsDatepicker2 = _interopRequireDefault(_vuejsDatepicker);
 
-__webpack_require__(96);
+__webpack_require__(97);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-  name: 'managepopupOil',
+  name: 'managepopup',
   props: ['value'],
   components: {
     'vuejs-datepicker': _vuejsDatepicker2.default
@@ -1795,7 +1595,7 @@ exports.default = {
   data: function data() {
     return {
       title: '관리 시작 기준 설정',
-      distance: '10000',
+      distance: '20000',
       selectedDate: '',
       setMonth: '',
       state: {
@@ -1815,21 +1615,20 @@ exports.default = {
 
       var vehicle = window.navigator.vehicle;
       if (vehicle) {
-        vehicle.start(function () {
-          console.log('vehicle start');
-          vehicle.odometer.get().then(function (odometer) {
-            _this.distance = odometer.distanceTotal;
-          }, function (err) {
-            console.log(err.error);
-            console.log(err.message);
+        if (vehicle.odometer === undefined) {
+          vehicle.start(function () {
+            console.log('vehicle start');
+            vehicle.odometer.get().then(function (odometer) {
+              _this.distance = odometer.distanceTotal;
+            }, function (err) {
+              console.log(err.error);
+              console.log(err.message);
+            });
+          }, function () {
+            throw Error('constuctor fails');
           });
-        }, function () {
-          throw Error('constuctor fails');
-        });
+        }
       }
-    },
-    goback: function goback() {
-      this.$router.push('/management');
     },
     go: function go() {
       var date = new Date();
@@ -1875,18 +1674,29 @@ exports.default = {
       } else if (settingDate.month === 'Dec') {
         this.setMonth = 12;
       }
+
       var setDate = new Date(settingDate.year, this.setMonth - 1, settingDate.date);
-
-      console.log(settingDate.year);
-
-      console.log(settingDate.date);
-      console.log(date.getTime());
-      console.log(setDate.getTime());
-
-
-      _manageLibs.storage.saveEngineOilM(setDate.getTime());
       _manageLibs.storage.saveEngineOilkm(this.distance);
+      _manageLibs.storage.saveEngineOilM(setDate.getTime());
 
+      _manageLibs.storage.saveBatterykm(this.distance);
+      _manageLibs.storage.saveBatteryM(setDate.getTime());
+
+      _manageLibs.storage.saveRFTireKm(this.distance);
+      _manageLibs.storage.saveRFTireM(setDate.getTime());
+      _manageLibs.storage.saveRRTireKm(this.distance);
+      _manageLibs.storage.saveRRTireM(setDate.getTime());
+      _manageLibs.storage.saveLFTireKm(this.distance);
+      _manageLibs.storage.saveLFTireM(setDate.getTime());
+      _manageLibs.storage.saveLRTireKm(this.distance);
+      _manageLibs.storage.saveLRTireM(setDate.getTime());
+
+      _manageLibs.storage.saveCFilterKm(this.distance);
+      _manageLibs.storage.saveCFilterM(setDate.getTime());
+
+      var count = 0;
+      count++;
+      _manageLibs.storage.saveFirst(count);
       this.$router.push('/management');
     }
   }
@@ -1894,23 +1704,23 @@ exports.default = {
 
 /***/ }),
 
-/***/ 249:
+/***/ 252:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(241);
+var content = __webpack_require__(246);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("7a0719f9", content, false);
+var update = __webpack_require__(10)("b6403f06", content, false);
 // Hot Module Replacement
 if(true) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept(241, function() {
-     var newContent = __webpack_require__(241);
+   module.hot.accept(246, function() {
+     var newContent = __webpack_require__(246);
      if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
      update(newContent);
    });
@@ -1921,7 +1731,7 @@ if(true) {
 
 /***/ }),
 
-/***/ 250:
+/***/ 253:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1970,33 +1780,17 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "btn" }, [
-          _c("div", { staticClass: "btnBack" }, [
-            _c(
-              "p",
-              {
-                on: {
-                  click: function($event) {
-                    _vm.goback()
-                  }
+          _c(
+            "p",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.go()
                 }
-              },
-              [_vm._v("취소")]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "btnGo" }, [
-            _c(
-              "p",
-              {
-                on: {
-                  click: function($event) {
-                    _vm.go()
-                  }
-                }
-              },
-              [_vm._v("확인")]
-            )
-          ])
+              }
+            },
+            [_vm._v("확인")]
+          )
         ])
       ])
     ])
@@ -2022,7 +1816,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 if (true) {
   module.hot.accept()
   if (module.hot.data) {
-    __webpack_require__(1)      .rerender("data-v-4193427b", esExports)
+    __webpack_require__(1)      .rerender("data-v-dffb35f2", esExports)
   }
 }
 

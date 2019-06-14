@@ -17,12 +17,22 @@ const routes = [{
 }, { path: '/managePopupCF', component: () => import('@/components/managePopupCF'), name: 'managePopupCF'
 }, { path: '/alarmRF', component: () => import('@/components/alarmRF'), name: 'alarmRF'
 }, { path: '/alarmCFilter', component: () => import('@/components/alarmCFilter'), name: 'alarmCFilter'
-}, { path: '/alarmRF', component: () => import('@/components/alarmRF'), name: 'alarmRF'
+}, { path: '/alarmRR', component: () => import('@/components/alarmRR'), name: 'alarmRR'
 }, { path: '/managepopupBattery', component: () => import('@/components/managepopupBattery'), name: 'managepopupBattery'
 }, { path: '/managepopupOil', component: () => import('@/components/managepopupOil'), name: 'managepopupOil'
 }, { path: '/managePopupWater', component: () => import('@/components/managePopupWater'), name: 'managePopupWater'
 }, { path: '/alarmEngineOil', component: () => import('@/components/alarmEngineOil'), name: 'alarmEngineOil'
 }, { path: '/alarmBattery', component: () => import('@/components/alarmBattery'), name: 'alarmBattery'
-}, { path: '/alarmWater', component: () => import('@/components/alarmWater'), name: 'alarmWater' } ]
+}, { path: '/alarmLF', component: () => import('@/components/alarmLF'), name: 'alarmLF'
+}, { path: '/alarmLR', component: () => import('@/components/alarmLR'), name: 'alarmLR'
+}, { path: '/alarmWater', component: () => import('@/components/alarmWater'), name: 'alarmWater'
+}, { path: '/warningEngineOil', component: () => import('@/components/warningEngineOil'), name: 'warningEngineOil'
+}, { path: '/warningWater', component: () => import('@/components/warningWater'), name: 'warningWater'
+}, { path: '/warningBattery', component: () => import('@/components/warningBattery'), name: 'warningBattery'
+}, { path: '/warningCFilter', component: () => import('@/components/warningCFilter'), name: 'warningCFilter'
+}, { path: '/warningRR', component: () => import('@/components/warningRR'), name: 'warningRR'
+}, { path: '/warningRF', component: () => import('@/components/warningRF'), name: 'warningRF'
+}, { path: '/warningLF', component: () => import('@/components/warningLF'), name: 'warningLF'
+}, { path: '/warningLR', component: () => import('@/components/warningLR'), name: 'warningLR' }]
 
 export default routes

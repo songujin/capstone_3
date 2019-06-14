@@ -5,7 +5,7 @@
             <p>{{ title }}</p>
             <div class='buy'>
                 <div class='text'>
-                    <p>구매 날짜</p>
+                    <p>Purchase Date</p>
                 </div>
                 <div class='date'>
                   <vuejs-datepicker v-model="selectedDate" placeholder="click..." style="color:black;" :disabledDates="state.disabledDates" format="yyyy-MM-dd"></vuejs-datepicker>
@@ -13,15 +13,20 @@
             </div>
             <div class='distance'>
                 <div class='text'>
-                    <p>주행 거리</p>
+                    <p>Total Distance</p>
                 </div>
                 <div class='odometer'>
                     <p>{{ distance }}km</p>
                 </div>
             </div>
             <div class='btn'>
-                <p @click='go()'>확인</p>
-            </div>      
+              <div class='btnBack'>
+                <b-button @click='goback()'>Cancel</b-button>
+              </div>
+              <div class='btnGo'>
+                <b-button @click='go()'>Ok</b-button>
+              </div>
+            </div>
         </div>
     </div> 
   </div>
@@ -39,8 +44,8 @@ export default {
   },
   data: function () {
     return {
-      title: '관리 시작 기준 설정',
-      distance: '20000',
+      title: 'Setting',
+      distance: '',
       selectedDate: '',
       setMonth: '',
       state: {
@@ -51,27 +56,35 @@ export default {
     }
   },
   mounted () {
-    this.startVehicle()
+    let vo = window.navigator.vehicle.odometer
+    this.initOdometer(vo)
   },
   methods: {
-    startVehicle () {
-      let vehicle = window.navigator.vehicle
-      if (vehicle) {
-        if (vehicle.odometer === undefined) {
-          vehicle.start(() => {
-            console.log('vehicle start')
-            vehicle.odometer.get().then((odometer) => {
-              this.distance = odometer.distanceTotal
-              // this.$data.distance = odometer.distanceTotal
-            }, function (err) {
-              console.log(err.error)
-              console.log(err.message)
-            })
-          }, function () {
-            throw Error('constuctor fails')
-          })
-        }
-      }
+    initOdometer (vo) {
+      console.log('enter initOdometer')
+      // Odometer
+      this.getOdometer(vo)
+      this.subscribeOdometer(vo)
+    },
+    getOdometer (vo) {
+      vo.get().then((odometer) => {
+        console.log('get')
+        this.distance = odometer.distanceTotal
+        console.log('get distanceTotal(now) ' + this.distance)
+      }, function (err) {
+        console.log(err.error)
+        console.log(err.message)
+      })
+    },
+    subscribeOdometer (vo) {
+      vo.subscribe((odometer) => {
+        console.log('subscribe')
+        this.distance = odometer.distanceTotal
+        console.log('sub distanceTotal(now) ' + this.distance)
+      })
+    },
+    goback () {
+      this.$router.push('/')
     },
     go () {
       let date = new Date()
@@ -132,13 +145,12 @@ export default {
       storage.saveLFTireKm(this.distance)
       storage.saveLFTireM(setDate.getTime())
       storage.saveLRTireKm(this.distance)
+      storage.saveLRTireM(setDate.getTime())
 
       storage.saveCFilterKm(this.distance)
       storage.saveCFilterM(setDate.getTime())
 
-      var count = 0
-      count++
-      storage.saveFirst(count)
+      storage.saveFirst('false') // managepopup에 한번 입장했음을 의미
       this.$router.push('/management')
     }
   }
@@ -150,49 +162,88 @@ export default {
   color: white;
 }
 div.popup {
-    margin: 25px auto 55px auto;
+    margin: 48px auto 55px auto;
     width: 50%;
     height: 60%;
-    border: 1px solid white;
+    border: 1px solid gray;
     > p {
+        background: black;
+        margin: 0px;
         text-align: center;
-        margin: 10px;
-        font-size: 20px;
+        font-size: 22px;
+        height: 35px;
+        border-bottom: 1px solid gray;
     }
 }
 div.buy, div.distance {
+    background: rgba(14, 13, 13, 0.185);
     margin: 0 auto;
     padding: 5px;
-    height: 33%;
+    height: 30%;
     width: 100%;
-    border: 1px solid white;
     text-align: center;
-    div.text, div.date, div.odometer {
+    div.text {
         position: relative;
-        left: 5%;
         float: left;
         text-align: center;
         margin: 0 10px;
         height: 95%;
-        width: 40%;
-        border: 1px solid white;
+        width: 30%;
         p {
             text-align: center;
-            margin-top: 20px;
+            font-size: 20px;
+        }
+    }
+    div.date {
+        padding-top: 15px;
+        padding-left: 15px;
+        position: relative;
+        float: left;
+        text-align: center;
+        margin: 0 10px;
+        height: 95%;
+        width: 58%;
+        p {
+            text-align: center;
+            font-size: 20px;
+        }
+    }
+    div.odometer {
+        position: relative;
+        float: left;
+        text-align: center;
+        margin: 0 10px;
+        height: 95%;
+        width: 58%;
+        border: 1px solid gray;
+        p {
+            text-align: center;
             font-size: 20px;
         }
     }
 }
 div.btn {
+    background: rgba(14, 13, 13, 0.185);
     margin: 0 auto;
-    width: 65px;
-    height: 40px;
-    border: 1px solid white;
-    p {
+    padding: 0 auto;
+    height: 25%;
+    width: 100%;
+    text-align: center;
+    div.btnGo, div.btnBack {
+        position: relative;
         text-align: center;
-        margin: 14px;
-        font-size: 15px;
+        p {
+            text-align: center;
+            font-size: 20px;
+            padding: 5px;
+        }
     }
+}
+.btn-secondary {
+  background: black;
+  font-size: 22px;
+  width: 176px;
+  float: left;
 }
 @mixin mx-carmodel-7pr {
   .contents {

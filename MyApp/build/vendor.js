@@ -1,4 +1,4 @@
-webpackJsonp([21],[
+webpackJsonp([27],[
 /* 0 */
 /***/ (function(module, exports) {
 
@@ -14578,14 +14578,14 @@ function getAppManager() {
 exports.default = getAppManager();
 
 /***/ }),
-/* 96 */
+/* 96 */,
+/* 97 */
 /***/ (function(module, exports) {
 
 !function(t){function e(o){if(n[o])return n[o].exports;var i=n[o]={exports:{},id:o,loaded:!1};return t[o].call(i.exports,i,i.exports,e),i.loaded=!0,i.exports}var n={};return e.m=t,e.c=n,e.p="",e(0)}({0:function(t,e,n){"use strict";function o(t){return t&&t.__esModule?t:{default:t}}function i(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}function r(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}function _(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}var a=function(){function t(t,e){for(var n=0;n<e.length;n++){var o=e[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}return function(e,n,o){return n&&t(e.prototype,n),o&&t(e,o),e}}(),u=n(43),T=o(u),s=n(2),E=o(s),c=n(5),O=o(c);n(46),function(){function t(t){var e=Object.getPrototypeOf(this);e.message=t,e.name="UnmatchedParameterTypeError"}function e(t){var e=Object.getPrototypeOf(this);e.message=t,e.name="NotSupportedEventTypeError"}function n(t){var e=Object.getPrototypeOf(this);e.message=t,e.name="OutOfSwitchCaseException"}function o(t){var e=Object.getPrototypeOf(this);e.message=t,e.name="NullParameterException"}function u(t){var e=Object.getPrototypeOf(this);e.message=t,e.name="UndefinedParameterException"}function s(t,e,n){var o=p[t];return Array.isArray(o)&&(o=o[0]),o.hasOwnProperty(e)&&o[e].hasOwnProperty(n)?le[o[e][n]]||le[5]:le[1]}var c={ZONES:"zones",SUPPORTED:"supported",AVAILABLE_FOR_RETRIEVALS:"availableForRetrievals",AVAILABLE_FOR_SETTINGS:"availableForSettings",AVAILABLE_FOR_SUBSCRIPTIONS:"availableForSubscriptions",IDENTIFICATION:"identification",SIZE_CONFIGURATION:"sizeConfiguration",FUEL_CONFIGURATION:"fuelConfiguration",TRANSMISSION_CONFIGURATION:"transmissionConfiguration",WHEEL_CONFIGURATION:"wheelConfiguration",STEERING_WHEEL_CONFIGURATION:"steeringWheelConfiguration",VEHICLE_SPEED:"vehicleSpeed",WHEEL_SPEED:"wheelSpeed",ENGINE_SPEED:"engineSpeed",VEHICLE_POWER_MODE_TYPE:"vehiclePowerModeType",POWER_TRAIN_TORQUE:"powertrainTorque",ACCELERATOR_PEDAL_POSITION:"acceleratorPedalPosition",THROTTLE_POSITION:"throttlePosition",TRIP_METERS:"tripMeters",TRANSMISSION:"transmission",CRUISE_CONTROL_STATUS:"cruiseControlStatus",LIGHT_STATUS:"lightStatus",INTERIOR_LIGHT_STATUS:"interiorLightStatus",HORN:"horn",CHIME:"chime",FUEL:"fuel",ENGINE_OIL:"engineOil",ACCELERATION:"acceleration",ENGINE_COOLANT:"engineCoolant",STEERING_WHEEL:"steeringWheel",WHEEL_TICK:"wheelTick",IGNITION_TIME:"ignitionTime",YAW_RATE:"yawRate",BRAKE_OPERATION:"brakeOperation",BUTTON_EVENT:"buttonEvent",DRIVING_MODE:"drivingMode",NIGHT_MODE:"nightMode",ADVISOR:"advisor",AUTO_PHASE:"autoPhase",CLUTCH_SWITCH:"clutchSwitch",EFFECTIVE_TORQUE:"effectiveTorque",ENGINE_CONTROL:"engineControl",ENGINE_STATUS:"engineStatus",FLUENT_DRIVING:"fluentDriving",GLOBAL_WARNING:"globalWarning",GSI:"gsi",METER_ADAC:"meterADAC",POWER_TRAIN:"powerTrain",RANGE_INDICATION:"rangeIndication",TIRE_TORQUE:"tireTorque",VEHICLE_STATE:"vehicleState",WATER:"water",CLUSTER_VEHICLE_SPEED:"clusterVehicleSpeed",ODOMETER:"odometer",TRANSMISSION_OIL:"transmissionOil",TRANSMISSION_CLUTCH:"transmissionClutch",BRAKE_MAINTENANCE:"brakeMaintenance",WASHER_FLUID:"washerFluid",MALFUNCTION_INDICATOR:"malfunctionIndicator",BATTERY_STATUS:"batteryStatus",TIRE:"tire",DIAGNOSTIC:"diagnostic",LONGITUDINAL_ACCEL:"longitudinalAccel",OVERHAUL:"overhaul",LANGUAGE_CONFIGURATION:"languageConfiguration",UNITS_OF_MEASURE:"unitsOfMeasure",MIRROR:"mirror",SEAT_ADJUSTMENT:"seatAdjustment",DRIVE_MODE:"driveMode",DASHBOARD_ILLUMINATION:"dashboardIllumination",VEHICLE_SOUND:"vehicleSound",ECO_SCORES:"ecoScores",NIGHT_RHEO_STATED_LIGHT:"nightRheoStatedLight",ANTILOCK_BRAKING_SYSTEM:"antilockBrakingSystem",TRACTION_CONTROL_SYSTEM:"tractionControlSystem",ELECTRONIC_STABILITY_CONTROL:"electronicStabilityControl",TOP_SPEED_LIMIT:"topSpeedLimit",AIRBAG_STATUS:"airbagStatus",DOOR:"door",CHILD_SAFETY_LOCK:"childSafetyLock",SEAT:"seat",TEMPERATURE:"temperature",RAIN_SENSOR:"rainSensor",WIPER_STATUS:"wiperStatus",WIPER_SETTING:"wiperSetting",DEFROST:"defrost",SUNROOF:"sunroof",CONVERTIBLE_ROOF:"convertibleRoof",SIDE_WINDOW:"sideWindow",CLIMATE_CONTROL:"climateControl",ATMOSPHERIC_PRESSURE:"atmosphericPressure",ASR:"asr",AYC:"ayc",EBD:"ebd",EPS:"eps",TAIL_GATE:"tailGate",VDC:"vdc",LANE_DEPARTURE_DETECTION:"laneDepartureDetection",ALARM:"alarm",PARKING_BRAKE:"parkingBrake",PARKING_LIGHTS:"parkingLights",NEUTRAL_CONTACT:"neutralContact",RAW_SENSOR:"rawSensor",BRAKE_SWITCH:"brakeSwitch"},I=0,l=2,p={size:0,zones:null,supported:null,availableForRetrievals:null,availableForSettings:null,availableForSubscriptions:null},f=window.vehicle,h=new window.Zone,N=function t(e,n){_(this,t),this.error=e,this.message=n},R=function(){function t(e,n,o,i){_(this,t),this.supported=e||!1,this.zones=n,this.me={eventType:o},this.me.__proto__={zones:i}}return a(t,[{key:"get",value:function(){var t=this,n=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null;if(!this.supported||this.zones<0)throw new e(this.me.eventType+" is not supported");var o=void 0,i=void 0,r=void 0,_=0;return new window.Promise(function(e,a){o=function(n){var o=n,i=Array.isArray(o);if(r=h.bitToZoneToBit(h.BIT_TO_ZONE_GET,o),i){_=o.length;for(var a=0;a<_;a++)o[a].hasOwnProperty("zone")&&(o[a].zone=r[a])}else o.hasOwnProperty("zone")&&(o.zone=r[0]);if("fuelConfiguration"===t.me.eventType){var u=[];for(var T in h.zones)o.refuelPosition&h.zones[T]&&u.push(T);o.refuelPosition=new window.Zone(u)}e(o)},i=function(t){a(new N(t.code,t.message))};var u=null===n?t.me.__proto__.zones:h.bitToZoneToBit(l,n);f.get(t.me.eventType,{zone:u},o,i)})}},{key:"availableForRetrieval",value:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null;if(null===t)throw new o("During "+this.me.eventType+".availableForRetrieval()");if(void 0===t)throw new u("During "+this.me.eventType+".availableForRetrieval()");return s(c.AVAILABLE_FOR_RETRIEVALS,this.me.eventType,t)}}]),t}(),S=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(R),A=function(t){function n(){return _(this,n),i(this,(n.__proto__||Object.getPrototypeOf(n)).apply(this,arguments))}return r(n,t),a(n,[{key:"set",value:function(t){var n=this,o=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null;if(!this.supported||this.zones<0)throw new e(this.me.eventType+" is not supported");return new window.Promise(function(t,e){var i=function(e){t(e)},r=function(t){e(new N(t.code,t.message))};f.set(n.me.eventType,null===o?null:h.bitToZoneToBit(l,o),i,r)})}},{key:"subscribe",value:function(t){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null;if(!this.supported||this.zones<0)throw new e(this.me.eventType+" is not supported");if(null===t)throw new o("During "+this.me.eventType+".subscribe()");if(void 0===t)throw new u("During "+this.me.eventType+".subscribe()");return f.addListener(this.me.eventType,null===n?null:h.bitToZoneToBit(l,n),t)}},{key:"unsubscribe",value:function(t){if(!this.supported||this.zones<0)throw new e(this.me.eventType+" is not supported");if(null===t)throw new o("During "+this.me.eventType+".unsubscribe()");if(void 0===t)throw new u("During "+this.me.eventType+".unsubscribe()");return f.removeListener(this.me.eventType,t)}},{key:"availableForSetting",value:function(t){if(null===t)throw new o("During "+this.me.eventType+".availableForSetting()");if(void 0===t)throw new u("During "+this.me.eventType+".availableForSetting()");return s(c.AVAILABLE_FOR_SETTINGS,this.me.eventType,t)}},{key:"availableForSubscription",value:function(t){if(null===t)throw new o("During "+this.me.eventType+".availableForSubscription()");if(void 0===t)throw new u("During "+this.me.eventType+".availableForSubscription()");return s(c.AVAILABLE_FOR_SUBSCRIPTIONS,this.me.eventType,t)}}]),n}(R),g=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(S),y=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(S),C=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(S),v=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(S),w=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(S),d=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(S),L=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),b=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),P=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),D=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),U=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),G=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),m=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),B=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),M=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),H=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),F=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),j=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),W=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Z=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),V=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),k=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),K=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Y=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),z=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),J=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),x=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Q=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),q=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),X=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),$=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),tt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),et=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),nt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),ot=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),it=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),rt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),_t=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),at=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),ut=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Tt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),st=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Et=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),ct=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Ot=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),It=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),lt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),pt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),ft=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),ht=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Nt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Rt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),St=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),At=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),gt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),yt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Ct=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),vt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),wt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),dt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Lt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),bt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Pt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Dt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Ut=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Gt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),mt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Bt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(S),Mt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Ht=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Ft=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),jt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Wt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Zt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Vt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),kt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Kt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Yt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),zt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Jt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),xt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Qt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),qt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Xt=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),$t=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),te=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),ee=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),ne=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),oe=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),ie=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),re=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),_e=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),ae=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),ue=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Te=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),se=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Ee=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),ce=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Oe=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(A),Ie=function(t){function e(){return _(this,e),i(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return r(e,t),e}(T.default),le=[];le.push("available"),le.push("not_supported"),le.push("not_supported_yet"),le.push("not_supported_security_policy"),le.push("not_supported_business_policy"),le.push("not_supported_other");var pe={name:"vehicle",version:"2.1.1.9",start:function(e,n,o){function i(){var t=[],e=!1;p.size=0,t.push(c.SUPPORTED),t.push(c.ZONES),t.push(c.AVAILABLE_FOR_RETRIEVALS),t.push(c.AVAILABLE_FOR_SETTINGS),t.push(c.AVAILABLE_FOR_SUBSCRIPTIONS);var n=function(n){if(e)return"break";var o=t[n];f.get(o,null,function(e){p[o]=e,p.size++,E.default.debug&&console.log(o+" is ready"),p.size===t.length&&a(p)},function(t){e=!0,function(t,e){console.error("("+e+") Based-data Collection Error \n                => errorCode:"+t.code+"\n                => message:"+t.message)}(t,o)})};for(var o in t){var i=n(o);if("break"===i)break}}function r(t){"function"==typeof o?o(t):console.warn("["+pe.name+"] close_callback is called ---- %")}function _(t){"function"==typeof n?n(t):console.error("["+pe.name+"] error_callback is called")}function a(t){E.default.info&&console.info("%c === Hello Vehicle ===","color:dodgerblue");var n=t.supported,o=t.zones;Array.isArray(n)&&(n=n[0]),Array.isArray(o)&&(o=o[0]);try{window.navigator.vehicle[c.IDENTIFICATION]=new g(n[c.IDENTIFICATION],h.bitToZoneToBit(I,o[c.IDENTIFICATION]),c.IDENTIFICATION,o[c.IDENTIFICATION]),window.navigator.vehicle[c.SIZE_CONFIGURATION]=new y(n[c.SIZE_CONFIGURATION],h.bitToZoneToBit(I,o[c.SIZE_CONFIGURATION]),c.SIZE_CONFIGURATION,o[c.SIZE_CONFIGURATION]),window.navigator.vehicle[c.FUEL_CONFIGURATION]=new C(n[c.FUEL_CONFIGURATION],h.bitToZoneToBit(I,o[c.FUEL_CONFIGURATION]),c.FUEL_CONFIGURATION,o[c.FUEL_CONFIGURATION]),window.navigator.vehicle[c.TRANSMISSION_CONFIGURATION]=new v(n[c.TRANSMISSION_CONFIGURATION],h.bitToZoneToBit(I,o[c.TRANSMISSION_CONFIGURATION]),c.TRANSMISSION_CONFIGURATION,o[c.TRANSMISSION_CONFIGURATION]),window.navigator.vehicle[c.WHEEL_CONFIGURATION]=new w(n[c.WHEEL_CONFIGURATION],h.bitToZoneToBit(I,o[c.WHEEL_CONFIGURATION]),c.WHEEL_CONFIGURATION,o[c.WHEEL_CONFIGURATION]),window.navigator.vehicle[c.STEERING_WHEEL_CONFIGURATION]=new d(n[c.STEERING_WHEEL_CONFIGURATION],h.bitToZoneToBit(I,o[c.STEERING_WHEEL_CONFIGURATION]),c.STEERING_WHEEL_CONFIGURATION,o[c.STEERING_WHEEL_CONFIGURATION])}catch(t){console.error(t)}try{window.navigator.vehicle[c.VEHICLE_SPEED]=new b(n[c.VEHICLE_SPEED],h.bitToZoneToBit(I,o[c.VEHICLE_SPEED]),c.VEHICLE_SPEED,o[c.VEHICLE_SPEED]),window.navigator.vehicle[c.WHEEL_SPEED]=new P(n[c.WHEEL_SPEED],h.bitToZoneToBit(I,o[c.WHEEL_SPEED]),c.WHEEL_SPEED,o[c.WHEEL_SPEED]),window.navigator.vehicle[c.ENGINE_SPEED]=new D(n[c.ENGINE_SPEED],h.bitToZoneToBit(I,o[c.ENGINE_SPEED]),c.ENGINE_SPEED,o[c.ENGINE_SPEED]),window.navigator.vehicle[c.VEHICLE_POWER_MODE_TYPE]=new U(n[c.VEHICLE_POWER_MODE_TYPE],h.bitToZoneToBit(I,o[c.VEHICLE_POWER_MODE_TYPE]),c.VEHICLE_POWER_MODE_TYPE,o[c.VEHICLE_POWER_MODE_TYPE]),window.navigator.vehicle[c.POWER_TRAIN_TORQUE]=new G(n[c.POWER_TRAIN_TORQUE],h.bitToZoneToBit(I,o[c.POWER_TRAIN_TORQUE]),c.POWER_TRAIN_TORQUE,o[c.POWER_TRAIN_TORQUE]),window.navigator.vehicle[c.ACCELERATOR_PEDAL_POSITION]=new m(n[c.ACCELERATOR_PEDAL_POSITION],h.bitToZoneToBit(I,o[c.ACCELERATOR_PEDAL_POSITION]),c.ACCELERATOR_PEDAL_POSITION,o[c.ACCELERATOR_PEDAL_POSITION]),window.navigator.vehicle[c.THROTTLE_POSITION]=new B(n[c.THROTTLE_POSITION],h.bitToZoneToBit(I,o[c.THROTTLE_POSITION]),c.THROTTLE_POSITION,o[c.THROTTLE_POSITION]),window.navigator.vehicle[c.TRIP_METERS]=new M(n[c.TRIP_METERS],h.bitToZoneToBit(I,o[c.TRIP_METERS]),c.TRIP_METERS,o[c.TRIP_METERS]),window.navigator.vehicle[c.TRANSMISSION]=new H(n[c.TRANSMISSION],h.bitToZoneToBit(I,o[c.TRANSMISSION]),c.TRANSMISSION,o[c.TRANSMISSION]),window.navigator.vehicle[c.CRUISE_CONTROL_STATUS]=new F(n[c.CRUISE_CONTROL_STATUS],h.bitToZoneToBit(I,o[c.CRUISE_CONTROL_STATUS]),c.CRUISE_CONTROL_STATUS,o[c.CRUISE_CONTROL_STATUS]),window.navigator.vehicle[c.LIGHT_STATUS]=new j(n[c.LIGHT_STATUS],h.bitToZoneToBit(I,o[c.LIGHT_STATUS]),c.LIGHT_STATUS,o[c.LIGHT_STATUS]),window.navigator.vehicle[c.INTERIOR_LIGHT_STATUS]=new W(n[c.INTERIOR_LIGHT_STATUS],h.bitToZoneToBit(I,o[c.INTERIOR_LIGHT_STATUS]),c.INTERIOR_LIGHT_STATUS,o[c.INTERIOR_LIGHT_STATUS]),window.navigator.vehicle[c.HORN]=new Z(n[c.HORN],h.bitToZoneToBit(I,o[c.HORN]),c.HORN,o[c.HORN]),window.navigator.vehicle[c.CHIME]=new V(n[c.CHIME],h.bitToZoneToBit(I,o[c.CHIME]),c.CHIME,o[c.CHIME]),window.navigator.vehicle[c.FUEL]=new k(n[c.FUEL],h.bitToZoneToBit(I,o[c.FUEL]),c.FUEL,o[c.FUEL]),window.navigator.vehicle[c.ENGINE_OIL]=new K(n[c.ENGINE_OIL],h.bitToZoneToBit(I,o[c.ENGINE_OIL]),c.ENGINE_OIL,o[c.ENGINE_OIL]),window.navigator.vehicle[c.ACCELERATION]=new Y(n[c.ACCELERATION],h.bitToZoneToBit(I,o[c.ACCELERATION]),c.ACCELERATION,o[c.ACCELERATION]),window.navigator.vehicle[c.ENGINE_COOLANT]=new z(n[c.ENGINE_COOLANT],h.bitToZoneToBit(I,o[c.ENGINE_COOLANT]),c.ENGINE_COOLANT,o[c.ENGINE_COOLANT]),window.navigator.vehicle[c.STEERING_WHEEL]=new J(n[c.STEERING_WHEEL],h.bitToZoneToBit(I,o[c.STEERING_WHEEL]),c.STEERING_WHEEL,o[c.STEERING_WHEEL]),window.navigator.vehicle[c.IGNITION_TIME]=new x(n[c.IGNITION_TIME],h.bitToZoneToBit(I,o[c.IGNITION_TIME]),c.IGNITION_TIME,o[c.IGNITION_TIME]),window.navigator.vehicle[c.YAW_RATE]=new Q(n[c.YAW_RATE],h.bitToZoneToBit(I,o[c.YAW_RATE]),c.YAW_RATE,o[c.YAW_RATE]),window.navigator.vehicle[c.BRAKE_OPERATION]=new q(n[c.BRAKE_OPERATION],h.bitToZoneToBit(I,o[c.BRAKE_OPERATION]),c.BRAKE_OPERATION,o[c.BRAKE_OPERATION]),window.navigator.vehicle[c.WHEEL_TICK]=new X(n[c.WHEEL_TICK],h.bitToZoneToBit(I,o[c.WHEEL_TICK]),c.WHEEL_TICK,o[c.WHEEL_TICK]),window.navigator.vehicle[c.BUTTON_EVENT]=new $(n[c.BUTTON_EVENT],h.bitToZoneToBit(I,o[c.BUTTON_EVENT]),c.BUTTON_EVENT,o[c.BUTTON_EVENT]),window.navigator.vehicle[c.DRIVING_MODE]=new tt(n[c.DRIVING_MODE],h.bitToZoneToBit(I,o[c.DRIVING_MODE]),c.DRIVING_MODE,o[c.DRIVING_MODE]),window.navigator.vehicle[c.NIGHT_MODE]=new et(n[c.NIGHT_MODE],h.bitToZoneToBit(I,o[c.NIGHT_MODE]),c.NIGHT_MODE,o[c.NIGHT_MODE])}catch(t){console.error(t)}try{window.navigator.vehicle[c.ADVISOR]=new nt(n[c.ADVISOR],h.bitToZoneToBit(I,o[c.ADVISOR]),c.ADVISOR,o[c.ADVISOR]),window.navigator.vehicle[c.AUTO_PHASE]=new ot(n[c.AUTO_PHASE],h.bitToZoneToBit(I,o[c.AUTO_PHASE]),c.AUTO_PHASE,o[c.AUTO_PHASE]),window.navigator.vehicle[c.CLUTCH_SWITCH]=new it(n[c.CLUTCH_SWITCH],h.bitToZoneToBit(I,o[c.CLUTCH_SWITCH]),c.CLUTCH_SWITCH,o[c.CLUTCH_SWITCH]),window.navigator.vehicle[c.EFFECTIVE_TORQUE]=new rt(n[c.EFFECTIVE_TORQUE],h.bitToZoneToBit(I,o[c.EFFECTIVE_TORQUE]),c.EFFECTIVE_TORQUE,o[c.EFFECTIVE_TORQUE]),window.navigator.vehicle[c.ENGINE_CONTROL]=new _t(n[c.ENGINE_CONTROL],h.bitToZoneToBit(I,o[c.ENGINE_CONTROL]),c.ENGINE_CONTROL,o[c.ENGINE_CONTROL]),window.navigator.vehicle[c.ENGINE_STATUS]=new at(n[c.ENGINE_STATUS],h.bitToZoneToBit(I,o[c.ENGINE_STATUS]),c.ENGINE_STATUS,o[c.ENGINE_STATUS]),window.navigator.vehicle[c.FLUENT_DRIVING]=new ut(n[c.FLUENT_DRIVING],h.bitToZoneToBit(I,o[c.FLUENT_DRIVING]),c.FLUENT_DRIVING,o[c.FLUENT_DRIVING]),window.navigator.vehicle[c.GLOBAL_WARNING]=new Tt(n[c.GLOBAL_WARNING],h.bitToZoneToBit(I,o[c.GLOBAL_WARNING]),c.GLOBAL_WARNING,o[c.GLOBAL_WARNING]),window.navigator.vehicle[c.GSI]=new st(n[c.GSI],h.bitToZoneToBit(I,o[c.GSI]),c.GSI,o[c.GSI]),window.navigator.vehicle[c.METER_ADAC]=new Et(n[c.METER_ADAC],h.bitToZoneToBit(I,o[c.METER_ADAC]),c.METER_ADAC,o[c.METER_ADAC]),window.navigator.vehicle[c.POWER_TRAIN]=new ct(n[c.POWER_TRAIN],h.bitToZoneToBit(I,o[c.POWER_TRAIN]),c.POWER_TRAIN,o[c.POWER_TRAIN]),window.navigator.vehicle[c.RANGE_INDICATION]=new Ot(n[c.RANGE_INDICATION],h.bitToZoneToBit(I,o[c.RANGE_INDICATION]),c.RANGE_INDICATION,o[c.RANGE_INDICATION]),window.navigator.vehicle[c.TIRE_TORQUE]=new It(n[c.TIRE_TORQUE],h.bitToZoneToBit(I,o[c.TIRE_TORQUE]),c.TIRE_TORQUE,o[c.TIRE_TORQUE]),window.navigator.vehicle[c.VEHICLE_STATE]=new lt(n[c.VEHICLE_STATE],h.bitToZoneToBit(I,o[c.VEHICLE_STATE]),c.VEHICLE_STATE,o[c.VEHICLE_STATE]),window.navigator.vehicle[c.WATER]=new pt(n[c.WATER],h.bitToZoneToBit(I,o[c.WATER]),c.WATER,o[c.WATER]),window.navigator.vehicle[c.CLUSTER_VEHICLE_SPEED]=new L(n[c.CLUSTER_VEHICLE_SPEED],h.bitToZoneToBit(I,o[c.CLUSTER_VEHICLE_SPEED]),c.CLUSTER_VEHICLE_SPEED,o[c.CLUSTER_VEHICLE_SPEED])}catch(t){console.error(t)}try{window.navigator.vehicle[c.ODOMETER]=new ft(n[c.ODOMETER],h.bitToZoneToBit(I,o[c.ODOMETER]),c.ODOMETER,o[c.ODOMETER]),window.navigator.vehicle[c.TRANSMISSION_OIL]=new ht(n[c.TRANSMISSION_OIL],h.bitToZoneToBit(I,o[c.TRANSMISSION_OIL]),c.TRANSMISSION_OIL,o[c.TRANSMISSION_OIL]),window.navigator.vehicle[c.TRANSMISSION_CLUTCH]=new Nt(n[c.TRANSMISSION_CLUTCH],h.bitToZoneToBit(I,o[c.TRANSMISSION_CLUTCH]),c.TRANSMISSION_CLUTCH,o[c.TRANSMISSION_CLUTCH]),window.navigator.vehicle[c.BRAKE_MAINTENANCE]=new Rt(n[c.BRAKE_MAINTENANCE],h.bitToZoneToBit(I,o[c.BRAKE_MAINTENANCE]),c.BRAKE_MAINTENANCE,o[c.BRAKE_MAINTENANCE]),window.navigator.vehicle[c.WASHER_FLUID]=new St(n[c.WASHER_FLUID],h.bitToZoneToBit(I,o[c.WASHER_FLUID]),c.WASHER_FLUID,o[c.WASHER_FLUID]),window.navigator.vehicle[c.MALFUNCTION_INDICATOR]=new At(n[c.MALFUNCTION_INDICATOR],h.bitToZoneToBit(I,o[c.MALFUNCTION_INDICATOR]),c.MALFUNCTION_INDICATOR,o[c.MALFUNCTION_INDICATOR]),window.navigator.vehicle[c.BATTERY_STATUS]=new gt(n[c.BATTERY_STATUS],h.bitToZoneToBit(I,o[c.BATTERY_STATUS]),c.BATTERY_STATUS,o[c.BATTERY_STATUS]),window.navigator.vehicle[c.TIRE]=new yt(n[c.TIRE],h.bitToZoneToBit(I,o[c.TIRE]),c.TIRE,o[c.TIRE]),window.navigator.vehicle[c.DIAGNOSTIC]=new Ct(n[c.DIAGNOSTIC],h.bitToZoneToBit(I,o[c.DIAGNOSTIC]),c.DIAGNOSTIC,o[c.DIAGNOSTIC])}catch(t){console.error(t)}try{navigator.vehicle[c.LONGITUDINAL_ACCEL]=new vt(n[c.LONGITUDINAL_ACCEL],h.bitToZoneToBit(I,o[c.LONGITUDINAL_ACCEL]),c.LONGITUDINAL_ACCEL,o[c.LONGITUDINAL_ACCEL]),navigator.vehicle[c.OVERHAUL]=new wt(n[c.OVERHAUL],h.bitToZoneToBit(I,o[c.OVERHAUL]),c.OVERHAUL,o[c.OVERHAUL])}catch(t){console.error(t)}try{window.navigator.vehicle[c.LANGUAGE_CONFIGURATION]=new dt(n[c.LANGUAGE_CONFIGURATION],h.bitToZoneToBit(I,o[c.LANGUAGE_CONFIGURATION]),c.LANGUAGE_CONFIGURATION,o[c.LANGUAGE_CONFIGURATION]),window.navigator.vehicle[c.UNITS_OF_MEASURE]=new Lt(n[c.UNITS_OF_MEASURE],h.bitToZoneToBit(I,o[c.UNITS_OF_MEASURE]),c.UNITS_OF_MEASURE,o[c.UNITS_OF_MEASURE]),window.navigator.vehicle[c.MIRROR]=new bt(n[c.MIRROR],h.bitToZoneToBit(I,o[c.MIRROR]),c.MIRROR,o[c.MIRROR]),
 window.navigator.vehicle[c.DRIVE_MODE]=new Dt(n[c.DRIVE_MODE],h.bitToZoneToBit(I,o[c.DRIVE_MODE]),c.DRIVE_MODE,o[c.DRIVE_MODE]),window.navigator.vehicle[c.SEAT_ADJUSTMENT]=new Pt(n[c.SEAT_ADJUSTMENT],h.bitToZoneToBit(I,o[c.SEAT_ADJUSTMENT]),c.SEAT_ADJUSTMENT,o[c.SEAT_ADJUSTMENT]),window.navigator.vehicle[c.DASHBOARD_ILLUMINATION]=new Ut(n[c.DASHBOARD_ILLUMINATION],h.bitToZoneToBit(I,o[c.DASHBOARD_ILLUMINATION]),c.DASHBOARD_ILLUMINATION,o[c.DASHBOARD_ILLUMINATION]),window.navigator.vehicle[c.VEHICLE_SOUND]=new Gt(n[c.VEHICLE_SOUND],h.bitToZoneToBit(I,o[c.VEHICLE_SOUND]),c.VEHICLE_SOUND,o[c.VEHICLE_SOUND])}catch(t){console.error(t)}try{window.navigator.vehicle[c.ECO_SCORES]=new Bt(n[c.ECO_SCORES],h.bitToZoneToBit(I,o[c.ECO_SCORES]),c.ECO_SCORES,o[c.ECO_SCORES]),window.navigator.vehicle[c.NIGHT_RHEO_STATED_LIGHT]=new mt(n[c.NIGHT_RHEO_STATED_LIGHT],h.bitToZoneToBit(I,o[c.NIGHT_RHEO_STATED_LIGHT]),c.NIGHT_RHEO_STATED_LIGHT,o[c.NIGHT_RHEO_STATED_LIGHT])}catch(t){console.error(t)}try{window.navigator.vehicle[c.ANTILOCK_BRAKING_SYSTEM]=new Mt(n[c.ANTILOCK_BRAKING_SYSTEM],h.bitToZoneToBit(I,o[c.ANTILOCK_BRAKING_SYSTEM]),c.ANTILOCK_BRAKING_SYSTEM,o[c.ANTILOCK_BRAKING_SYSTEM]),window.navigator.vehicle[c.TRACTION_CONTROL_SYSTEM]=new Ht(n[c.TRACTION_CONTROL_SYSTEM],h.bitToZoneToBit(I,o[c.TRACTION_CONTROL_SYSTEM]),c.TRACTION_CONTROL_SYSTEM,o[c.TRACTION_CONTROL_SYSTEM]),window.navigator.vehicle[c.ELECTRONIC_STABILITY_CONTROL]=new Ft(n[c.ELECTRONIC_STABILITY_CONTROL],h.bitToZoneToBit(I,o[c.ELECTRONIC_STABILITY_CONTROL]),c.ELECTRONIC_STABILITY_CONTROL,o[c.ELECTRONIC_STABILITY_CONTROL]),window.navigator.vehicle[c.TOP_SPEED_LIMIT]=new jt(n[c.TOP_SPEED_LIMIT],h.bitToZoneToBit(I,o[c.TOP_SPEED_LIMIT]),c.TOP_SPEED_LIMIT,o[c.TOP_SPEED_LIMIT]),window.navigator.vehicle[c.AIRBAG_STATUS]=new Wt(n[c.AIRBAG_STATUS],h.bitToZoneToBit(I,o[c.AIRBAG_STATUS]),c.AIRBAG_STATUS,o[c.AIRBAG_STATUS]),window.navigator.vehicle[c.DOOR]=new Zt(n[c.DOOR],h.bitToZoneToBit(I,o[c.DOOR]),c.DOOR,o[c.DOOR]),window.navigator.vehicle[c.CHILD_SAFETY_LOCK]=new Vt(n[c.CHILD_SAFETY_LOCK],h.bitToZoneToBit(I,o[c.CHILD_SAFETY_LOCK]),c.CHILD_SAFETY_LOCK,o[c.CHILD_SAFETY_LOCK]),window.navigator.vehicle[c.SEAT]=new kt(n[c.SEAT],h.bitToZoneToBit(I,o[c.SEAT]),c.SEAT,o[c.SEAT])}catch(t){console.error(t)}try{window.navigator.vehicle[c.ASR]=new Kt(n[c.ASR],h.bitToZoneToBit(I,o[c.ASR]),c.ASR,o[c.ASR]),window.navigator.vehicle[c.AYC]=new Yt(n[c.AYC],h.bitToZoneToBit(I,o[c.AYC]),c.AYC,o[c.AYC]),window.navigator.vehicle[c.EBD]=new zt(n[c.EBD],h.bitToZoneToBit(I,o[c.EBD]),c.EBD,o[c.EBD]),window.navigator.vehicle[c.EPS]=new Jt(n[c.EPS],h.bitToZoneToBit(I,o[c.EPS]),c.EPS,o[c.EPS]),window.navigator.vehicle[c.TAIL_GATE]=new xt(n[c.TAIL_GATE],h.bitToZoneToBit(I,o[c.TAIL_GATE]),c.TAIL_GATE,o[c.TAIL_GATE]),window.navigator.vehicle[c.VDC]=new Qt(n[c.VDC],h.bitToZoneToBit(I,o[c.VDC]),c.VDC,o[c.VDC])}catch(t){console.error(t)}try{window.navigator.vehicle[c.TEMPERATURE]=new qt(n[c.TEMPERATURE],h.bitToZoneToBit(I,o[c.TEMPERATURE]),c.TEMPERATURE,o[c.TEMPERATURE]),window.navigator.vehicle[c.RAIN_SENSOR]=new Xt(n[c.RAIN_SENSOR],h.bitToZoneToBit(I,o[c.RAIN_SENSOR]),c.RAIN_SENSOR,o[c.RAIN_SENSOR]),window.navigator.vehicle[c.WIPER_STATUS]=new $t(n[c.WIPER_STATUS],h.bitToZoneToBit(I,o[c.WIPER_STATUS]),c.WIPER_STATUS,o[c.WIPER_STATUS]),window.navigator.vehicle[c.WIPER_SETTING]=new te(n[c.WIPER_SETTING],h.bitToZoneToBit(I,o[c.WIPER_SETTING]),c.WIPER_SETTING,o[c.WIPER_SETTING]),window.navigator.vehicle[c.DEFROST]=new ee(n[c.DEFROST],h.bitToZoneToBit(I,o[c.DEFROST]),c.DEFROST,o[c.DEFROST]),window.navigator.vehicle[c.SUNROOF]=new ne(n[c.SUNROOF],h.bitToZoneToBit(I,o[c.SUNROOF]),c.SUNROOF,o[c.SUNROOF]),window.navigator.vehicle[c.CONVERTIBLE_ROOF]=new oe(n[c.CONVERTIBLE_ROOF],h.bitToZoneToBit(I,o[c.CONVERTIBLE_ROOF]),c.CONVERTIBLE_ROOF,o[c.CONVERTIBLE_ROOF]),window.navigator.vehicle[c.SIDE_WINDOW]=new ie(n[c.SIDE_WINDOW],h.bitToZoneToBit(I,o[c.SIDE_WINDOW]),c.SIDE_WINDOW,o[c.SIDE_WINDOW]),window.navigator.vehicle[c.CLIMATE_CONTROL]=new re(n[c.CLIMATE_CONTROL],h.bitToZoneToBit(I,o[c.CLIMATE_CONTROL]),c.CLIMATE_CONTROL,o[c.CLIMATE_CONTROL]),window.navigator.vehicle[c.ATMOSPHERIC_PRESSURE]=new _e(n[c.ATMOSPHERIC_PRESSURE],h.bitToZoneToBit(I,o[c.ATMOSPHERIC_PRESSURE]),c.ATMOSPHERIC_PRESSURE,o[c.ATMOSPHERIC_PRESSURE])}catch(t){console.error(t)}try{window.navigator.vehicle[c.LANE_DEPARTURE_DETECTION]=new ae(n[c.LANE_DEPARTURE_DETECTION],h.bitToZoneToBit(I,o[c.LANE_DEPARTURE_DETECTION]),c.LANE_DEPARTURE_DETECTION,o[c.LANE_DEPARTURE_DETECTION]),window.navigator.vehicle[c.ALARM]=new ue(n[c.ALARM],h.bitToZoneToBit(I,o[c.ALARM]),c.ALARM,o[c.ALARM]),window.navigator.vehicle[c.PARKING_BRAKE]=new Te(n[c.PARKING_BRAKE],h.bitToZoneToBit(I,o[c.PARKING_BRAKE]),c.PARKING_BRAKE,o[c.PARKING_BRAKE]),window.navigator.vehicle[c.PARKING_LIGHTS]=new se(n[c.PARKING_LIGHTS],h.bitToZoneToBit(I,o[c.PARKING_LIGHTS]),c.PARKING_LIGHTS,o[c.PARKING_LIGHTS]),window.navigator.vehicle[c.PARKING_BRAKE]=new se(n[c.PARKING_BRAKE],h.bitToZoneToBit(I,o[c.PARKING_BRAKE]),c.PARKING_BRAKE,o[c.PARKING_BRAKE])}catch(t){console.error(t)}try{window.navigator.vehicle[c.NEUTRAL_CONTACT]=new Ee(n[c.NEUTRAL_CONTACT],h.bitToZoneToBit(I,o[c.NEUTRAL_CONTACT]),c.NEUTRAL_CONTACT,o[c.NEUTRAL_CONTACT]),window.navigator.vehicle[c.RAW_SENSOR]=new ce(n[c.RAW_SENSOR],h.bitToZoneToBit(I,o[c.RAW_SENSOR]),c.RAW_SENSOR,o[c.RAW_SENSOR]),window.navigator.vehicle[c.BRAKE_SWITCH]=new Oe(n[c.BRAKE_SWITCH],h.bitToZoneToBit(I,o[c.BRAKE_SWITCH]),c.BRAKE_SWITCH,o[c.BRAKE_SWITCH])}catch(t){console.error(t)}var i=new Ie;window.navigator.vehicle[i.me.category]=i,O.default.conn.setConnection(pe),e()}if("function"!=typeof e)throw new t("function is required as a parameter");f.init(O.default.apps.getWidgetId(),i,r,_)},enum:{}};window.navigator.vehicle=pe,pe.isConnected=function(t){return t},t.prototype=new Error,e.prototype=new Error,n.prototype=new Error,o.prototype=new Error,u.prototype=new Error,window.navigator.vehicle.enum={zonePosition:{FRONT:"front",MIDDLE:"middle",REAR:"rear",LEFT:"left",CENTER:"center",RIGHT:"right"},vehicleError:{PERMISSION_DENIED:"permission_denied",INVALID_OPERATION:"invalid_operation",TIMEOUT:"timeout",INVALID_ZONE:"invalid_zone",UNKNOWN:"unknown"},availability:{AVAILABLE:"available",NOT_SUPPORTED:"not_supported",NOT_SUPPORTED_YET:"not_supported_yet",NOT_SUPPORTED_SECURITY_POLICY:"not_supported_security_policy",NOT_SUPPORTED_BUSINESS_POLICY:"not_supported_business_policy",NOT_SUPPORTED_OTHER:"not_supported_other"}}}()},1:function(t,e){"use strict";function n(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(e,"__esModule",{value:!0});var o=function(){function t(t,e){for(var n=0;n<e.length;n++){var o=e[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}return function(e,n,o){return n&&t(e.prototype,n),o&&t(e,o),e}}(),i=function(){function t(){n(this,t),this.me={}}return o(t,[{key:"getClass",value:function(){return this.constructor.name}},{key:"clone",value:function(){}},{key:"getBaseContext",value:function(){return this}},{key:"equals",value:function(t){return this instanceof t.constructor}}]),t}();e.default=i},2:function(t,e){"use strict";t.exports={debug:!0,info:!0,error:!0}},3:function(t,e,n){"use strict";function o(t){return t&&t.__esModule?t:{default:t}}function i(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function r(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}function _(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}Object.defineProperty(e,"__esModule",{value:!0});var a=function(){function t(t,e){for(var n=0;n<e.length;n++){var o=e[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}return function(e,n,o){return n&&t(e.prototype,n),o&&t(e,o),e}}(),u=n(4),T=o(u),s=function(t){function e(t,n,o){i(this,e);var _=r(this,(e.__proto__||Object.getPrototypeOf(e)).call(this));return _.me.domain=t,_.me.category=n,_.me.types=o,_}return _(e,t),a(e,[{key:"get",value:function(t){var e=this,n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null;return new window.Promise(function(o,i){var r=function(t){o(t)},_=function(t){i(t)};window[e.me.domain].get(t,n,r,_)})}},{key:"set",value:function(t){var e=this,n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null;return new window.Promise(function(o,i){var r=function(t){o(t)},_=function(t){i(t)};window[e.me.domain].set(t,n,r,_)})}},{key:"subscribe",value:function(t,e){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:null;return window[this.me.domain].addListener(t,n,e)}},{key:"unsubscribe",value:function(t,e){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:null;return window[this.me.domain].removeListener(t,e,n)}},{key:"unsubscribeAll",value:function(t){}},{key:"getType",value:function(t){return this.me.category+"_"+t}}]),e}(T.default);e.default=s},4:function(t,e,n){"use strict";function o(t){return t&&t.__esModule?t:{default:t}}function i(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function r(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}function _(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}Object.defineProperty(e,"__esModule",{value:!0});var a=function(){function t(t,e){for(var n=0;n<e.length;n++){var o=e[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}return function(e,n,o){return n&&t(e.prototype,n),o&&t(e,o),e}}(),u=n(1),T=o(u),s=function(t){function e(){return i(this,e),r(this,(e.__proto__||Object.getPrototypeOf(e)).apply(this,arguments))}return _(e,t),a(e,[{key:"getWebSocket",value:function(){}}]),e}(T.default);e.default=s},5:function(t,e){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t};e.default={name:"shared",apps:{getWidgetId:function(){var t=null;if(window.applicationFramework)if(window.applicationFramework.hasOwnProperty("applicationManager")){var e=window.applicationFramework.applicationManager.getOwnerApplication(window.document);t=e.getDescriptor().id}else console.log("window.applicationFramework does not have applicationManager");return t}},utils:{isNull:function(t){var e=arguments.length>1&&void 0!==arguments[1]&&arguments[1];return e===!0?null===t&&"object"===("undefined"==typeof t?"undefined":n(t)):null===t},isNotNull:function(t){var e=arguments.length>1&&void 0!==arguments[1]&&arguments[1];return e===!0?!(null===t&&"object"===("undefined"==typeof t?"undefined":n(t))):!(null===t)},isFunc:function(t){return"function"==typeof t},isNotFunc:function(t){return"function"!=typeof t}},conn:{setConnection:function(t){t.isConnected=function(){return 1===window[t.name].getWs().readyState}}}}},43:function(t,e,n){"use strict";function o(t){return t&&t.__esModule?t:{default:t}}function i(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function r(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}function _(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}Object.defineProperty(e,"__esModule",{value:!0});var a=function(){function t(t,e){for(var n=0;n<e.length;n++){var o=e[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}return function(e,n,o){return n&&t(e.prototype,n),o&&t(e,o),e}}(),u=n(44),T=o(u),s=function(t){function e(){return i(this,e),r(this,(e.__proto__||Object.getPrototypeOf(e)).call(this,"carConfiguration",{IDENTIFICATION:"identification",SYSTEM_CONFIGURATION:"systemConfiguration",REGION_CONFIGURATION:"regionConfiguration",RESTRICTION_CONFIGURATION:"restrictionConfiguration",TUNER_CONFIGURATION:"tunerConfiguration",DISPLAY_CONFIGURATION:"displayConfiguration",ENGINE:"engine",VARIANT_SELECTION:"variantSelection",STEERING_WHEEL:"steeringWheel"}))}return _(e,t),a(e,[{key:"getIdentification",value:function(){return this.get(this.getType(this.me.types.IDENTIFICATION))}},{key:"getEngine",value:function(){return this.get(this.getType(this.me.types.ENGINE))}},{key:"getSystemConfiguration",value:function(){return this.get(this.getType(this.me.types.SYSTEM_CONFIGURATION))}},{key:"getRegionConfiguration",value:function(){return this.get(this.getType(this.me.types.REGION_CONFIGURATION))}},{key:"getRestrictionConfiguration",value:function(){return this.get(this.getType(this.me.types.RESTRICTION_CONFIGURATION))}},{key:"getTunerConfiguration",value:function(){return this.get(this.getType(this.me.types.TUNER_CONFIGURATION))}},{key:"getDisplayConfiguration",value:function(){return this.get(this.getType(this.me.types.DISPLAY_CONFIGURATION))}},{key:"getVariantSelection",value:function(){return this.get(this.getType(this.me.types.VARIANT_SELECTION))}},{key:"getSteeringWheel",value:function(){return this.get(this.getType(this.me.types.STEERING_WHEEL))}},{key:"productDiversityEnum",get:function(){return{ENTRY:"entry",MID:"mid"}}},{key:"SpeedLockRestrictionEnum",get:function(){return{VIDEO_PLAYING_RESTRICTION:0,PICTURE_SLIDESHOW_RESTRICTION:1,SMS_TEXT_INPUT_RESTRICTION:2,FEATURES_TUTORIALS_RESTRICTION:3,SYSTEM_USER_HANDBOOK_RESTRICTION:4,TEXT_INPUT_RESTRICTION:5,PHONE_DAIL_INPUT_RESTRICTION:6,NAVI_DESTINATION_INPUT_RESTRICTION:7,MUSIC_RADIO_COVER_DISPLAY_RESTRICTION:8,GENERAL_HMI_RESTRICTION:9,SERVICE_ACTIVATION_RESTRICTION:10,DISPLAYED_TEXT_LENGTH_RESTRICTION:11,HMI_ANIMATIONS_RESTRICTION:12,STATIONARY_PICTURE_INDICATION_RESTRICTION:13,ONE_BY_ONE_LINE_OPERATION_NONMUSIC_LIST_SCROLL_RESTRICTION:14,DRAGGING_OPERATION_RESTRICTION:15,PINCH_IN_OUT_OPERATION_RESTRICTION:16,PICTURE_TEXT_BACKGROUND_DISPLAY_RESTRICTION:17,RENAULT_5_OPERATION_COUNT_RESTRICTION:18,RENAULT_8_OPERATION_COUNT_RESTRICTION:19,AUDIO_PLAY_AUTOMATICALLY_RESTRICTION:20,SYSTEM_UPDATE_RESTRICTION:21,ONE_BY_ONE_LINE_OPERATION_MUSIC_LIST_SCROLL_RESTRICTION:22}}},{key:"BoschRegionEnum",get:function(){return{REGION_US:0,REGION_CAN:1,REGION_MEX:2,REGION_UK:3,REGION_TKY:4,REGION_RUS:5,REGION_OTHER_EUR:6,REGION_PRC:7,REGION_TWN:8,REGION_HKG_MACAU:9,REGION_GCC:10,REGION_EGP:11,REGION_ASR_NZE:12,REGION_BRA:13,REGION_AGT:14,REGION_OTHER_LAC:15,REGION_SAF:16,REGION_THI:17,REGION_SGP:18,REGION_MLY:19,REGION_BRN:20,REGION_INN:21,REGION_VNM:22,REGION_PHL:23,REGION_IND:24,REGION_JPN:25,REGION_KOR:26,REGION_OTHER_GOM:27}}},{key:"EngineTypeEnum",get:function(){return{PETROL_2L:"petrol_2L",PETROL_2L_3_5L:"petrol_2L_3_5L",PETROL_3_5L:"petrol_3_5L",DIESEL_2L:"diesel_2L",DIESEL_2L_3_5L:"diesel_2L_3_5L",DIESEL_3_5L:"diesel_3_5L",EV_40_JPN:"ev_40_jpn",EV_60_JPN:"ev_60_jpn",EV_40_NAM:"ev_40_nam",EV_60_NAM:"ev_60_nam",EV_40_EUR:"ev_40_eur",EV_60_EUR:"ev_60_eur",PETROL_DEF:"petrol_def",DIESEL_DEF:"diesel_def",EV_DEF:"ev_def",UNKNOWN:"unknown"}}},{key:"FuelTypeEnum",get:function(){return{PETROL:"petrol",DIESEL:"diesel",HYBRID_DIESEL:"hybrid_diesel",HYBRID_PETROL:"hybrid_petrol",ELECTRICITY:"electricity"}}},{key:"PetrolTypeEnum",get:function(){return{NA:"na",REGULAR:"regular",PREMIUM:"premium",NON_PETROL:"non_petrol"}}},{key:"OemTypeEnum",get:function(){return{JLR:"JLR",VW:"VW",SEAT:"Seat",SKODA:"Skoda",AUDI:"Audi",BMW:"BMW",TATA:"Tata",NISSAN:"Nissan",TOYOTA:"Toyota",RENAULT:"Renault",FLAT:"Fiat",GM:"GM",OPEL:"Opel",SUZUKI:"Suzuki",MAZDA:"Mazda",PEUGEOT:"Peugeot",SCANIA:"Scania",DAIMLER:"Daimler",JAC:"JAC",DACIA:"Dacia",AVTOVAZ:"Avtovaz",RSM:"RSM",INFINITI:"Infiniti"}}},{key:"VariantSelectionEnum",get:function(){return{NOT_CONFIGURED:"not_configured",NAVI:"navi",DA:"da"}}},{key:"BrandEnum",get:function(){return{RENAULT:"Renault",NISSAN:"Nissan",INFINITI:"Infiniti",MITSUBISHI:"Mitsubishi",DACIA:"Dacia",DAIMLER:"Daimler",AVTOAZ:"Avtoaz",RSM:"RSM"}}},{key:"DisplayEnum",get:function(){return{LANDSCAPE:"landscape",POTRAIT:"potrait"}}},{key:"SteeringPositionEnum",get:function(){return{LEFT:"left",RIGHT:"right"}}}]),e}(T.default);e.default=s},44:function(t,e,n){"use strict";function o(t){return t&&t.__esModule?t:{default:t}}function i(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function r(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}function _(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,enumerable:!1,writable:!0,configurable:!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}Object.defineProperty(e,"__esModule",{value:!0});var a=n(3),u=o(a),T=function(t){function e(t,n){return i(this,e),r(this,(e.__proto__||Object.getPrototypeOf(e)).call(this,"vehicle",t,n))}return _(e,t),e}(u.default);e.default=T},45:function(t,e){"use strict";function n(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(e,"__esModule",{value:!0});var o="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},i=function(){function t(t,e){for(var n=0;n<e.length;n++){var o=e[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}return function(e,n,o){return n&&t(e.prototype,n),o&&t(e,o),e}}(),r=function(){function t(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],o=arguments.length>1&&void 0!==arguments[1]?arguments[1]:["front","left"];n(this,t),this.value=e,Object.defineProperty(this,"driver",{enumerable:!1,get:function(){return new t(o)}})}return i(t,[{key:"equals",value:function(t){for(var e=!0,n=this.bitToZoneToBit(this.ZONE_TO_BIT,this),o=this.bitToZoneToBit(this.ZONE_TO_BIT,t),i=n.length,r=o.length,_=!1,a=0;a<i&&e;a++)for(var u=0;u<r;u++)if(_=n[a]===o[u]){if(_){e=!0;break}}else e=!1;return e}},{key:"contains",value:function(t){for(var e=!1,n=this.bitToZoneToBit(this.ZONE_TO_BIT,this),o=this.bitToZoneToBit(this.ZONE_TO_BIT,t),i=n.length,r=o.length,_=0;_<i;_++){for(var a=0;a<r;a++)if(n[_]===o[a]){e=!0;break}if(e)break}return e}},{key:"bitToZoneToBit",value:function(t,e){if(0===t&&void 0===e)return-1;var n=void 0,i=[],r=void 0,_=void 0,a=void 0,u=[];switch(t){case this.BIT_TO_ZONE_INIT:u=this.BIT_TO_ZONE(e);break;case this.BIT_TO_ZONE_GET:if(Array.isArray(e)){n=e.length;for(var T=0;T<n;T++)i[T]=e[T].zone}else e.hasOwnProperty("zone")&&(i[0]=e.zone);u=this.BIT_TO_ZONE(i);break;case this.ZONE_TO_BIT:if(r=o(e.value[0]),_=e.value.length,a=0,"string"===r){for(var s=0;s<_;s++)a+=this.zones[e.value[s]];u.push(a),a=0}else for(var E=0;E<_;E++){for(var c=e.value[E],O=c.length,I=0;I<O;I++)a+=this.zones[c[I]];u.push(a),a=0}break;default:console.log("out of case")}return u}},{key:"BIT_TO_ZONE",value:function(e){for(var n=e.length,o=[],i=[],r=[],_=0;_<n;_++){for(var a in this.zones){if(0===e[_]){o.push(a);break}e[_]&this.zones[a]&&o.push(a)}r=new t(o),i.push(r),r=i,o=[]}return r}},{key:"BIT_TO_ZONE_INIT",get:function(){return 0}},{key:"BIT_TO_ZONE_GET",get:function(){return 1}},{key:"ZONE_TO_BIT",get:function(){return 2}},{key:"zones",get:function(){return{none:0,front:1,middle:2,right:4,left:8,rear:16,center:32,top:64,central:128,bottom:256}}}]),t}();e.default=r,window.Zone=r},46:function(t,e,n){"use strict";function o(t){return t&&t.__esModule?t:{default:t}}var i=n(45),r=o(i),_=new r.default,a={};a.ParseError=-32700,a.InvalidRequest=-32600,a.MethodNotFound=-32601,a.InvalidParams=-32602,a.InternalError=-32603,a.AccessError=-32604,a.DuplicateListener=-32605,a.ServiceError=-32e3,a.UnknownError=-32001,a.DbusError=-32002,a.EtchError=-32003,a.PbError=-32004,a.ServerError=-32099;var u={};u.Unknown=11,u.MethodNotFound=12,u.AccessUndetermined=20,u.AccessDeny=21,u.AccessPromptOneShot=22,u.AccessPromptSession=23,u.AccessPromptBlanket=24,u.JsonParsingError=30,u.JsonMessageValidateError=31,u.JsonVersionError=40,u.JsonMessageIdNotExistError=41,u.JsonMessageObjectNameNotExistError=42,u.JsonFunctionTypeError=43,u.JsonMessageFormateError=44,u.JsonFunctionEventTypeNotExistError=45,u.JsonFunctionMethodNotExistError=46,u.JsonFunctionIdNotExistError=47,u.DuplicateAddlistenerError=55,u.RegFailedAddlistenerError=56,u.MessageIdDismatch=60,u.MessageObjectDismatch=61,u.MessageUnknownEventType=62,u.MessageUnknownMethodType=63,u.MessageUnregListener=64,u.InvalidParams=70,u.ServiceNotAvailable=80,u.ServiceNoResponse=81,u.ServiceUnknownValue=82,u.SendError=90,u.CloseError=91,u.DbusCanNotCreateConnection=100,u.DbusCanNotCreateProxy=101,u.DbusUnknownService=102,u.DbusMethodCallFailed=103,u.EtchPortBindingFailed=120,u.PbOutOfRange=140,u.PbInvalidArgument=141,u.PbMissMandatory=142,u.PbNullException=143,u.PbBadAllocException=144,u.PbOutOfRangeException=145;var T={};T.PromptOneShotDenyAlways=350,T.PromptOneShotDenyThisTime=351,T.PromptOneShotDenyAllowThisTime=352,T.PromptSessionDenyForThisSession=353,T.PromptSessionAllowForThisSession=354,T.PromptBlanketDenyForThisSession=355,T.PromptBlanketAllowForThisSession=356,T.PromptBlanketAllowAlways=357,function(){var t="vehicle",e=1002,n=1003,o=1004,i=1005,r={jsonrpc:2,app_id:null,id:null,method:""},a=null,u=null,T={lst:{},push:function(t,e,n,o){var i={};return i.id=window.performance.now().toString(),i.type=t,i.method=e,i.handle1=n,i.handle2=o,this.lst[i.id]=i,i.id},pop:function(t){var e=this.lst[t];return e&&delete this.lst[t],e},clear:function(){return!Object.keys(this.lst={}).length}},s={lst:{},push:function(t,e){e&&(this.lst[t]?this.lst[t].push(e):this.lst[t]=[e])},pop:function(t,e){if(e){var n=this.lst[t];if(n)for(var o=0;o<n.length;o++)if(n[o]===e)return n.splice(o,1),void(0===n.length&&(this.lst[t]=void 0))}},get:function(t){return this.lst[t]},clear:function(){this.lst={}}},E={msg_type:0,method_type:"",event_type:null,json:"",init:function(t){this.json=JSON.parse(t);var r=null,_=null,a=null,u=null;try{r=this.json.result}catch(t){console.log(t)}try{_=this.json.id}catch(t){console.log(t)}try{a=this.json.error}catch(t){console.log(t)}try{u=this.json.app_id}catch(t){console.log(t)}a?this.msg_type=i:_?this.msg_type=e:u?this.msg_type=n:this.msg_type=o;var T=this.json.method.split(".");T.length;3===T.length?(this.method_type=T[1],this.event_type=T[2]):2===T.length&&(this.method_type="get",this.event_type=T[1]),this.msg_type===o||"addListener"!==this.method_type&&"removeListener"!==this.method_type||(this.msg_type=n)}},c=function(){var r=new WebSocket("ws://localhost:18892/webapp/"+t);return r.onmessage=function(t){var r=E;if(r.init(t.data),r.msg_type===e){var u=T.pop(r.json.id);u&&u.handle1&&u.handle1(r.json.result)}else if(r.msg_type===i){var c=T.pop(r.json.id);c&&c.handle2&&c.handle2(r.json.error)}else if(r.msg_type===n){if("addListener"===r.method_type){var O=s.get(r.event_type),I=function(t,e){var n=_.bitToZoneToBit(_.BIT_TO_ZONE_GET,e),o=e.length;if(Array.isArray(e))for(var i=0;i<o;i++)e[i].hasOwnProperty("zone")&&(e[i].zone=n[i]);else e.hasOwnProperty("zone")&&(e.zone=n[0]);t(e)};for(var l in O)"undefined"!=typeof r.json.result?I(O[l],r.json.result):"undefined"!=typeof r.json.error?O[l](r.json.error):console.log("undefine result")}}else r.msg_type===o?a&&a(r.json.result):console.log("unknown json message")},r.send_data=function(t,e){return 1===u.readyState&&(e?t.params=e:t.params&&delete t.params,u.send(JSON.stringify(t)),!0)},r},O={zones:"zones",supported:"supported",availableForRetrievals:"availableForRetrievals",availableForSettings:"availableForSettings",availableForSubscriptions:"availableForSubscriptions",identification:"identification",sizeConfiguration:"sizeConfiguration",fuelConfiguration:"fuelConfiguration",transmissionConfiguration:"transmissionConfiguration",wheelConfiguration:"wheelConfiguration",steeringWheelConfiguration:"steeringWheelConfiguration",vehicleSpeed:"vehicleSpeed",wheelSpeed:"wheelSpeed",engineSpeed:"engineSpeed",vehiclePowerModeType:"vehiclePowerModeType",powertrainTorque:"powertrainTorque",acceleratorPedalPosition:"acceleratorPedalPosition",throttlePosition:"throttlePosition",tripMeters:"tripMeters",transmission:"transmission",cruiseControlStatus:"cruiseControlStatus",lightStatus:"lightStatus",interiorLightStatus:"interiorLightStatus",horn:"horn",chime:"chime",fuel:"fuel",engineOil:"engineOil",acceleration:"acceleration",engineCoolant:"engineCoolant",steeringWheel:"steeringWheel",wheelTick:"wheelTick",ignitionTime:"ignitionTime",yawRate:"yawRate",brakeOperation:"brakeOperation",buttonEvent:"buttonEvent",drivingMode:"drivingMode",nightMode:"nightMode",advisor:"advisor",autoPhase:"autoPhase",clutchSwitch:"clutchSwitch",effectiveTorque:"effectiveTorque",engineControl:"engineControl",engineStatus:"engineStatus",fluentDriving:"fluentDriving",globalWarning:"globalWarning",gsi:"gsi",meterADAC:"meterADAC",powerTrain:"powerTrain",rangeIndication:"rangeIndication",tireTorque:"tireTorque",vehicleState:"vehicleState",water:"water",clusterVehicleSpeed:"clusterVehicleSpeed",odometer:"odometer",transmissionOil:"transmissionOil",transmissionClutch:"transmissionClutch",brakeMaintenance:"brakeMaintenance",washerFluid:"washerFluid",malfunctionIndicator:"malfunctionIndicator",batteryStatus:"batteryStatus",tire:"tire",diagnostic:"diagnostic",longitudinalAccel:"longitudinalAccel",overhaul:"overhaul",languageConfiguration:"languageConfiguration",mirror:"mirror",seatAdjustment:"seatAdjustment",driveMode:"driveMode",dashboardIllumination:"dashboardIllumination",vehicleSound:"vehicleSound",unitsOfMeasure:"unitsOfMeasure",ecoScores:"ecoScores",nightRheoStatedLight:"nightRheoStatedLight",antilockBrakingSystem:"antilockBrakingSystem",tractionControlSystem:"tractionControlSystem",electronicStabilityControl:"electronicStabilityControl",topSpeedLimit:"topSpeedLimit",airbagStatus:"airbagStatus",door:"door",childSafetyLock:"childSafetyLock",seat:"seat",asr:"asr",ayc:"ayc",ebd:"ebd",eps:"eps",tailGate:"tailGate",vdc:"vdc",temperature:"temperature",rainSensor:"rainSensor",wiperStatus:"wiperStatus",wiperSetting:"wiperSetting",defrost:"defrost",sunroof:"sunroof",convertibleRoof:"convertibleRoof",sideWindow:"sideWindow",climateControl:"climateControl",atmosphericPressure:"atmosphericPressure",laneDepartureDetection:"laneDepartureDetection",alarm:"alarm",parkingBrake:"parkingBrake",parkingLights:"parkingLights",neutralContact:"neutralContact",rawSensor:"rawSensor",brakeSwitch:"brakeSwitch",carConfiguration_engine:"carConfiguration_engine",carConfiguration_identification:"carConfiguration_identification",carConfiguration_systemConfiguration:"carConfiguration_systemConfiguration",carConfiguration_steeringWheel:"carConfiguration_steeringWheel",carConfiguration_restrictionConfiguration:"carConfiguration_restrictionConfiguration",carConfiguration_tunerConfiguration:"carConfiguration_tunerConfiguration",carConfiguration_displayConfiguration:"carConfiguration_displayConfiguration",carConfiguration_variantSelection:"carConfiguration_variantSelection",carConfiguration_regionConfiguration:"carConfiguration_regionConfiguration",get:function(e,n,o,i){var _=r;return null===o?_.id=window.performance.now().toString():_.id=T.push(e,"get",o,i),_.method=t+".get."+e,u.send_data(_,n)},set:function(e,n,o,i){var _=r;return null===o?_.id=window.performance.now().toString():_.id=T.push(e,"set",o,i),_.method=t+".set."+e,u.send_data(_,n)},query:function(e,n,o,i){var _=r;return null===o?_.id=window.performance.now().toString():_.id=T.push(e,"query",o,i),_.method=t+".query."+e,u.send_data(_,n)},addListener:function(e,n,o){if(o){s.push(e,o);var i=s.get(e);if(i&&1===i.length){var _=r;return _.method=t+".addListener."+e,u.send_data(_,n)}return!0}return!1},removeListener:function(e,n){if(n){if(s.pop(e,n),s.get(e))return!0;var o=r;return o.method=t+".removeListener."+e,u.send_data(o,null)}return!1},init:function(t,e,n,o){u=c(),t&&(r.app_id=t),e&&(u.onopen=e),n&&(u.onclose=n),o&&(a=o)},reset:function(t,e,n,o){u.close(),T.clear(),s.clear(),u=c(),t&&(r.app_id=t),e&&(u.onopen=e),n&&(u.onclose=n),o&&(a=o)},getWs:function(){return u},clearCallback:function(t){switch(t){case"all":return T.clear();default:return-1}},version:function(){return"2.1.1.4"}};window.vehicle=O}()}});
 
 /***/ }),
-/* 97 */,
 /* 98 */,
 /* 99 */,
 /* 100 */
@@ -20692,6 +20692,838 @@ var index_esm = {
 /* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["vue-js-toggle-button"] = factory();
+	else
+		root["vue-js-toggle-button"] = factory();
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/dist/";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(7)
+
+var Component = __webpack_require__(5)(
+  /* script */
+  __webpack_require__(1),
+  /* template */
+  __webpack_require__(6),
+  /* scopeId */
+  "data-v-25adc6c0",
+  /* cssModules */
+  null
+)
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var DEFAULT_COLOR_CHECKED = '#75c791';
+var DEFAULT_COLOR_UNCHECKED = '#bfcbd9';
+var DEFAULT_LABEL_CHECKED = 'on';
+var DEFAULT_LABEL_UNCHECKED = 'off';
+var DEFAULT_SWITCH_COLOR = '#fff';
+
+var contains = function contains(object, title) {
+  return (typeof object === 'undefined' ? 'undefined' : _typeof(object)) === 'object' && object.hasOwnProperty(title);
+};
+
+var px = function px(v) {
+  return v + 'px';
+};
+
+var translate3d = function translate3d(x, y) {
+  var z = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '0px';
+
+  return 'translate3d(' + x + ', ' + y + ', ' + z + ')';
+};
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'ToggleButton',
+  props: {
+    value: {
+      type: Boolean,
+      default: false
+    },
+    name: {
+      type: String
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    sync: {
+      type: Boolean,
+      default: false
+    },
+    speed: {
+      type: Number,
+      default: 300
+    },
+    color: {
+      type: [String, Object],
+      validator: function validator(value) {
+        return (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' ? value.checked || value.unchecked || value.disabled : typeof value === 'string';
+      }
+    },
+    switchColor: {
+      type: [String, Object],
+      validator: function validator(value) {
+        return (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' ? value.checked || value.unchecked : typeof value === 'string';
+      }
+    },
+    cssColors: {
+      type: Boolean,
+      default: false
+    },
+    labels: {
+      type: [Boolean, Object],
+      default: false,
+      validator: function validator(value) {
+        return (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' ? value.checked || value.unchecked : typeof value === 'boolean';
+      }
+    },
+    height: {
+      type: Number,
+      default: 22
+    },
+    width: {
+      type: Number,
+      default: 50
+    },
+    margin: {
+      type: Number,
+      default: 3
+    },
+    fontSize: {
+      type: Number
+    }
+  },
+  computed: {
+    className: function className() {
+      var toggled = this.toggled,
+          disabled = this.disabled;
+
+
+      return ['vue-js-switch', { toggled: toggled, disabled: disabled }];
+    },
+    coreStyle: function coreStyle() {
+      return {
+        width: px(this.width),
+        height: px(this.height),
+        backgroundColor: this.cssColors ? null : this.disabled ? this.colorDisabled : this.colorCurrent,
+        borderRadius: px(Math.round(this.height / 2))
+      };
+    },
+    buttonRadius: function buttonRadius() {
+      return this.height - this.margin * 2;
+    },
+    distance: function distance() {
+      return px(this.width - this.height + this.margin);
+    },
+    buttonStyle: function buttonStyle() {
+      var transition = 'transform ' + this.speed + 'ms';
+      var margin = px(this.margin);
+
+      var transform = this.toggled ? translate3d(this.distance, margin) : translate3d(margin, margin);
+
+      var background = this.switchColor ? this.switchColorCurrent : null;
+
+      return {
+        width: px(this.buttonRadius),
+        height: px(this.buttonRadius),
+        transition: transition,
+        transform: transform,
+        background: background
+      };
+    },
+    labelStyle: function labelStyle() {
+      return {
+        lineHeight: px(this.height),
+        fontSize: this.fontSize ? px(this.fontSize) : null
+      };
+    },
+    colorChecked: function colorChecked() {
+      var color = this.color;
+
+
+      if ((typeof color === 'undefined' ? 'undefined' : _typeof(color)) !== 'object') {
+        return color || DEFAULT_COLOR_CHECKED;
+      }
+
+      return contains(color, 'checked') ? color.checked : DEFAULT_COLOR_CHECKED;
+    },
+    colorUnchecked: function colorUnchecked() {
+      var color = this.color;
+
+
+      return contains(color, 'unchecked') ? color.unchecked : DEFAULT_COLOR_UNCHECKED;
+    },
+    colorDisabled: function colorDisabled() {
+      var color = this.color;
+
+
+      return contains(color, 'disabled') ? color.disabled : this.colorCurrent;
+    },
+    colorCurrent: function colorCurrent() {
+      return this.toggled ? this.colorChecked : this.colorUnchecked;
+    },
+    labelChecked: function labelChecked() {
+      var labels = this.labels;
+
+
+      return contains(labels, 'checked') ? labels.checked : DEFAULT_LABEL_CHECKED;
+    },
+    labelUnchecked: function labelUnchecked() {
+      var labels = this.labels;
+
+
+      return contains(labels, 'unchecked') ? labels.unchecked : DEFAULT_LABEL_UNCHECKED;
+    },
+    switchColorChecked: function switchColorChecked() {
+      var switchColor = this.switchColor;
+
+
+      return contains(switchColor, 'checked') ? switchColor.checked : DEFAULT_SWITCH_COLOR;
+    },
+    switchColorUnchecked: function switchColorUnchecked() {
+      var switchColor = this.switchColor;
+
+
+      return contains(switchColor, 'unchecked') ? switchColor.unchecked : DEFAULT_SWITCH_COLOR;
+    },
+    switchColorCurrent: function switchColorCurrent() {
+      var switchColor = this.switchColor;
+
+
+      if ((typeof switchColor === 'undefined' ? 'undefined' : _typeof(switchColor)) !== 'object') {
+        return switchColor || DEFAULT_SWITCH_COLOR;
+      }
+
+      return this.toggled ? this.switchColorChecked : this.switchColorUnchecked;
+    }
+  },
+  watch: {
+    value: function value(_value) {
+      if (this.sync) {
+        this.toggled = !!_value;
+      }
+    }
+  },
+  data: function data() {
+    return {
+      toggled: !!this.value
+    };
+  },
+
+  methods: {
+    toggle: function toggle(event) {
+      this.toggled = !this.toggled;
+      this.$emit('input', this.toggled);
+      this.$emit('change', {
+        value: this.toggled,
+        srcEvent: event
+      });
+    }
+  }
+});
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Button_vue__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Button_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Button_vue__);
+/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "ToggleButton", function() { return __WEBPACK_IMPORTED_MODULE_0__Button_vue___default.a; });
+
+
+var installed = false;
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  install: function install(Vue) {
+    if (installed) {
+      return;
+    }
+
+    Vue.component('ToggleButton', __WEBPACK_IMPORTED_MODULE_0__Button_vue___default.a);
+    installed = true;
+  }
+});
+
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, ".vue-js-switch[data-v-25adc6c0]{display:inline-block;position:relative;vertical-align:middle;user-select:none;font-size:10px;cursor:pointer}.vue-js-switch .v-switch-input[data-v-25adc6c0]{opacity:0;position:absolute;width:1px;height:1px}.vue-js-switch .v-switch-label[data-v-25adc6c0]{position:absolute;top:0;font-weight:600;color:#fff;z-index:1}.vue-js-switch .v-switch-label.v-left[data-v-25adc6c0]{left:10px}.vue-js-switch .v-switch-label.v-right[data-v-25adc6c0]{right:10px}.vue-js-switch .v-switch-core[data-v-25adc6c0]{display:block;position:relative;box-sizing:border-box;outline:0;margin:0;transition:border-color .3s,background-color .3s;user-select:none}.vue-js-switch .v-switch-core .v-switch-button[data-v-25adc6c0]{display:block;position:absolute;overflow:hidden;top:0;left:0;border-radius:100%;background-color:#fff;z-index:2}.vue-js-switch.disabled[data-v-25adc6c0]{pointer-events:none;opacity:.6}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function() {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		var result = [];
+		for(var i = 0; i < this.length; i++) {
+			var item = this[i];
+			if(item[2]) {
+				result.push("@media " + item[2] + "{" + item[1] + "}");
+			} else {
+				result.push(item[1]);
+			}
+		}
+		return result.join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+// this module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  scopeId,
+  cssModules
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  // inject cssModules
+  if (cssModules) {
+    var computed = Object.create(options.computed || null)
+    Object.keys(cssModules).forEach(function (key) {
+      var module = cssModules[key]
+      computed[key] = function () { return module }
+    })
+    options.computed = computed
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    class: _vm.className
+  }, [_c('input', {
+    staticClass: "v-switch-input",
+    attrs: {
+      "type": "checkbox",
+      "name": _vm.name,
+      "disabled": _vm.disabled
+    },
+    domProps: {
+      "checked": _vm.value
+    },
+    on: {
+      "change": function($event) {
+        $event.stopPropagation();
+        return _vm.toggle($event)
+      }
+    }
+  }), _vm._v(" "), _c('div', {
+    staticClass: "v-switch-core",
+    style: (_vm.coreStyle)
+  }, [_c('div', {
+    staticClass: "v-switch-button",
+    style: (_vm.buttonStyle)
+  })]), _vm._v(" "), (_vm.labels) ? [(_vm.toggled) ? _c('span', {
+    staticClass: "v-switch-label v-left",
+    style: (_vm.labelStyle)
+  }, [_vm._t("checked", [
+    [_vm._v(_vm._s(_vm.labelChecked))]
+  ])], 2) : _c('span', {
+    staticClass: "v-switch-label v-right",
+    style: (_vm.labelStyle)
+  }, [_vm._t("unchecked", [
+    [_vm._v(_vm._s(_vm.labelUnchecked))]
+  ])], 2)] : _vm._e()], 2)
+},staticRenderFns: []}
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(3);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(8)("2283861f", content, true);
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
+
+var hasDocument = typeof document !== 'undefined'
+
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(9)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction) {
+  isProduction = _isProduction
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
+
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
+
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
+
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  update(obj)
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+/**
+ * Translates the list format produced by css-loader into something
+ * easier to manipulate.
+ */
+module.exports = function listToStyles (parentId, list) {
+  var styles = []
+  var newStyles = {}
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    var id = item[0]
+    var css = item[1]
+    var media = item[2]
+    var sourceMap = item[3]
+    var part = {
+      id: parentId + ':' + i,
+      css: css,
+      media: media,
+      sourceMap: sourceMap
+    }
+    if (!newStyles[id]) {
+      styles.push(newStyles[id] = { id: id, parts: [part] })
+    } else {
+      newStyles[id].parts.push(part)
+    }
+  }
+  return styles
+}
+
+
+/***/ })
+/******/ ]);
+});
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 183 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
@@ -20707,7 +21539,7 @@ var _createClass2 = __webpack_require__(54);
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _popup = __webpack_require__(183);
+var _popup = __webpack_require__(184);
 
 var _popup2 = _interopRequireDefault(_popup);
 
@@ -20806,7 +21638,7 @@ var CommonPopup = function () {
 exports.default = new CommonPopup();
 
 /***/ }),
-/* 183 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20816,7 +21648,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _popup = __webpack_require__(184);
+var _popup = __webpack_require__(185);
 
 var _popup2 = _interopRequireDefault(_popup);
 
@@ -20825,7 +21657,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = (0, _popup2.default)();
 
 /***/ }),
-/* 184 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20906,19 +21738,19 @@ exports.default = function () {
   };
 };
 
-var _popup = __webpack_require__(185);
+var _popup = __webpack_require__(186);
 
 var _popup2 = _interopRequireDefault(_popup);
 
-var _progressPopup = __webpack_require__(188);
+var _progressPopup = __webpack_require__(189);
 
 var _progressPopup2 = _interopRequireDefault(_progressPopup);
 
-var _loadingPopup = __webpack_require__(191);
+var _loadingPopup = __webpack_require__(192);
 
 var _loadingPopup2 = _interopRequireDefault(_loadingPopup);
 
-var _focus = __webpack_require__(198);
+var _focus = __webpack_require__(199);
 
 var _events = __webpack_require__(13);
 
@@ -20935,7 +21767,6 @@ _vue2.default.prototype.$focus = _focus.focusInstance;
 var shownPopupHashMap = {};
 
 /***/ }),
-/* 185 */,
 /* 186 */,
 /* 187 */,
 /* 188 */,
@@ -20943,7 +21774,8 @@ var shownPopupHashMap = {};
 /* 190 */,
 /* 191 */,
 /* 192 */,
-/* 193 */
+/* 193 */,
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20953,7 +21785,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _spinner = __webpack_require__(194);
+var _spinner = __webpack_require__(195);
 
 var _spinner2 = _interopRequireDefault(_spinner);
 
@@ -20962,11 +21794,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _spinner2.default;
 
 /***/ }),
-/* 194 */,
 /* 195 */,
 /* 196 */,
 /* 197 */,
-/* 198 */
+/* 198 */,
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20977,7 +21809,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.focusInstance = undefined;
 
-var _map = __webpack_require__(199);
+var _map = __webpack_require__(200);
 
 var _map2 = _interopRequireDefault(_map);
 
@@ -20995,7 +21827,7 @@ var _appManager = __webpack_require__(95);
 
 var _appManager2 = _interopRequireDefault(_appManager);
 
-var _hardkey = __webpack_require__(215);
+var _hardkey = __webpack_require__(216);
 
 var _events = __webpack_require__(13);
 
@@ -22087,37 +22919,37 @@ function install(_Vue) {
 }
 
 /***/ }),
-/* 199 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(200), __esModule: true };
-
-/***/ }),
 /* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(84);
-__webpack_require__(34);
-__webpack_require__(86);
-__webpack_require__(201);
-__webpack_require__(208);
-__webpack_require__(211);
-__webpack_require__(213);
-module.exports = __webpack_require__(0).Map;
-
+module.exports = { "default": __webpack_require__(201), __esModule: true };
 
 /***/ }),
 /* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
+__webpack_require__(84);
+__webpack_require__(34);
+__webpack_require__(86);
+__webpack_require__(202);
+__webpack_require__(209);
+__webpack_require__(212);
+__webpack_require__(214);
+module.exports = __webpack_require__(0).Map;
+
+
+/***/ }),
+/* 202 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
-var strong = __webpack_require__(202);
+var strong = __webpack_require__(203);
 var validate = __webpack_require__(94);
 var MAP = 'Map';
 
 // 23.1 Map Objects
-module.exports = __webpack_require__(204)(MAP, function (get) {
+module.exports = __webpack_require__(205)(MAP, function (get) {
   return function Map() { return get(this, arguments.length > 0 ? arguments[0] : undefined); };
 }, {
   // 23.1.3.6 Map.prototype.get(key)
@@ -22133,7 +22965,7 @@ module.exports = __webpack_require__(204)(MAP, function (get) {
 
 
 /***/ }),
-/* 202 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22146,7 +22978,7 @@ var anInstance = __webpack_require__(93);
 var forOf = __webpack_require__(31);
 var $iterDefine = __webpack_require__(37);
 var step = __webpack_require__(87);
-var setSpecies = __webpack_require__(203);
+var setSpecies = __webpack_require__(204);
 var DESCRIPTORS = __webpack_require__(6);
 var fastKey = __webpack_require__(29).fastKey;
 var validate = __webpack_require__(94);
@@ -22284,7 +23116,7 @@ module.exports = {
 
 
 /***/ }),
-/* 203 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22305,7 +23137,7 @@ module.exports = function (KEY) {
 
 
 /***/ }),
-/* 204 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22321,7 +23153,7 @@ var anInstance = __webpack_require__(93);
 var isObject = __webpack_require__(8);
 var setToStringTag = __webpack_require__(28);
 var dP = __webpack_require__(5).f;
-var each = __webpack_require__(205)(0);
+var each = __webpack_require__(206)(0);
 var DESCRIPTORS = __webpack_require__(6);
 
 module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
@@ -22371,7 +23203,7 @@ module.exports = function (NAME, wrapper, methods, common, IS_MAP, IS_WEAK) {
 
 
 /***/ }),
-/* 205 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 0 -> Array#forEach
@@ -22385,7 +23217,7 @@ var ctx = __webpack_require__(17);
 var IObject = __webpack_require__(39);
 var toObject = __webpack_require__(19);
 var toLength = __webpack_require__(26);
-var asc = __webpack_require__(206);
+var asc = __webpack_require__(207);
 module.exports = function (TYPE, $create) {
   var IS_MAP = TYPE == 1;
   var IS_FILTER = TYPE == 2;
@@ -22421,11 +23253,11 @@ module.exports = function (TYPE, $create) {
 
 
 /***/ }),
-/* 206 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 9.4.2.3 ArraySpeciesCreate(originalArray, length)
-var speciesConstructor = __webpack_require__(207);
+var speciesConstructor = __webpack_require__(208);
 
 module.exports = function (original, length) {
   return new (speciesConstructor(original))(length);
@@ -22433,7 +23265,7 @@ module.exports = function (original, length) {
 
 
 /***/ }),
-/* 207 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(8);
@@ -22455,22 +23287,22 @@ module.exports = function (original) {
 
 
 /***/ }),
-/* 208 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
 var $export = __webpack_require__(3);
 
-$export($export.P + $export.R, 'Map', { toJSON: __webpack_require__(209)('Map') });
+$export($export.P + $export.R, 'Map', { toJSON: __webpack_require__(210)('Map') });
 
 
 /***/ }),
-/* 209 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
 var classof = __webpack_require__(72);
-var from = __webpack_require__(210);
+var from = __webpack_require__(211);
 module.exports = function (NAME) {
   return function toJSON() {
     if (classof(this) != NAME) throw TypeError(NAME + "#toJSON isn't generic");
@@ -22480,7 +23312,7 @@ module.exports = function (NAME) {
 
 
 /***/ }),
-/* 210 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var forOf = __webpack_require__(31);
@@ -22493,15 +23325,15 @@ module.exports = function (iter, ITERATOR) {
 
 
 /***/ }),
-/* 211 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-map.of
-__webpack_require__(212)('Map');
+__webpack_require__(213)('Map');
 
 
 /***/ }),
-/* 212 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22520,15 +23352,15 @@ module.exports = function (COLLECTION) {
 
 
 /***/ }),
-/* 213 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://tc39.github.io/proposal-setmap-offrom/#sec-map.from
-__webpack_require__(214)('Map');
+__webpack_require__(215)('Map');
 
 
 /***/ }),
-/* 214 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22563,7 +23395,7 @@ module.exports = function (COLLECTION) {
 
 
 /***/ }),
-/* 215 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

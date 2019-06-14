@@ -1,18 +1,18 @@
 webpackJsonp([20],{
 
-/***/ 222:
+/***/ 236:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tire_vue__ = __webpack_require__(272);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tire_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tire_vue__);
-/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tire_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tire_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5ef2a778_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tire_vue__ = __webpack_require__(295);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_alarmRR_vue__ = __webpack_require__(296);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_alarmRR_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_alarmRR_vue__);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_alarmRR_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_alarmRR_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_32eb2df1_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_alarmRR_vue__ = __webpack_require__(340);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(294)
+  __webpack_require__(339)
 }
 var normalizeComponent = __webpack_require__(11)
 /* script */
@@ -25,18 +25,18 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-5ef2a778"
+var __vue_scopeId__ = "data-v-32eb2df1"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_tire_vue___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5ef2a778_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_tire_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_alarmRR_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_32eb2df1_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_alarmRR_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "src/components/tire.vue"
+Component.options.__file = "src/components/alarmRR.vue"
 
 /* hot reload */
 if (true) {(function () {
@@ -45,9 +45,9 @@ if (true) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5ef2a778", Component.options)
+    hotAPI.createRecord("data-v-32eb2df1", Component.options)
   } else {
-    hotAPI.reload("data-v-5ef2a778", Component.options)
+    hotAPI.reload("data-v-32eb2df1", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -59,7 +59,7 @@ if (true) {(function () {
 
 /***/ }),
 
-/***/ 254:
+/***/ 271:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(9)();
@@ -67,14 +67,14 @@ exports = module.exports = __webpack_require__(9)();
 
 
 // module
-exports.push([module.i, "\n.contents[data-v-5ef2a778] {\n  padding: 20px;\n  color: white;\n}\ndiv.parts[data-v-5ef2a778] {\n  float: left;\n  height: 85%;\n  width: 25%;\n  border: 1px solid white;\n}\ndiv.select[data-v-5ef2a778] {\n  height: 20%;\n  width: 100%;\n  border: 1px solid white;\n}\ndiv.select p[data-v-5ef2a778] {\n  text-align: center;\n  margin: 15px;\n  font-size: 20px;\n}\ndiv.manage[data-v-5ef2a778] {\n  float: left;\n  height: 85%;\n  width: 75%;\n  border: 1px solid white;\n}\ndiv.top[data-v-5ef2a778] {\n  height: 76.6px;\n  width: 100%;\n  border: 1px solid white;\n}\ndiv.btn2[data-v-5ef2a778] {\n  float: right;\n}\ndiv.btn1[data-v-5ef2a778] {\n  float: left;\n  margin-left: 20px;\n}\ndiv.desc[data-v-5ef2a778] {\n  float: left;\n  text-align: center;\n  padding: 8px;\n  height: 50%;\n  width: 60%;\n  border: 1px solid white;\n  margin: 20px 33px 5px 23px;\n}\ndiv.desc p[data-v-5ef2a778] {\n  font-size: 20px;\n}\nbutton[data-v-5ef2a778] {\n  float: right;\n  margin-top: 5px;\n  margin-right: 9.79px;\n  width: 65px;\n  height: 65px;\n  color: black;\n  background-color: white;\n}\ndiv.position[data-v-5ef2a778] {\n  margin: 0 auto;\n  height: 77%;\n  width: 100%;\n  text-align: center;\n}\ndiv.position p[data-v-5ef2a778] {\n  text-align: center;\n  margin-top: 15%;\n  font-size: 30px;\n}\ndiv.position div.right[data-v-5ef2a778],\ndiv.position div.left[data-v-5ef2a778] {\n  width: 100%;\n  height: 50%;\n}\ndiv.position div.right div.front[data-v-5ef2a778],\ndiv.position div.right div.rear[data-v-5ef2a778],\ndiv.position div.left div.front[data-v-5ef2a778],\ndiv.position div.left div.rear[data-v-5ef2a778] {\n  float: left;\n  border: 1px solid white;\n  width: 50%;\n  height: 100%;\n}", ""]);
+exports.push([module.i, "\n.contents[data-v-32eb2df1] {\n  padding: 20px;\n  color: white;\n}\ndiv.popup[data-v-32eb2df1] {\n  margin: 25px auto 55px auto;\n  width: 80%;\n  height: 70%;\n  border: 1px solid white;\n}\ndiv.title[data-v-32eb2df1] {\n  border: 1px solid white;\n  margin-bottom: 3px;\n}\ndiv.title p[data-v-32eb2df1] {\n  text-align: center;\n  margin: 10px;\n  font-size: 20px;\n}\ndiv.img[data-v-32eb2df1] {\n  float: left;\n  width: 80px;\n  height: 80px;\n  margin-left: 5px;\n  border: 1px solid white;\n}\ndiv.problem_API[data-v-32eb2df1],\ndiv.problem_Distance[data-v-32eb2df1],\ndiv.problem_Date[data-v-32eb2df1] {\n  border: 1px solid white;\n  height: 20%;\n  width: 70%;\n  margin: 0 auto 10px auto;\n}\ndiv.btn[data-v-32eb2df1] {\n  margin: 0 auto;\n  width: 60%;\n  height: 30px;\n  border: 1px solid white;\n}\ndiv.btn p[data-v-32eb2df1] {\n  text-align: center;\n  margin-top: 7px;\n  font-size: 15px;\n}\n.safe[data-v-32eb2df1] {\n  color: green;\n  text-align: center;\n  margin-top: 16px;\n  font-size: 17px;\n}\n.danger[data-v-32eb2df1] {\n  color: red;\n  text-align: center;\n  margin-top: 16px;\n  font-size: 17px;\n}", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 272:
+/***/ 296:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -83,69 +83,71 @@ exports.push([module.i, "\n.contents[data-v-5ef2a778] {\n  padding: 20px;\n  col
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _manageLibs = __webpack_require__(96);
+
 exports.default = {
-  name: 'tire',
+  name: 'alarmRR',
   data: function data() {
     return {
-      items: [{ name: '엔진 오일' }, { name: '배터리' }, { name: '냉각수' }, { name: '타이어' }, { name: '캐빈필터' }]
+      SP_API: '',
+      DP_API: '',
+      SP_Distance: '',
+      DP_Distance: '',
+      SP_Date: '',
+      DP_Date: '',
+      P_sentence: ''
     };
   },
   methods: {
-    gomanage: function gomanage(page) {
-      var str = '/';
-
-      if (page === '엔진 오일') {
-        str += 'management';
-      } else if (page === '배터리') {
-        str += 'battery';
-      } else if (page === '냉각수') {
-        str += 'water';
-      } else if (page === '타이어') {
-        str += 'tire';
-      } else if (page === '캐빈필터') {
-        str += 'cabinAirFilter';
-      }
-      this.$router.push(str);
+    go: function go() {
+      this.$router.push('/rightRearTire');
     },
-    goTire: function goTire(pos) {
-      var str = '/' + pos + 'Tire';
-      var title = -1;
-
-      if (pos === 'rightFront') {
-        title = '오른쪽 앞';
-      } else if (pos === 'rightRear') {
-        title = '오른쪽 뒤';
-      } else if (pos === 'leftFront') {
-        title = '왼쪽 앞';
-      } else if (pos === 'leftRear') {
-        title = '왼쪽 뒤';
+    problem: function problem() {
+      if (this.P_sentence === 'problem_API') {
+        this.DP_API = '오른쪽 뒤 타이어에 문제 상황이 발생했어요';
+      } else {
+        this.SP_API = '오른쪽 뒤 타이어의 상태는 괜찮아요';
       }
 
-      this.$store.commit('changeTitle', title);
-      this.$router.push(str);
+      if (this.P_sentence === 'problem_Distance') {
+        this.DP_Distance = '오른쪽 뒤 타이어의 사용시간이 지나서 교체시기가 되었어요';
+      } else {
+        this.SP_Distance = '오른쪽 뒤 타이어의 사용시간에 따른 수명은 아직 남았어요';
+      }
+
+      if (this.P_sentence === 'problem_Date') {
+        this.DP_Date = '오른쪽 뒤 타이어의 주행거리가 지나서 교체시기가 되었어요';
+      } else {
+        this.SP_Date = '오른쪽 뒤 타이어의 주행거리에 따른 수명은 아직 남았어요';
+      }
     }
+  },
+  created: function created() {
+    this.P_sentence = _manageLibs.storage.loadRRProblem();
+    this.problem();
   }
 };
 
 /***/ }),
 
-/***/ 294:
+/***/ 339:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(254);
+var content = __webpack_require__(271);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(10)("54b6deaf", content, false);
+var update = __webpack_require__(10)("47ea44e6", content, false);
 // Hot Module Replacement
 if(true) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept(254, function() {
-     var newContent = __webpack_require__(254);
+   module.hot.accept(271, function() {
+     var newContent = __webpack_require__(271);
      if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
      update(newContent);
    });
@@ -156,7 +158,7 @@ if(true) {
 
 /***/ }),
 
-/***/ 295:
+/***/ 340:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -166,115 +168,41 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "contents" }, [
-      _c(
-        "div",
-        { staticClass: "parts" },
-        _vm._l(_vm.items, function(item) {
-          return _c("div", { key: item.name, staticClass: "select" }, [
-            _c(
-              "p",
-              {
-                ref: "string",
-                refInFor: true,
-                on: {
-                  click: function($event) {
-                    _vm.gomanage(item.name)
-                  }
-                }
-              },
-              [_vm._v(_vm._s(item.name))]
-            )
-          ])
-        })
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "manage" }, [
-        _c("div", { staticClass: "top" }, [
-          _c("div", { staticClass: "btn1" }, [
-            _c(
-              "button",
-              [
-                _c("router-link", { attrs: { to: { name: "managepopup" } } }, [
-                  _vm._v("날짜수정")
-                ])
-              ],
-              1
-            )
-          ]),
+      _c("div", { staticClass: "popup" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "img" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "problem_API" }, [
+          _c("p", { staticClass: "safe" }, [_vm._v(_vm._s(_vm.SP_API))]),
           _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _c("div", { staticClass: "btn2" }, [
-            _c(
-              "button",
-              [
-                _c(
-                  "router-link",
-                  { attrs: { to: { name: "airconditioner" } } },
-                  [_vm._v("Go")]
-                )
-              ],
-              1
-            )
-          ])
+          _c("p", { staticClass: "danger" }, [_vm._v(_vm._s(_vm.DP_API))])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "position" }, [
-          _c("div", { staticClass: "right" }, [
-            _c(
-              "div",
-              {
-                staticClass: "front",
-                on: {
-                  click: function($event) {
-                    _vm.goTire("rightFront")
-                  }
-                }
-              },
-              [_c("p", [_vm._v("오른쪽 앞")])]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "rear",
-                on: {
-                  click: function($event) {
-                    _vm.goTire("rightRear")
-                  }
-                }
-              },
-              [_c("p", [_vm._v("오른쪽 뒤")])]
-            )
-          ]),
+        _c("div", { staticClass: "problem_Distance" }, [
+          _c("p", { staticClass: "safe" }, [_vm._v(_vm._s(_vm.SP_Distance))]),
           _vm._v(" "),
-          _c("div", { staticClass: "left" }, [
-            _c(
-              "div",
-              {
-                staticClass: "front",
-                on: {
-                  click: function($event) {
-                    _vm.goTire("leftFront")
-                  }
+          _c("p", { staticClass: "danger" }, [_vm._v(_vm._s(_vm.DP_Distance))])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "problem_Date" }, [
+          _c("p", { staticClass: "safe" }, [_vm._v(_vm._s(_vm.SP_Date))]),
+          _vm._v(" "),
+          _c("p", { staticClass: "danger" }, [_vm._v(_vm._s(_vm.DP_Date))])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "btn" }, [
+          _c(
+            "p",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.go()
                 }
-              },
-              [_c("p", [_vm._v("왼쪽 앞")])]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "rear",
-                on: {
-                  click: function($event) {
-                    _vm.goTire("leftRear")
-                  }
-                }
-              },
-              [_c("p", [_vm._v("왼쪽 뒤")])]
-            )
-          ])
+              }
+            },
+            [_vm._v("다시 어플을 킬 때 까지 보지 않기")]
+          )
         ])
       ])
     ])
@@ -285,8 +213,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "desc" }, [
-      _c("p", [_vm._v("타이어를 선택해주세요")])
+    return _c("div", { staticClass: "title" }, [
+      _c("p", [_vm._v("오른쪽 뒤 타이어에 문제가 발생했어요")])
     ])
   }
 ]
@@ -296,7 +224,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 if (true) {
   module.hot.accept()
   if (module.hot.data) {
-    __webpack_require__(1)      .rerender("data-v-5ef2a778", esExports)
+    __webpack_require__(1)      .rerender("data-v-32eb2df1", esExports)
   }
 }
 

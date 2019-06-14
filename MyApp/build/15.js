@@ -1,18 +1,18 @@
 webpackJsonp([15],{
 
-/***/ 231:
+/***/ 232:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_cabinAirFilter_vue__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_cabinAirFilter_vue__ = __webpack_require__(292);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_cabinAirFilter_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_cabinAirFilter_vue__);
 /* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_cabinAirFilter_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_cabinAirFilter_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_19466dee_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_cabinAirFilter_vue__ = __webpack_require__(313);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_19466dee_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_cabinAirFilter_vue__ = __webpack_require__(332);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(312)
+  __webpack_require__(331)
 }
 var normalizeComponent = __webpack_require__(11)
 /* script */
@@ -59,207 +59,7 @@ if (true) {(function () {
 
 /***/ }),
 
-/***/ 236:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var storage = {
-  saveRFTireKm: function saveRFTireKm(km) {
-    localStorage.setItem('RFtireKm', km);
-  },
-  loadRFTireKm: function loadRFTireKm() {
-    var RFtireKm = localStorage.getItem('RFtireKm');
-    RFtireKm = RFtireKm || '';
-    return RFtireKm;
-  },
-  saveRRTireKm: function saveRRTireKm(km) {
-    localStorage.setItem('RRtireKm', km);
-  },
-  loadRRTireKm: function loadRRTireKm() {
-    var RRtireKm = localStorage.getItem('RRtireKm');
-    RRtireKm = RRtireKm || '';
-    return RRtireKm;
-  },
-  saveLFTireKm: function saveLFTireKm(km) {
-    localStorage.setItem('LFtireKm', km);
-  },
-  loadLFTireKm: function loadLFTireKm() {
-    var LFtireKm = localStorage.getItem('LFtireKm');
-    LFtireKm = LFtireKm || '';
-    return LFtireKm;
-  },
-  saveLRTireKm: function saveLRTireKm(km) {
-    localStorage.setItem('LRtireKm', km);
-  },
-  loadLRTireKm: function loadLRTireKm() {
-    var LRtireKm = localStorage.getItem('LRtireKm');
-    LRtireKm = LRtireKm || '';
-    return LRtireKm;
-  },
-  saveCFilterKm: function saveCFilterKm(km) {
-    localStorage.setItem('CFilterKm', km);
-  },
-  loadCFilterKm: function loadCFilterKm() {
-    var CFilterKm = localStorage.getItem('CFilterKm');
-    CFilterKm = CFilterKm || '';
-    return CFilterKm;
-  },
-  saveRFTireM: function saveRFTireM(m) {
-    localStorage.setItem('RFtireM', m);
-  },
-  loadRFTireM: function loadRFTireM() {
-    var RFtireM = localStorage.getItem('RFtireM');
-    RFtireM = RFtireM || '';
-    return RFtireM;
-  },
-  saveRRTireM: function saveRRTireM(m) {
-    localStorage.setItem('RRtireM', m);
-  },
-  loadRRTireM: function loadRRTireM() {
-    var RRtireM = localStorage.getItem('RRtireM');
-    RRtireM = RRtireM || '';
-    return RRtireM;
-  },
-  saveLFTireM: function saveLFTireM(m) {
-    localStorage.setItem('LFtireM', m);
-  },
-  loadLFTireM: function loadLFTireM() {
-    var LFtireM = localStorage.getItem('LFtireM');
-    LFtireM = LFtireM || '';
-    return LFtireM;
-  },
-  saveLRTireM: function saveLRTireM(m) {
-    localStorage.setItem('LRtireM', m);
-  },
-  loadLRTireM: function loadLRTireM() {
-    var LRtireM = localStorage.getItem('LRtireM');
-    LRtireM = LRtireM || '';
-    return LRtireM;
-  },
-  saveCFilterM: function saveCFilterM(m) {
-    localStorage.setItem('CFilterM', m);
-  },
-  loadCFilterM: function loadCFilterM() {
-    var CFilterM = localStorage.getItem('CFilterM');
-    CFilterM = CFilterM || '';
-    return CFilterM;
-  },
-  saveFirst: function saveFirst(cnt) {
-    localStorage.setItem('First', cnt);
-  },
-  loadFirst: function loadFirst() {
-    var First = localStorage.getItem('First');
-    First = First || '0';
-    return First;
-  },
-  saveCFilterProblem: function saveCFilterProblem(pText) {
-    localStorage.setItem('Problem', pText);
-  },
-  loadCFilterProblem: function loadCFilterProblem() {
-    var Probelm = localStorage.getItem('Problem');
-    Probelm = Probelm || '';
-    return Probelm;
-  },
-  saveRFProblem: function saveRFProblem(pText) {
-    localStorage.setItem('Problem', pText);
-  },
-  loadRFProblem: function loadRFProblem() {
-    var Probelm = localStorage.getItem('Problem');
-    Probelm = Probelm || '';
-    return Probelm;
-  },
-  saveRRProblem: function saveRRProblem(pText) {
-    localStorage.setItem('Problem', pText);
-  },
-  loadRRProblem: function loadRRProblem() {
-    var Probelm = localStorage.getItem('Problem');
-    Probelm = Probelm || '';
-    return Probelm;
-  },
-  saveLFProblem: function saveLFProblem(pText) {
-    localStorage.setItem('Problem', pText);
-  },
-  loadLFProblem: function loadLFProblem() {
-    var Probelm = localStorage.getItem('Problem');
-    Probelm = Probelm || '';
-    return Probelm;
-  },
-  saveLRProblem: function saveLRProblem(pText) {
-    localStorage.setItem('Problem', pText);
-  },
-  loadLRProblem: function loadLRProblem() {
-    var Probelm = localStorage.getItem('Problem');
-    Probelm = Probelm || '';
-    return Probelm;
-  },
-  saveAlarm: function saveAlarm(name) {
-    localStorage.setItem('Alarm', name);
-  },
-  loadAlarm: function loadAlarm() {
-    var Alarm = localStorage.getItem('Alarm');
-    Alarm = Alarm || '';
-    return Alarm;
-  },
-  saveEngineOilkm: function saveEngineOilkm(km) {
-    localStorage.setItem('engineOilkm', km);
-  },
-  loadEngineOilkm: function loadEngineOilkm() {
-    var engineOilkm = localStorage.getItem('engineOilkm');
-    engineOilkm = engineOilkm || '';
-    return engineOilkm;
-  },
-  saveEngineOilM: function saveEngineOilM(m) {
-    localStorage.setItem('engineOilM', m);
-  },
-  loadEngineOilM: function loadEngineOilM() {
-    var engineOilM = localStorage.getItem('engineOilM');
-    engineOilM = engineOilM || '';
-    return engineOilM;
-  },
-  saveBatterykm: function saveBatterykm(km) {
-    localStorage.setItem('batterykm', km);
-  },
-  loadBatterykm: function loadBatterykm() {
-    var batterykm = localStorage.getItem('batterykm');
-    batterykm = batterykm || '';
-    return batterykm;
-  },
-  saveBatteryM: function saveBatteryM(m) {
-    localStorage.setItem('batteryM', m);
-  },
-  loadBatteryM: function loadBatteryM() {
-    var batteryM = localStorage.getItem('batteryM');
-    batteryM = batteryM || '';
-    return batteryM;
-  },
-  saveOilProblem: function saveOilProblem(pText) {
-    localStorage.setItem('Problem', pText);
-  },
-  loadOilProblem: function loadOilProblem() {
-    var Probelm = localStorage.getItem('Problem');
-    Probelm = Probelm || '';
-    return Probelm;
-  },
-  saveBatteryProblem: function saveBatteryProblem(pText) {
-    localStorage.setItem('Problem', pText);
-  },
-  loadBatteryProblem: function loadBatteryProblem() {
-    var Probelm = localStorage.getItem('Problem');
-    Probelm = Probelm || '';
-    return Probelm;
-  }
-};
-
-exports.storage = storage;
-
-/***/ }),
-
-/***/ 238:
+/***/ 245:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -636,7 +436,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 
 /***/ }),
 
-/***/ 263:
+/***/ 267:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(9)();
@@ -651,7 +451,7 @@ exports.push([module.i, "\n.contents[data-v-19466dee] {\n  padding: 20px;\n  col
 
 /***/ }),
 
-/***/ 281:
+/***/ 292:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -661,11 +461,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _vueSimpleProgress = __webpack_require__(238);
+var _vueSimpleProgress = __webpack_require__(245);
 
 var _vueSimpleProgress2 = _interopRequireDefault(_vueSimpleProgress);
 
-var _manageLibs = __webpack_require__(236);
+var _manageLibs = __webpack_require__(96);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -718,20 +518,25 @@ exports.default = {
     var betweenDay = (date.getTime() - _manageLibs.storage.loadCFilterM()) / 1000 / 60 / 60 / 24;
     this.km = _manageLibs.storage.loadCFilterKm();
     this.month = Math.floor(betweenDay / 30.4);
-
+    if (this.month >= 6) {
+      this.month = 6;
+    }
+    if (this.km >= 15000) {
+      this.km = 15000;
+    }
     this.alarmPopUp();
   }
 };
 
 /***/ }),
 
-/***/ 312:
+/***/ 331:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(263);
+var content = __webpack_require__(267);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -740,8 +545,8 @@ var update = __webpack_require__(10)("20bf5e03", content, false);
 if(true) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept(263, function() {
-     var newContent = __webpack_require__(263);
+   module.hot.accept(267, function() {
+     var newContent = __webpack_require__(267);
      if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
      update(newContent);
    });
@@ -752,7 +557,7 @@ if(true) {
 
 /***/ }),
 
-/***/ 313:
+/***/ 332:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -774,14 +579,15 @@ var render = function() {
                 refInFor: true,
                 on: {
                   click: function($event) {
-                    _vm.gomanage(item.name)
+                    return _vm.gomanage(item.name)
                   }
                 }
               },
               [_vm._v(_vm._s(item.name))]
             )
           ])
-        })
+        }),
+        0
       ),
       _vm._v(" "),
       _c("div", { staticClass: "manage" }, [
@@ -793,7 +599,7 @@ var render = function() {
                 {
                   on: {
                     click: function($event) {
-                      _vm.update()
+                      return _vm.update()
                     }
                   }
                 },
@@ -811,7 +617,7 @@ var render = function() {
                 {
                   on: {
                     click: function($event) {
-                      _vm.go()
+                      return _vm.go()
                     }
                   }
                 },
