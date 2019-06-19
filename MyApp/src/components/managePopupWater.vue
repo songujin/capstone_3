@@ -86,9 +86,6 @@ export default {
     goback () {
       this.$router.push('/water')
     },
-    goback () {
-      this.$router.push('/water')
-    },
     go () {
       let date = new Date()
       let monthNames = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]
